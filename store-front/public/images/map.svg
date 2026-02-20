@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#f8fafc"/>
+  <path d="M400 100 C 350 150, 300 200, 320 300 C 340 400, 450 450, 480 350 C 500 280, 450 150, 400 100" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="4"/>
+  <circle cx="400" cy="250" r="10" fill="#ef4444"/>
+  <circle cx="350" cy="300" r="8" fill="#3b82f6"/>
+  <circle cx="450" cy="320" r="8" fill="#3b82f6"/>
+  <text x="400" y="550" font-family="sans-serif" font-size="24" text-anchor="middle" fill="#64748b">Map of Algeria Delivery Zones</text>
+</svg>
