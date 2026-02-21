@@ -3,13 +3,13 @@ import { useState, useMemo } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
 import { motion } from 'framer-motion'
-import { TrendingUp, Package, DollarSign } from 'lucide-react'
+import { TrendingUp, Package, DollarSign, Calendar, ChevronDown } from 'lucide-react'
 import { clsx } from 'clsx'
+import { startOfDay, startOfWeek, startOfMonth, startOfYear, isWithinInterval, parseISO } from 'date-fns'
 
 export interface RevenueDataPoint {
     name: string
     revenue: number
-    // Optional: ISO date string for filtering
     date?: string
 }
 
@@ -30,12 +30,15 @@ interface MetricsProps {
     categoryData?: CategoryRevenuePoint[]
 }
 
-type TimeRange = '7' | '30' | 'all'
+type TimeRange = 'today' | 'week' | 'month' | 'year' | 'all' | 'custom'
 
 const TIME_FILTERS: { label: string; value: TimeRange }[] = [
-    { label: '7 أيام', value: '7' },
-    { label: '30 يوم', value: '30' },
+    { label: 'اليوم', value: 'today' },
+    { label: 'هذا الأسبوع', value: 'week' },
+    { label: 'هذا الشهر', value: 'month' },
+    { label: 'هذا العام', value: 'year' },
     { label: 'الكل', value: 'all' },
+    { label: 'مخصص', value: 'custom' },
 ]
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -52,23 +55,49 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; bar: string }>
     machine:  { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-600', bar: 'bg-blue-500' },
 }
 
+function getRangeStart(range: TimeRange): Date | null {
+    const now = new Date()
+    switch (range) {
+        case 'today':  return startOfDay(now)
+        case 'week':   return startOfWeek(now, { weekStartsOn: 6 })
+        case 'month':  return startOfMonth(now)
+        case 'year':   return startOfYear(now)
+        default:       return null
+    }
+}
+
 export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, categoryData }: MetricsProps) => {
-    const [timeRange, setTimeRange] = useState<TimeRange>('30')
+    const [timeRange, setTimeRange] = useState<TimeRange>('month')
+    const [customFrom, setCustomFrom] = useState('')
+    const [customTo, setCustomTo] = useState('')
+    const [showCustom, setShowCustom] = useState(false)
 
-    // Client-side time filtering — slice last N data points
-    const filteredRevenue = useMemo(() => {
-        if (timeRange === 'all' || !revenueData) return revenueData
-        const n = timeRange === '7' ? 7 : 30
-        return revenueData.slice(-n)
-    }, [revenueData, timeRange])
+    const filterData = (data: RevenueDataPoint[]): RevenueDataPoint[] => {
+        if (!data) return data
+        if (timeRange === 'all') return data
+        if (timeRange === 'custom') {
+            if (!customFrom && !customTo) return data
+            const from = customFrom ? new Date(customFrom) : new Date(0)
+            const to   = customTo   ? new Date(customTo + 'T23:59:59') : new Date()
+            return data.filter(d => {
+                const date = d.date ? parseISO(d.date) : null
+                if (!date) return true
+                return isWithinInterval(date, { start: from, end: to })
+            })
+        }
+        const rangeStart = getRangeStart(timeRange)
+        if (!rangeStart) return data
+        const today = new Date()
+        return data.filter(d => {
+            const date = d.date ? parseISO(d.date) : null
+            if (!date) return true
+            return isWithinInterval(date, { start: rangeStart, end: today })
+        })
+    }
 
-    const filteredTrends = useMemo(() => {
-        if (timeRange === 'all' || !orderTrends) return orderTrends
-        const n = timeRange === '7' ? 7 : 30
-        return orderTrends.slice(-n)
-    }, [orderTrends, timeRange])
+    const filteredRevenue = useMemo(() => filterData(revenueData), [revenueData, timeRange, customFrom, customTo])
+    const filteredTrends  = useMemo(() => filterData(orderTrends),  [orderTrends,  timeRange, customFrom, customTo])
 
-    // Shared tooltip style for both light and dark
     const tooltipStyle = {
         borderRadius: '1rem',
         border: 'none',
@@ -80,26 +109,60 @@ export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, cate
         backdropFilter: 'blur(12px)',
     }
 
+    const handleRangeChange = (value: TimeRange) => {
+        setTimeRange(value)
+        setShowCustom(value === 'custom')
+    }
+
     return (
         <div className="space-y-8">
             {/* Time Filter Bar */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <h2 className="text-lg font-black tracking-tight opacity-60">تحليل الأداء</h2>
-                <div className="flex items-center gap-1 bg-muted/50 p-1 rounded-xl border border-border/50">
-                    {TIME_FILTERS.map(f => (
-                        <button
-                            key={f.value}
-                            onClick={() => setTimeRange(f.value)}
-                            className={clsx(
-                                'px-4 py-1.5 rounded-lg text-xs font-black transition-all',
-                                timeRange === f.value
-                                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/20'
-                                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                            )}
+                <div className="flex flex-col items-end gap-2">
+                    <div className="flex items-center gap-1 bg-muted/50 p-1 rounded-xl border border-border/50 flex-wrap">
+                        {TIME_FILTERS.map(f => (
+                            <button
+                                key={f.value}
+                                onClick={() => handleRangeChange(f.value)}
+                                className={clsx(
+                                    'px-3 py-1.5 rounded-lg text-xs font-black transition-all whitespace-nowrap flex items-center gap-1',
+                                    timeRange === f.value
+                                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/20'
+                                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                                )}
+                            >
+                                {f.value === 'custom' && <Calendar className="w-3 h-3" />}
+                                {f.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Custom date range inputs */}
+                    {showCustom && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="flex items-center gap-2 bg-muted/30 border border-border/50 rounded-xl px-3 py-2"
                         >
-                            {f.label}
-                        </button>
-                    ))}
+                            <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">من</label>
+                            <input
+                                type="date"
+                                value={customFrom}
+                                onChange={e => setCustomFrom(e.target.value)}
+                                className="text-xs font-black bg-transparent border-none outline-none text-foreground"
+                            />
+                            <span className="text-muted-foreground/50 text-xs">—</span>
+                            <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">إلى</label>
+                            <input
+                                type="date"
+                                value={customTo}
+                                onChange={e => setCustomTo(e.target.value)}
+                                className="text-xs font-black bg-transparent border-none outline-none text-foreground"
+                            />
+                        </motion.div>
+                    )}
                 </div>
             </div>
 
