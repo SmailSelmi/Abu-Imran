@@ -1,20 +1,20 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Bird } from 'lucide-react'
-import Image from 'next/image'
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Bird } from "lucide-react";
+import Image from "next/image";
 
 export function SplashScreen() {
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(false)
-    }, 2000)
+      setIsVisible(false);
+    }, 2000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -26,42 +26,42 @@ export function SplashScreen() {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#f8fafc] dark:bg-zinc-950"
         >
-            {/* Animated Logo Container */}
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              className="relative"
-            >
-              <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
-                {/* Outer Glow Ring */}
-                <motion.div 
-                  animate={{ 
-                    scale: [1, 1.1, 1],
-                    opacity: [0.3, 0.5, 0.3]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute inset-0 bg-emerald-500/20 rounded-full blur-3xl"
+          {/* Animated Logo Container */}
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              duration: 1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="relative"
+          >
+            <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
+              {/* Outer Glow Ring */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute inset-0 bg-emerald-500/20 rounded-full blur-3xl"
+              />
+
+              {/* Logo Image */}
+              <div className="relative z-10 w-24 h-24 md:w-28 md:h-28">
+                <Image
+                  src="/icon0.svg"
+                  alt="Abu Imran Logo"
+                  fill
+                  className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.3)] dark:brightness-0 dark:invert"
                 />
-                
-                {/* Logo Image */}
-                <div className="relative z-10 w-24 h-24 md:w-28 md:h-28">
-                  <Image 
-                    src="/logo-official.png" 
-                    alt="Abu Imran Logo" 
-                    fill 
-                    className="object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                  />
-                </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
           <div className="loader mb-8 opacity-50"></div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -80,5 +80,5 @@ export function SplashScreen() {
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }

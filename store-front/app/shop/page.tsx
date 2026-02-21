@@ -1,56 +1,58 @@
-import { createClient } from '@/utils/supabase/server'
-import { Suspense } from 'react'
-import { Skeleton } from "@/components/ui/skeleton"
-import ShopClient from './ShopClient'
-import { Database } from '@/types/supabase'
+import { createClient } from "@/utils/supabase/server";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import ShopClient from "./ShopClient";
+import { Database } from "@/types/supabase";
 
-export const revalidate = 3600 // revalidate at most every hour
+export const revalidate = 3600; // revalidate at most every hour
 
-type Product = Database['public']['Tables']['products']['Row'] & {
-  families: Database['public']['Tables']['families']['Row'] | null
-  breeds: Database['public']['Tables']['breeds']['Row'] | null
-}
+type Product = Database["public"]["Tables"]["products"]["Row"] & {
+  families: Database["public"]["Tables"]["families"]["Row"] | null;
+  breeds: Database["public"]["Tables"]["breeds"]["Row"] | null;
+};
 
 async function getProducts(category?: string) {
-  const supabase = await createClient()
-  
+  const supabase = await createClient();
+
   let query = supabase
-    .from('products')
-    .select('id, name_en, name, slug, category, subcategory, price, stock, image_url, families(name_ar), breeds(name_ar)')
-    .is('deleted_at', null)
-    .order('price', { ascending: true })
+    .from("products")
+    .select(
+      "id, name_en, name, slug, category, subcategory, price, stock, image_url, families(name_ar), breeds(name_ar)",
+    )
+    .is("deleted_at", null)
+    .order("price", { ascending: true });
 
   if (category) {
-    query = query.eq('category', category)
+    query = query.eq("category", category);
   }
 
-  const { data, error } = await query
+  const { data, error } = await query;
 
   if (error) {
-    console.error('Error fetching products:', error)
-    return []
+    console.error("Error fetching products:", error);
+    return [];
   }
 
-  return data as unknown as Product[]
+  return data as unknown as Product[];
 }
 
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const { category } = await searchParams
-  const products = await getProducts(category)
- 
-   return (
-     <section className="min-h-screen bg-background pt-32 pb-20">
-       <div className="container px-4 mx-auto">
-         <Suspense fallback={<ShopSkeleton />}>
-           <ShopClient initialProducts={products} initialCategory={category} />
-         </Suspense>
-       </div>
-     </section>
-   )
+  const { category } = await searchParams;
+  const products = await getProducts(category);
+
+  return (
+    <section className="min-h-screen bg-background pt-32 pb-20">
+      <div className="container px-4 mx-auto">
+        <Suspense fallback={<ShopSkeleton />}>
+          <ShopClient initialProducts={products} initialCategory={category} />
+        </Suspense>
+      </div>
+    </section>
+  );
 }
 
 function ShopSkeleton() {
@@ -73,5 +75,5 @@ function ShopSkeleton() {
         ))}
       </div>
     </div>
-  )
+  );
 }

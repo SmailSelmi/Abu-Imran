@@ -1,5 +1,5 @@
-'use client'
-import { motion } from 'framer-motion'
+"use client";
+import { motion } from "framer-motion";
 
 export default function Loading() {
   return (
@@ -27,5 +27,5 @@ export default function Loading() {
         L O A D I N G
       </motion.p>
     </div>
-  )
+  );
 }

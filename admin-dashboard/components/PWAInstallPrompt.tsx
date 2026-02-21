@@ -1,67 +1,69 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { Download, X } from 'lucide-react'
-import { toast } from 'sonner'
+import { useEffect, useState } from "react";
+import { Download, X } from "lucide-react";
+import { toast } from "sonner";
 
 interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
 export function PWAInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     // Register service worker
-    if ('serviceWorker' in navigator) {
+    if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register('/sw.js', { scope: '/' })
+        .register("/sw.js", { scope: "/" })
         .then(() => {
-          console.log('[PWA] Service Worker registered')
+          console.log("[PWA] Service Worker registered");
         })
-        .catch((err) => console.warn('[PWA] SW registration failed:', err))
+        .catch((err) => console.warn("[PWA] SW registration failed:", err));
     }
 
     // Check if already dismissed in this session
-    const wasDismissed = sessionStorage.getItem('pwa_dismissed')
-    if (wasDismissed) return
+    const wasDismissed = sessionStorage.getItem("pwa_dismissed");
+    if (wasDismissed) return;
 
     // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) return
-    if ((window.navigator as { standalone?: boolean }).standalone === true) return
+    if (window.matchMedia("(display-mode: standalone)").matches) return;
+    if ((window.navigator as { standalone?: boolean }).standalone === true)
+      return;
 
     const handler = (e: Event) => {
-      e.preventDefault()
-      setDeferredPrompt(e as BeforeInstallPromptEvent)
+      e.preventDefault();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
       // Small delay so the page loads first
-      setTimeout(() => setIsVisible(true), 3000)
-    }
+      setTimeout(() => setIsVisible(true), 3000);
+    };
 
-    window.addEventListener('beforeinstallprompt', handler)
-    return () => window.removeEventListener('beforeinstallprompt', handler)
-  }, [])
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
 
   const handleInstall = async () => {
-    if (!deferredPrompt) return
-    await deferredPrompt.prompt()
-    const choice = await deferredPrompt.userChoice
-    if (choice.outcome === 'accepted') {
-      toast.success('تم تثبيت التطبيق بنجاح!')
+    if (!deferredPrompt) return;
+    await deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+    if (choice.outcome === "accepted") {
+      toast.success("تم تثبيت التطبيق بنجاح!");
     }
-    setIsVisible(false)
-    setDeferredPrompt(null)
-  }
+    setIsVisible(false);
+    setDeferredPrompt(null);
+  };
 
   const handleDismiss = () => {
-    setIsVisible(false)
-    setDismissed(true)
-    sessionStorage.setItem('pwa_dismissed', '1')
-  }
+    setIsVisible(false);
+    setDismissed(true);
+    sessionStorage.setItem("pwa_dismissed", "1");
+  };
 
-  if (!isVisible || dismissed) return null
+  if (!isVisible || dismissed) return null;
 
   return (
     <div
@@ -77,7 +79,9 @@ export function PWAInstallPrompt() {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <p className="font-bold text-sm text-foreground leading-snug">ثبّت لوحة التحكم</p>
+          <p className="font-bold text-sm text-foreground leading-snug">
+            ثبّت لوحة التحكم
+          </p>
           <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
             احصل على تجربة تطبيق أصلية مع وصول سريع من شاشة الرئيسية.
           </p>
@@ -99,5 +103,5 @@ export function PWAInstallPrompt() {
         </button>
       </div>
     </div>
-  )
+  );
 }

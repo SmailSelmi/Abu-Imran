@@ -1,4 +1,4 @@
-export type Locale = 'ar';
+export type Locale = "ar";
 
 export const translations = {
   ar: {
@@ -15,10 +15,11 @@ export const translations = {
       logout: "تسجيل الخروج",
       menu: "القائمة",
       managementPortal: "بوابة الإدارة",
-      brand: "أبو عمران"
+      brand: "أبو عمران",
     },
     header: {
-      searchPlaceholder: "ابحث عن الطلبيات، الزبائن، المنتجات، أو الحركات المالية..."
+      searchPlaceholder:
+        "ابحث عن الطلبيات، الزبائن، المنتجات، أو الحركات المالية...",
     },
     systemHealth: {
       health: "حالة النظام",
@@ -34,9 +35,9 @@ export const translations = {
       realtimeStatus: "حالة وحدة الأعمال في الوقت الفعلي.",
       reRun: "إعادة تشغيل التشخيص",
       missingTableText: "جدول 'المنتجات' غير موجود. يرجى تشغيل نص الهجرة.",
-      activeProducts: "منتجات نشطة."
-    }
-  }
+      activeProducts: "منتجات نشطة.",
+    },
+  },
 };
 
 export type TranslationKeys = typeof translations.ar;

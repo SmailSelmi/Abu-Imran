@@ -15,7 +15,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://admin.abu-imran-farm.com'),
+  metadataBase: new URL("https://admin.abu-imran-farm.com"),
   title: "أبو عمران | لوحة التحكم",
   description: "نظام إدارة متجر أبو عمران لتربية الدواجن ومعداتها",
   applicationName: "أبو عمران أدمين",
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon0.svg",
     apple: "/icons/icon-192.png",
-  }
+  },
 };
 
 export const viewport = {
-    themeColor: "#18181b", // zinc-950
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
+  themeColor: "#18181b", // zinc-950
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -51,17 +51,17 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${tajawal.className} antialiased bg-white dark:bg-zinc-950`}
+        className={`${tajawal.variable} font-sans antialiased bg-white dark:bg-zinc-950`}
       >
         <ErrorBoundary>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <I18nProvider>
-                    {children}
-                    <RealtimeNotifications />
-                    <PWAInstallPrompt />
-                    <Toaster richColors position="top-center" />
-                </I18nProvider>
-            </ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <I18nProvider>
+              {children}
+              <RealtimeNotifications />
+              <PWAInstallPrompt />
+              <Toaster richColors position="top-center" />
+            </I18nProvider>
+          </ThemeProvider>
         </ErrorBoundary>
       </body>
     </html>

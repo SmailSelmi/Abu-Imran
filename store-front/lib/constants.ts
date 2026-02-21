@@ -10,44 +10,55 @@ export interface CategoryInfo {
   basePrice: number;
 }
 
-export const SHARED_BREEDS = ["أسترالورب", "بليموث روك", "صاصو", "براهما", "ليغهورن", "بلدي"];
+export const SHARED_BREEDS = [
+  "أسترالورب",
+  "بليموث روك",
+  "صاصو",
+  "براهما",
+  "ليغهورن",
+  "بلدي",
+];
 
 export const CATEGORY_DATA: Record<string, CategoryInfo> = {
   eggs: {
     name: "بيض مخصب",
     name_ar: "بيض مخصب",
     icon: Egg,
-    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
+    image:
+      "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 150
+    basePrice: 150,
   },
   chicks: {
     name: "كتاكيت وفلاليس",
     name_ar: "كتاكيت وفلاليس",
     icon: Bird,
-    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
-    variants: SHARED_BREEDS.filter(b => b !== "ليغهورن"), // Example subset
+    image:
+      "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
+    variants: SHARED_BREEDS.filter((b) => b !== "ليغهورن"), // Example subset
     variantLabel: "اختر السلالة",
-    basePrice: 350
+    basePrice: 350,
   },
   chickens: {
     name: "دجاج بالغ",
     name_ar: "دجاج بالغ",
     icon: Bird,
-    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
+    image:
+      "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
     variants: ["أسترالورب", "بليموث روك", "صاصو", "براهما"],
     variantLabel: "اختر السلالة",
-    basePrice: 2500
+    basePrice: 2500,
   },
   machine: {
     name: "فقاسات يدوية",
     name_ar: "فقاسات يدوية",
     icon: Drill,
-    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg",
+    image:
+      "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg",
     variants: ["56 بيضة", "96 بيضة", "120 بيضة", "240 بيضة", "500 بيضة"],
     variantLabel: "اختر السعة",
-    basePrice: 12000
+    basePrice: 12000,
   },
 };
 
@@ -112,11 +123,44 @@ export const WILAYAS = [
   { id: "58", name: "المنيعة" },
 ];
 
-export const NAV_LINKS = (t: { common: { home: string; hatchingEggs: string; chicks: string; adultChickens: string; equipment: string; hatchingService: string } }) => [
-  { href: '/', label: t.common.home, icon: 'https://cdn.lordicon.com/wmwqvixz.json' },
-  { href: '/shop?category=eggs', label: t.common.hatchingEggs, icon: 'https://cdn.lordicon.com/lpddubrl.json' },
-  { href: '/shop?category=chicks', label: t.common.chicks, icon: 'https://cdn.lordicon.com/yxyampkf.json' },
-  { href: '/shop?category=chickens', label: t.common.adultChickens, icon: 'https://cdn.lordicon.com/ggidpqrj.json' },
-  { href: '/shop?category=machine', label: t.common.equipment, icon: 'https://cdn.lordicon.com/mfmkufkr.json' },
-  { href: '/hatching', label: t.common.hatchingService, icon: 'https://cdn.lordicon.com/lpddubrl.json' },
+export const NAV_LINKS = (t: {
+  common: {
+    home: string;
+    hatchingEggs: string;
+    chicks: string;
+    adultChickens: string;
+    equipment: string;
+    hatchingService: string;
+  };
+}) => [
+  {
+    href: "/",
+    label: t.common.home,
+    icon: "https://cdn.lordicon.com/wmwqvixz.json",
+  },
+  {
+    href: "/shop?category=eggs",
+    label: t.common.hatchingEggs,
+    icon: "https://cdn.lordicon.com/lpddubrl.json",
+  },
+  {
+    href: "/shop?category=chicks",
+    label: t.common.chicks,
+    icon: "https://cdn.lordicon.com/yxyampkf.json",
+  },
+  {
+    href: "/shop?category=chickens",
+    label: t.common.adultChickens,
+    icon: "https://cdn.lordicon.com/ggidpqrj.json",
+  },
+  {
+    href: "/shop?category=machine",
+    label: t.common.equipment,
+    icon: "https://cdn.lordicon.com/mfmkufkr.json",
+  },
+  {
+    href: "/hatching",
+    label: t.common.hatchingService,
+    icon: "https://cdn.lordicon.com/lpddubrl.json",
+  },
 ];

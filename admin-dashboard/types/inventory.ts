@@ -1,4 +1,4 @@
-export type Category = 'eggs' | 'chicks' | 'chickens' | 'machine';
+export type Category = "eggs" | "chicks" | "chickens" | "machine";
 
 export interface Breed {
   id: string;

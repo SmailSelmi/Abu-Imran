@@ -20,7 +20,7 @@ export default function DashboardLayout({
           <NotificationBell />
         </div>
 
-        <main className="flex-1 px-2 md:px-4 lg:p-6 overflow-y-auto overflow-x-hidden custom-scrollbar pb-24 md:pb-6">
+        <main className="flex-1 px-2 md:px-4 lg:p-6 py-4 md:py-6 overflow-y-auto overflow-x-hidden custom-scrollbar pb-24 md:pb-6">
           {children}
         </main>
         <BottomNav />

@@ -1,6 +1,6 @@
-'use client'
-import { motion } from 'framer-motion'
-import { Loader2 } from 'lucide-react'
+"use client";
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 
 export default function Loading() {
   return (
@@ -12,11 +12,11 @@ export default function Loading() {
           className="w-16 h-16 border-4 border-emerald-500/20 border-t-emerald-500 rounded-full"
         />
         <motion.div
-           animate={{ scale: [1, 1.2, 1] }}
-           transition={{ duration: 2, repeat: Infinity }}
-           className="absolute inset-0 flex items-center justify-center"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-            <div className="w-6 h-6 bg-emerald-500 rounded-full blur-sm opacity-50" />
+          <div className="w-6 h-6 bg-emerald-500 rounded-full blur-sm opacity-50" />
         </motion.div>
       </div>
       <motion.p
@@ -28,5 +28,5 @@ export default function Loading() {
         جاري التحميل...
       </motion.p>
     </div>
-  )
+  );
 }

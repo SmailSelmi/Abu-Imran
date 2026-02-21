@@ -19,10 +19,15 @@ export default async function DashboardPage() {
   const [ordersRes, productsRes, customersRes] = await Promise.all([
     supabase
       .from("orders")
-      .select("id, status, total_amount, created_at, customer_id, product_name, category, wilaya_address")
+      .select(
+        "id, status, total_amount, created_at, customer_id, product_name, category, wilaya_address",
+      )
       .order("created_at", { ascending: false })
       .limit(200),
-    supabase.from("products").select("id, name, name_en, stock").is("deleted_at", null),
+    supabase
+      .from("products")
+      .select("id, name, name_en, stock")
+      .is("deleted_at", null),
     supabase.from("customers").select("id", { count: "exact", head: true }),
   ]);
 
@@ -50,7 +55,10 @@ export default async function DashboardPage() {
     (o) => o.created_at && new Date(o.created_at) > sevenDaysAgo,
   );
   const prevPeriodOrders = orders.filter(
-    (o) => o.created_at && new Date(o.created_at) > fourteenDaysAgo && new Date(o.created_at) <= sevenDaysAgo,
+    (o) =>
+      o.created_at &&
+      new Date(o.created_at) > fourteenDaysAgo &&
+      new Date(o.created_at) <= sevenDaysAgo,
   );
   const uniqueCustomers = new Set(
     recentOrders.map((o) => o.customer_id).filter(Boolean),
@@ -238,17 +246,27 @@ export default async function DashboardPage() {
 
   // Compute real revenue & order change percentages (last 7d vs prior 7d)
   const recentRevenue = recentOrders
-    .filter((o) => o.status !== 'cancelled')
+    .filter((o) => o.status !== "cancelled")
     .reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
   const prevRevenue = prevPeriodOrders
-    .filter((o) => o.status !== 'cancelled')
+    .filter((o) => o.status !== "cancelled")
     .reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
-  const revenueChange = prevRevenue > 0
-    ? Math.round(((recentRevenue - prevRevenue) / prevRevenue) * 100)
-    : recentRevenue > 0 ? 100 : 0;
-  const ordersChange = prevPeriodOrders.length > 0
-    ? Math.round(((recentOrders.length - prevPeriodOrders.length) / prevPeriodOrders.length) * 100)
-    : recentOrders.length > 0 ? 100 : 0;
+  const revenueChange =
+    prevRevenue > 0
+      ? Math.round(((recentRevenue - prevRevenue) / prevRevenue) * 100)
+      : recentRevenue > 0
+        ? 100
+        : 0;
+  const ordersChange =
+    prevPeriodOrders.length > 0
+      ? Math.round(
+          ((recentOrders.length - prevPeriodOrders.length) /
+            prevPeriodOrders.length) *
+            100,
+        )
+      : recentOrders.length > 0
+        ? 100
+        : 0;
 
   const stats: DashboardStats = {
     revenue,

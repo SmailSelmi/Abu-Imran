@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { motion } from "framer-motion";
 
 interface ChickenLoaderProps {
@@ -6,7 +6,7 @@ interface ChickenLoaderProps {
    * 'dashboard' = white/orange for dark backgrounds
    * 'store' = black/orange for white backgrounds
    */
-  mode?: "dashboard" | "store"; 
+  mode?: "dashboard" | "store";
   size?: "sm" | "md" | "lg";
 }
 
@@ -28,28 +28,31 @@ const ChickenFootprint = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export default function ChickenLoader({ mode = "store", size = "md" }: ChickenLoaderProps) {
-  const colorClass = mode === "dashboard" ? "text-orange-500" : "text-orange-600";
-  
-  const sizeClass = 
-    size === "sm" ? "w-4 h-4" : 
-    size === "lg" ? "w-10 h-10" : "w-6 h-6";
+export default function ChickenLoader({
+  mode = "store",
+  size = "md",
+}: ChickenLoaderProps) {
+  const colorClass =
+    mode === "dashboard" ? "text-orange-500" : "text-orange-600";
+
+  const sizeClass =
+    size === "sm" ? "w-4 h-4" : size === "lg" ? "w-10 h-10" : "w-6 h-6";
 
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, 
-        repeat: Infinity,     
-        repeatDelay: 1        
-      }
-    }
+        staggerChildren: 0.3,
+        repeat: Infinity,
+        repeatDelay: 1,
+      },
+    },
   };
 
   const footprintVariants = {
     hidden: { opacity: 0, scale: 0.5, y: 10 },
-    show: { opacity: 1, scale: 1, y: 0 }
+    show: { opacity: 1, scale: 1, y: 0 },
   };
 
   return (
@@ -60,24 +63,38 @@ export default function ChickenLoader({ mode = "store", size = "md" }: ChickenLo
         initial="hidden"
         animate="show"
       >
-        <motion.div variants={footprintVariants} className={`transform -rotate-12 mt-2 ${colorClass}`}>
+        <motion.div
+          variants={footprintVariants}
+          className={`transform -rotate-12 mt-2 ${colorClass}`}
+        >
           <ChickenFootprint className={sizeClass} />
         </motion.div>
 
-        <motion.div variants={footprintVariants} className={`transform rotate-12 mb-2 ${colorClass}`}>
+        <motion.div
+          variants={footprintVariants}
+          className={`transform rotate-12 mb-2 ${colorClass}`}
+        >
           <ChickenFootprint className={sizeClass} />
         </motion.div>
 
-        <motion.div variants={footprintVariants} className={`transform -rotate-12 mt-2 ${colorClass}`}>
+        <motion.div
+          variants={footprintVariants}
+          className={`transform -rotate-12 mt-2 ${colorClass}`}
+        >
           <ChickenFootprint className={sizeClass} />
         </motion.div>
-        
-        <motion.div variants={footprintVariants} className={`transform rotate-12 mb-2 ${colorClass}`}>
+
+        <motion.div
+          variants={footprintVariants}
+          className={`transform rotate-12 mb-2 ${colorClass}`}
+        >
           <ChickenFootprint className={sizeClass} />
         </motion.div>
       </motion.div>
 
-      <p className={`text-xs font-medium animate-pulse ${mode === 'dashboard' ? 'text-zinc-400' : 'text-zinc-500'}`}>
+      <p
+        className={`text-xs font-medium animate-pulse ${mode === "dashboard" ? "text-zinc-400" : "text-zinc-500"}`}
+      >
         Fetching Fresh Data...
       </p>
     </div>
