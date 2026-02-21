@@ -21,7 +21,7 @@ import { useSearchParams } from 'next/navigation'
 
 function HatchingPageContent() {
 
-    const { t, isRTL, locale } = useI18n()
+    const { t, isRTL } = useI18n()
     const supabase = createClient()
     const [breeds, setBreeds] = useState<Database['public']['Tables']['breeds']['Row'][]>([])
     const [config, setConfig] = useState({ max_capacity: 500, price_per_egg: 50, duration_days: 21 })
@@ -68,17 +68,23 @@ function HatchingPageContent() {
 
         const supabase = createClient()
         try {
-            const bookingPayload = {
-                p_customer_name: formData.get('name') as string,
+            const customerName = formData.get('name') as string
+                const wilayaName = formData.get('wilaya') as string
+                const breedName = selectedBreed
+                    ? breeds.find(b => b.id === selectedBreed)?.name_ar || breeds.find(b => b.id === selectedBreed)?.name_en || 'غير محدد'
+                    : 'غير محدد'
+
+                const bookingPayload = {
+                p_customer_name: customerName,
                 p_phone_number: customerPhone,
-                p_wilaya: formData.get('wilaya') as string,
+                p_wilaya: wilayaName,
                 p_address: formData.get('address') as string,
                 p_breed_id: selectedBreed || null,
                 p_egg_count: eggCount,
                 p_start_date: startDate,
                 p_end_date: endDate,
                 p_total_price: totalPrice,
-                p_notes: `Breed: ${selectedBreed ? breeds.find(b => b.id === selectedBreed)?.[`name_${locale}`] || 'ID:' + selectedBreed : 'Custom'}`
+                p_notes: `السلالة: ${breedName}`
             }
 
             // @ts-ignore - Bypass stale types for new RPC
@@ -88,12 +94,12 @@ function HatchingPageContent() {
 
             if (rpcData && rpcData.success) {
                 setSuccess(true)
-                toast.success(isRTL ? 'تم تسجيل حجزك بنجاح!' : 'Booking recorded!')
+                toast.success('تم تسجيل حجزك بنجاح!')
             } else {
                 throw new Error(rpcData?.error || 'Booking failed')
             }
         } catch (err: any) {
-            toast.error(isRTL ? 'فشل الحجز: ' + err.message : err.message || 'Booking failed')
+            toast.error('فشل الحجز: ' + err.message)
         } finally {
             setBookingLoading(false)
         }
@@ -267,7 +273,7 @@ function HatchingPageContent() {
                                         >
                                             <option value="">{t.hatching.customBreed}</option>
                                             {breeds.map(b => (
-                                                <option key={b.id} value={b.id}>{b[`name_${locale}`] || b.name_en}</option>
+                                                <option key={b.id} value={b.id}>{b.name_ar || b.name_en}</option>
                                             ))}
                                         </select>
                                     </div>

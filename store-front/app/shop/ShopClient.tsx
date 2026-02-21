@@ -20,10 +20,10 @@ interface ShopClientProps {
 }
 
 const CATEGORIES = [
-    { id: 'eggs', name: 'Hatching Eggs', name_ar: 'بيض مخصب', icon: Egg, color: 'bg-amber-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg' },
-    { id: 'chicks', name: 'Baby Chicks', name_ar: 'كتاكيت', icon: Bird, color: 'bg-emerald-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp' },
-    { id: 'chickens', name: 'Livestock', name_ar: 'دجاج بالغ', icon: Bird, color: 'bg-blue-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg' },
-    { id: 'machine', name: 'Equipment', name_ar: 'عتاد وفقاسات', icon: Drill, color: 'bg-zinc-800', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg' },
+    { id: 'eggs', name: 'بيض مخصب', name_ar: 'بيض مخصب', icon: Egg, color: 'bg-amber-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg' },
+    { id: 'chicks', name: 'كتاكيت وفلاليس', name_ar: 'كتاكيت وفلاليس', icon: Bird, color: 'bg-emerald-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp' },
+    { id: 'chickens', name: 'دجاج بالغ', name_ar: 'دجاج بالغ', icon: Bird, color: 'bg-blue-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg' },
+    { id: 'machine', name: 'عتاد وفقاسات', name_ar: 'عتاد وفقاسات', icon: Drill, color: 'bg-zinc-800', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg' },
 ]
 
 export default function ShopClient({ initialProducts }: ShopClientProps) {
@@ -36,17 +36,17 @@ export default function ShopClient({ initialProducts }: ShopClientProps) {
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50 px-6 py-2 rounded-full font-black uppercase tracking-widest text-[10px]">
             <Sparkles className="w-4 h-4 me-2" />
-            Premium Agriculture Marketplace
+            سوق الجودة الفلاحية
           </Badge>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85]"
+            className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9]"
           >
-            Direct <span className="text-emerald-600 italic">Farm</span> Access
+            تسوق <span className="text-emerald-600 italic">مباشرة</span> من المزرعة
           </motion.h1>
-          <p className="text-xl md:text-2xl text-muted-foreground font-medium opacity-60 max-w-2xl mx-auto leading-relaxed">
-            Select an industry below to place your order directly with Abu Imran Farm. Standardized quality, guaranteed.
+          <p className="text-base md:text-xl text-muted-foreground font-medium opacity-60 max-w-2xl mx-auto leading-relaxed">
+            اختر الفئة لتقديم طلبك مباشرة مع مزرعة أبو عمران. جودة مضمونة ومعايير موحدة.
           </p>
         </div>
 
@@ -80,12 +80,11 @@ export default function ShopClient({ initialProducts }: ShopClientProps) {
                     </motion.div>
                     
                     <div className="space-y-2">
-                        <p className="text-5xl md:text-6xl font-black text-white tracking-tighter leading-none">{cat.name_ar}</p>
-                        <h3 className="text-2xl font-black text-white italic tracking-tighter opacity-80 uppercase">{cat.name}</h3>
+                        <p className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none">{cat.name_ar}</p>
                     </div>
 
                     <div className="flex items-center gap-4 text-xs font-black uppercase text-emerald-400 tracking-widest pt-4 group-hover:gap-6 transition-all">
-                        <span>Place Order Now</span>
+                        <span>اطلب الآن</span>
                         <Zap className="w-4 h-4 fill-current animate-pulse" />
                     </div>
                 </div>
@@ -98,33 +97,32 @@ export default function ShopClient({ initialProducts }: ShopClientProps) {
         </div>
       </section>
 
-      {/* Trust Badges */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-24 border-y border-border/40">
-        <div className="flex flex-col items-center text-center gap-6 group">
-            <div className="w-24 h-24 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <Truck className="w-10 h-10" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-16 border-y border-border/40">
+        <div className="flex flex-col items-center text-center gap-5 group">
+            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <Truck className="w-9 h-9" />
             </div>
-            <div className="space-y-2">
-                <h4 className="font-black text-2xl tracking-tight">Express Logistics</h4>
-                <p className="text-muted-foreground font-medium italic opacity-60">Delivering to all 58 Wilayas across Algeria.</p>
-            </div>
-        </div>
-        <div className="flex flex-col items-center text-center gap-6 group">
-            <div className="w-24 h-24 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <ShieldCheck className="w-10 h-10" />
-            </div>
-            <div className="space-y-2">
-                <h4 className="font-black text-2xl tracking-tight">Verified Genetics</h4>
-                <p className="text-muted-foreground font-medium italic opacity-60">Controlled breeding for maximum performance.</p>
+            <div className="space-y-1.5">
+                <h4 className="font-black text-xl tracking-tight">توصيل سريع وطني</h4>
+                <p className="text-muted-foreground font-medium italic opacity-60 text-sm">نوصل لجميع ولايات الجزائر الـ 58.</p>
             </div>
         </div>
-        <div className="flex flex-col items-center text-center gap-6 group">
-            <div className="w-24 h-24 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <ShoppingBag className="w-10 h-10" />
+        <div className="flex flex-col items-center text-center gap-5 group">
+            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <ShieldCheck className="w-9 h-9" />
             </div>
-            <div className="space-y-2">
-                <h4 className="font-black text-2xl tracking-tight">Secure Checkout</h4>
-                <p className="text-muted-foreground font-medium italic opacity-60">Direct ordering with phone confirmation.</p>
+            <div className="space-y-1.5">
+                <h4 className="font-black text-xl tracking-tight">سلالات موثقة الجينات</h4>
+                <p className="text-muted-foreground font-medium italic opacity-60 text-sm">تربية مضبوطة لأقصى أداء إنتاجي.</p>
+            </div>
+        </div>
+        <div className="flex flex-col items-center text-center gap-5 group">
+            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <ShoppingBag className="w-9 h-9" />
+            </div>
+            <div className="space-y-1.5">
+                <h4 className="font-black text-xl tracking-tight">طلب آمن ومضمون</h4>
+                <p className="text-muted-foreground font-medium italic opacity-60 text-sm">تأكيد مباشر عبر الهاتف بعد كل طلب.</p>
             </div>
         </div>
       </div>

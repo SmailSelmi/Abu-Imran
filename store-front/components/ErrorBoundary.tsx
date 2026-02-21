@@ -57,7 +57,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 onClick={() => window.location.reload()}
                 className="h-14 rounded-xl bg-foreground text-background hover:bg-emerald-600 hover:text-white transition-all font-black uppercase tracking-widest text-sm"
               >
-                <RotateCcw className="w-4 h-4 mr-2" />
+                <RotateCcw className="w-4 h-4 me-2" />
                 Try Again / المحاولة مرة أخرى
               </Button>
               <Button 
@@ -65,7 +65,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 onClick={() => window.location.href = '/'}
                 className="h-14 rounded-xl border-none bg-muted/50 hover:bg-muted font-bold transition-all"
               >
-                <Home className="w-4 h-4 mr-2" />
+                <Home className="w-4 h-4 me-2" />
                 Back to Home / العودة للرئيسية
               </Button>
             </div>

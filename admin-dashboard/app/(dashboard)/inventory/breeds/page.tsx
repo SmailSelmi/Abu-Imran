@@ -222,12 +222,12 @@ export default function BreedsPage() {
         <div className="flex items-center gap-3">
             <Link href="/products/recycle-bin">
                 <Button variant="outline" className="rounded-xl px-4 border-muted-foreground/20 text-muted-foreground hover:text-red-500 hover:bg-red-50 font-black h-12">
-                    <Trash2 className="ml-2 h-4 w-4" /> سلة المحذوفات
+                    <Trash2 className="ms-2 h-4 w-4" /> سلة المحذوفات
                 </Button>
             </Link>
             {!isAdding && (
                 <Button onClick={() => setIsAdding(true)} className="rounded-xl px-6 font-black shadow-lg shadow-emerald-500/20 h-12 bg-emerald-600 hover:bg-emerald-700">
-                    <Plus className="ml-2 h-5 w-5" /> إضافة مخزون
+                    <Plus className="ms-2 h-5 w-5" /> إضافة مخزون
                 </Button>
             )}
         </div>

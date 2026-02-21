@@ -28,7 +28,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
   const handleOrderNow = () => {
     if (!selectedVariant) return
     if ((selectedVariant.stock || 0) < 1) {
-        toast.error('Out of Stock!')
+        toast.error('نفدت الكمية!')
         return
     }
     setIsOrderDialogOpen(true)
@@ -41,7 +41,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
       <div className="container px-4 mx-auto max-w-7xl">
         <Link href="/shop" className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-emerald-600 mb-12 transition-all group">
             <ChevronLeft className="w-4 h-4 me-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Catalog
+            العودة للمتجر
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
@@ -60,7 +60,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                     
                     {selectedVariant?.stock === 0 && (
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-md">
-                            <span className="bg-red-600 text-white px-8 py-3 rounded-xl font-black uppercase tracking-[0.2em] text-xl -rotate-2 border-2 border-white/20 shadow-2xl">Out of Stock</span>
+                            <span className="bg-red-600 text-white px-8 py-3 rounded-xl font-black uppercase tracking-[0.2em] text-xl -rotate-2 border-2 border-white/20 shadow-2xl">نفدت الكمية</span>
                         </div>
                     )}
                     
@@ -95,13 +95,13 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                         </Badge>
                         {selectedVariant?.stock && selectedVariant.stock < 10 && selectedVariant.stock > 0 && (
                             <Badge variant="destructive" className="animate-pulse text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-black">
-                                Limited Availability
+                                كمية محدودة
                             </Badge>
                         )}
                     </div>
                     
-                    <h1 className="text-5xl md:text-7xl font-black text-foreground leading-[0.9] tracking-tighter italic">
-                        {selectedVariant?.name_en.replace(/\((.*?)\)/g, '').trim()}
+                    <h1 className="text-5xl md:text-7xl font-black text-foreground leading-[0.9] tracking-tighter">
+                        {selectedVariant?.name || selectedVariant?.name_en}
                     </h1>
                     
                     <div className="flex items-baseline gap-3 pt-2">
@@ -112,7 +112,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                     </div>
 
                     <p className="text-lg text-muted-foreground font-medium italic opacity-70 leading-relaxed max-w-xl">
-                        Expertly selected {selectedVariant?.category === 'machine' ? 'hardware' : 'livestock'} designed for maximum performance and yield in various Algerian environments.
+                        منتج مختار بعناية من مزرعة أبو عمران — جودة مضمونة وسلالات موثقة.
                     </p>
                 </div>
 
@@ -120,25 +120,25 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                 <div className="grid grid-cols-2 gap-4">
                     <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                         <Scale className="w-5 h-5 text-emerald-600 opacity-60" />
-                        <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Premium Weight</h5>
-                        <p className="text-sm font-bold italic">Standard Grade</p>
+                        <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">جودة ممتازة</h5>
+                        <p className="text-sm font-bold italic">الدرجة الأولى</p>
                     </div>
                     <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                         <Layers className="w-5 h-5 text-emerald-600 opacity-60" />
-                        <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Breed Type</h5>
-                        <p className="text-sm font-bold italic">Authentic Lineage</p>
+                        <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">نوع السلالة</h5>
+                        <p className="text-sm font-bold italic">نسب أصيل</p>
                     </div>
                     {isMachine && (
                       <>
                         <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                             <Zap className="w-5 h-5 text-emerald-600 opacity-60" />
-                            <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Power Rating</h5>
-                            <p className="text-sm font-bold italic">Energy Efficient</p>
+                             <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">استهلاك الكهرباء</h5>
+                             <p className="text-sm font-bold italic">موفر للطاقة</p>
                         </div>
                         <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                             <Thermometer className="w-5 h-5 text-emerald-600 opacity-60" />
-                            <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Temp Control</h5>
-                            <p className="text-sm font-bold italic">Precision Digital</p>
+                             <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">التحكم في الحرارة</h5>
+                             <p className="text-sm font-bold italic">رقمي دقيق</p>
                         </div>
                       </>
                     )}
@@ -155,7 +155,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                             <div className="space-y-4">
                                 <h3 className="text-2xl font-black tracking-tight italic flex items-center gap-3">
                                     <span className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs shadow-lg rotate-3 group-hover/order:rotate-0 transition-transform">1X</span>
-                                    Direct Checkout
+                                     طلب مباشر
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="flex items-center gap-4 p-4 rounded-xl border border-dashed border-border/80 bg-muted/20">
@@ -163,8 +163,8 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                                             <Truck className="w-5 h-5" />
                                         </div>
                                         <div className="space-y-0.5">
-                                            <p className="text-[10px] font-black uppercase tracking-widest">Doorstep</p>
-                                            <p className="text-xs font-bold italic opacity-60">58 Wilayas</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest">توصيل للباب</p>
+                                            <p className="text-xs font-bold italic opacity-60">58 ولاية</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-4 p-4 rounded-xl border border-dashed border-border/80 bg-muted/20">
@@ -172,8 +172,8 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                                             <ShieldCheck className="w-5 h-5" />
                                         </div>
                                         <div className="space-y-0.5">
-                                            <p className="text-[10px] font-black uppercase tracking-widest">Insured</p>
-                                            <p className="text-xs font-bold italic opacity-60">Success Guarantee</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest">مؤمّن</p>
+                                            <p className="text-xs font-bold italic opacity-60">ضمان النجاح</p>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
 
                             <div className="pt-8 border-t border-dashed border-border flex flex-col gap-8">
                                 <div className="flex items-center justify-between">
-                                    <span className="font-black text-xs text-muted-foreground uppercase tracking-[0.3em]">Select Quantity</span>
+                                     <span className="font-black text-xs text-muted-foreground uppercase tracking-[0.3em]">اختر الكمية</span>
                                     <div className="flex items-center gap-4 bg-muted/30 p-2 rounded-xl border border-border shadow-inner">
                                         <Button 
                                             type="button" variant="ghost" size="icon" 
@@ -210,15 +210,15 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                                     className="w-full h-20 rounded-xl shadow-2xl shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-1 transition-all duration-500 font-black text-2xl bg-emerald-600 hover:bg-emerald-700 text-white overflow-hidden group/btn"
                                     disabled={(selectedVariant?.stock || 0) < 1}
                                 >
-                                    <span className="flex items-center justify-between w-full px-4">
-                                        <span>Confirm Order</span>
-                                        <span className="bg-white/20 px-4 py-2 rounded-xl text-sm font-black italic shadow-inner group-hover/btn:scale-110 transition-transform">{(selectedVariant?.price || 0) * quantity} DA</span>
-                                    </span>
+                                         <span className="flex items-center justify-between w-full px-4">
+                                             <span>تأكيد الطلب</span>
+                                             <span className="bg-white/20 px-4 py-2 rounded-xl text-sm font-black italic shadow-inner group-hover/btn:scale-110 transition-transform">{(selectedVariant?.price || 0) * quantity} دج</span>
+                                         </span>
                                 </Button>
                                 
-                                <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground opacity-40 flex items-center justify-center gap-2">
-                                    <Sparkles className="w-3 h-3 text-emerald-500" /> Secure Fulfillment Service
-                                </p>
+                                 <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground opacity-40 flex items-center justify-center gap-2">
+                                     <Sparkles className="w-3 h-3 text-emerald-500" /> الدفع عند الاستلام
+                                 </p>
                             </div>
                         </div>
                     </div>

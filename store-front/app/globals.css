@@ -112,6 +112,9 @@
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tighter font-black;
   }
+  button, a {
+    @apply transition-all duration-200 active:scale-98;
+  }
 }
 
 @utility glass-card {

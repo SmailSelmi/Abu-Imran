@@ -141,7 +141,7 @@ export default function RecycleBinPage() {
                                         className="h-10 rounded-xl px-4 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 border-emerald-200 font-black"
                                         onClick={() => handleRestore(product.id)}
                                     >
-                                        <RefreshCcw className="h-4 w-4 ml-2" /> استعادة
+                                        <RefreshCcw className="h-4 w-4 ms-2" /> استعادة
                                     </AnimatedButton>
                                     <AnimatedButton 
                                         variant="ghost" 

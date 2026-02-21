@@ -1,4 +1,4 @@
-export type Locale = 'ar' | 'fr' | 'en';
+export type Locale = "ar";
 
 export const translations = {
   ar: {
@@ -52,7 +52,8 @@ export const translations = {
     },
 
     footer: {
-      description: "توفير أفضل سلالات الدجاج، بيض مخصب، وفقاسات احترافية للمربين الشغوفين في جميع أنحاء الوطن.",
+      description:
+        "توفير أفضل سلالات الدجاج، بيض مخصب، وفقاسات احترافية للمربين الشغوفين في جميع أنحاء الوطن.",
       shop: "المتجر",
       support: "الدعم",
       contact: "اتصل بنا",
@@ -66,8 +67,8 @@ export const translations = {
         contactUs: "اتصل بنا",
         shipping: "سياسة الشحن",
         return: "الاستبدال والاسترجاع",
-        faq: "الأسئلة الشائعة"
-      }
+        faq: "الأسئلة الشائعة",
+      },
     },
     hero: {
       title: "ريادة الجينات الداجنة في الجزائر",
@@ -75,15 +76,17 @@ export const translations = {
       titleRare: "ملكـية",
       titleAnd: "وتحضين صناعي",
       titleWorld: "بمعايير عالمية",
-      description: "نحن نرسي معايير الجودة. سلالات البراهما والسبرايت الصافية، بيض مخصب بسلالات عالمية، وخدمة تحضين ذكية تضمن لك أقوى بداية استثمارية.",
+      description:
+        "نحن نرسي معايير الجودة. سلالات البراهما والسبرايت الصافية، بيض مخصب بسلالات عالمية، وخدمة تحضين ذكية تضمن لك أقوى بداية استثمارية.",
       bookIncubator: "حجز مجمّع تفقيس",
-      scrollDown: "اكتشف المزيد"
+      scrollDown: "اكتشف المزيد",
     },
     portfolio: {
       badge: "معرض النخبة",
       titlePrefix: "نحن لا نربي الدجاج، بل ننتج",
       titleAccent: "التميز الجيني",
-      description: "مجموعة مختارة من أرقى السلالات العالمية، تم اختيارها بعناية لضمان أعلى مستويات الإنتاجية والنقاء.",
+      description:
+        "مجموعة مختارة من أرقى السلالات العالمية، تم اختيارها بعناية لضمان أعلى مستويات الإنتاجية والنقاء.",
       genetics: "الجينات",
       standards: "معايير عالمية",
       quality: "جودة مضمونة 100%",
@@ -94,13 +97,14 @@ export const translations = {
       purityHighHatch: "تفقيس عالي",
       brahma: "براهما بيور",
       sebright: "سبرايت ملكي",
-      eggs: "بيض ملكي"
+      eggs: "بيض ملكي",
     },
     hatching: {
       badge: "تحضين احترافي",
       title: "حوّل بيضك إلى",
       titleAccent: "حياة.",
-      description: "تضمن حاضناتنا الصناعية المتطورة أعلى معدلات المفرخات لسلالاتك النادرة. 21 يوماً من الحرارة والرطوبة والعناية المثالية.",
+      description:
+        "تضمن حاضناتنا الصناعية المتطورة أعلى معدلات المفرخات لسلالاتك النادرة. 21 يوماً من الحرارة والرطوبة والعناية المثالية.",
       precision: "دقة 37.7 درجة",
       oxygen: "أكسجين نشط",
       cycle: "دورة 21 يوماً",
@@ -129,392 +133,52 @@ export const translations = {
       breederTrust: "أكثر من 500 مربي يثقون في مفرخاتنا",
       startBooking: "ابدأ الحجز الآن",
       breedCount: "نوع السلالة والعدد",
-      breedEx: "مثال: 100 بيضة براهما"
+      breedEx: "مثال: 100 بيضة براهما",
     },
     howToOrder: {
       badge: "تجربة شرائية موثوقة",
       title: "كيف تطلب من عندنا؟",
       titleAccent: "من عندنا؟",
-      description: "ثلاث خطوات بسيطة تفصلك عن أفضل السلالات والمعدات في الجزائر",
-      step1Title: "1. اختر سلالتك",
+      description:
+        "ثلاث خطوات بسيطة تفصلك عن أفضل السلالات والمعدات في الجزائر",
+      step1Title: "١. اختر سلالتك",
       step1Desc: "تصفح الفئات، اختر النوع والكمية المناسبة لمشروعك.",
-      step2Title: "2. أكد حجزك",
-      step2Desc: "سيقوم فريقنا بالاتصال بك فوراً لتأكيد العنوان وموعد الاستلام.",
-      step3Title: "3. استلم وادفع",
+      step2Title: "٢. أكد حجزك",
+      step2Desc:
+        "سيقوم فريقنا بالاتصال بك فوراً لتأكيد العنوان وموعد الاستلام.",
+      step3Title: "٣. استلم وادفع",
       step3Desc: "نوصل إلى 58 ولاية. افحص جودة طلبك ثم ادفع نقداً عند الباب.",
       cta: "اطلب عبر الواتساب الآن",
-      deliveryNote: "خدمة التوصيل متوفرة لجميع ولايات الوطن"
+      deliveryNote: "خدمة التوصيل متوفرة لجميع ولايات الوطن",
     },
     socialProof: {
       nationalCoverage: "تغطية وطنية",
       deliveryTitle: "نوصل إلى",
       wilaya: "ولاية",
-      deliveryDescription: "شبكة توزيعنا تغطي كافة التراب الوطني. نضمن وصول البيض والكتاكيت في ظروف آمنة ومكيفة. سعر التوصيل يختلف حسب الولاية والكمية.",
+      deliveryDescription:
+        "شبكة توزيعنا تغطي كافة التراب الوطني. نضمن وصول البيض والكتاكيت في ظروف آمنة ومكيفة. سعر التوصيل يختلف حسب الولاية والكمية.",
       fastDelivery: "توصيل سريع",
-      deliveryTime: "خلال 24 - 72 ساعة"
+      deliveryTime: "خلال 24 - 72 ساعة",
     },
     testimonials: {
       title: "ماذا يقول عملاؤنا",
       t1: {
         text: "طلبت بيض براهما أزرق، نسبة الفقس كانت 90% ما شاء الله. تعامل راقي وسرعة في التوصيل.",
         name: "أحمد بن علي",
-        loc: "البليدة"
+        loc: "البليدة",
       },
       t2: {
         text: "الفقاسة تعمل بشكل ممتاز، الحرارة ثابتة والرطوبة مضبوطة. أنصح بها كل مبتدئ.",
         name: "مراد س.",
-        loc: "سطيف"
+        loc: "سطيف",
       },
       t3: {
         text: "فلاليس وصلت بصحة جيدة وأحجام متناسقة. شكراً أبو عمران على المصداقية.",
         name: "كريم و.",
-        loc: "وهران"
-      }
-    }
-
+        loc: "وهران",
+      },
+    },
   },
-  fr: {
-    common: {
-      brand: "Abu Imran Farm",
-      brandFull: "Abu Imran Authentic Farms",
-      shopNow: "Acheter Maintenant",
-      contactUs: "Contactez-nous",
-      rareBreeds: "Races Rares",
-      hatchRate: "Taux d'éclosion",
-      deliveryZones: "Wilayas de Livraison",
-      expertGuidance: "Conseils d'experts",
-      buyEggs: "Acheter des œufs à couver",
-      buyChicks: "Acheter des poussins",
-      buyFeed: "Aliments et matériel",
-      orderNow: "Commander maintenant",
-      premiumGenetics: "GÉNÉTIQUE PREMIUM",
-      location: "Localisation",
-      contactMethod: "WhatsApp / Téléphone",
-      home: "Accueil",
-      hatchingEggs: "Œufs Fécondés",
-      chicks: "Poussins",
-      adultChickens: "Poules Adultes",
-      equipment: "Matériel",
-      back: "Retour",
-      total: "Total",
-      confirm: "Confirmer",
-      cancel: "Annuler",
-      hatchingService: "Service de Couvaison",
-      shoppingCart: "Panier",
-      orderDetails: "Détails de la Commande",
-      subtotal: "Sous-total",
-      delivery: "Livraison",
-      calLater: "Calculé ultérieurement",
-      orderConfirmed: "Commande Confirmée!",
-      orderThanks: "Merci pour votre confiance. Notre équipe vous contactera bientôt.",
-      returnHome: "Retour à l'accueil",
-      emptyCart: "Votre panier est vide",
-      emptyCartDesc: "Ajoutez des articles frais pour commencer!",
-      startShop: "Commencer vos achats",
-      fastDelivery: "Livraison Rapide (58 Wilayas)",
-      cashOnDelivery: "Paiement à la Livraison",
-      processing: "Traitement...",
-      confirmOrder: "Confirmer la Commande",
-      fullName: "Nom Complet",
-      phone: "Numéro de Téléphone",
-      wilaya: "Wilaya",
-      address: "Adresse / Ville",
-      more: "+ et plus",
-    },
-
-    footer: {
-      description: "Fournir les meilleures races de poulets, des œufs fertiles et des incubateurs professionnels pour les éleveurs passionnés à travers le pays.",
-      shop: "Boutique",
-      support: "Support",
-      contact: "Contact",
-      delivery58: "Algérie, 58 Wilayas",
-      rights: "Tous droits réservés.",
-      links: {
-        eggs: "Œufs Fécondés",
-        chicks: "Poussins Premium",
-        adult: "Poules Adultes",
-        machine: "Incubateurs",
-        contactUs: "Contactez-nous",
-        shipping: "Expédition",
-        return: "Retours",
-        faq: "FAQ"
-      }
-    },
-    hero: {
-      title: "Reating New Standards in Poultry Genetics",
-      titleMain: "Génétique",
-      titleRare: "Royale",
-      titleAnd: " & Incubation Industrielle",
-      titleWorld: "de Classe Mondiale",
-      description: "L'excellence au service des éleveurs. Lignées pures de Brahma et Sebright, œufs fertiles de haute qualité, et un service d'incubation intelligent pour garantir votre succès.",
-      bookIncubator: "Réservation Prioritaire",
-      scrollDown: "Découvrir"
-    },
-    portfolio: {
-      badge: "Showcase d'Élite",
-      titlePrefix: "Nous n'élevons pas de poulets, nous produisons",
-      titleAccent: "L'Excellence Génétique",
-      description: "Une sélection rigoureuse des meilleures races mondiales, choisie pour garantir les plus hauts niveaux de productivité et de pureté.",
-      genetics: "Génétique",
-      standards: "Standards Mondiaux",
-      quality: "Qualité 100% Garantie",
-      protection: "Protection Génétique",
-      purity: "Race Pure, Non-Hybride",
-      purityElite: "Élite",
-      purityChampion: "Champion",
-      purityHighHatch: "Haut-Éclosion",
-      brahma: "Brahma Pure",
-      sebright: "Sebright Royal",
-      eggs: "Œufs Premium"
-    },
-    hatching: {
-      badge: "Incubation Professionnelle",
-      title: "Donnez vie à",
-      titleAccent: "vos œufs.",
-      description: "Nos incubateurs industriels garantissent des taux d'éclosion maximaux. 21 jours de température, d'humidité et de soins parfaits.",
-      precision: "Précision 37.7°C",
-      oxygen: "Oxygène Actif",
-      cycle: "Cycle 21 Jours",
-      spots: "Places Disponibles",
-      howItWorks: "Comment ça marche ?",
-      step1: "Réservez en ligne en précisant le nombre d'œufs.",
-      step2: "Déposez vos œufs à la ferme à la date prévue.",
-      step3: "Nous gérons le cycle d'incubation professionnel.",
-      step4: "Récupérez vos poussins après l'éclosion.",
-      serviceFee: "Frais de Service",
-      perEgg: "/ œuf",
-      reserve: "Réserver une place",
-      selectBreed: "Race (Optionnel)",
-      customBreed: "Race personnalisée / Mixte",
-      eggCount: "Nombre d'œufs",
-      max: "Max",
-      dropDate: "Date de dépôt",
-      fullName: "Nom Complet",
-      phone: "Téléphone",
-      wilaya: "Wilaya / Lieu",
-      estimatedCost: "Coût Estimé",
-      confirm: "Confirmer la Réservation",
-      processing: "Traitement...",
-      shield: "Incubation Professionnelle • Climat Garanti",
-      fullProtection: "Protection Totale",
-      breederTrust: "Rejoignez +500 éleveurs",
-      startBooking: "Réserver Maintenant",
-      breedCount: "Race & Nombre d'œufs",
-      breedEx: "Ex: 100 œufs Brahma"
-    },
-    howToOrder: {
-      badge: "Achat Sécurisé",
-      title: "Comment commander ?",
-      titleAccent: "chez nous ?",
-      description: "Trois étapes simples pour obtenir les meilleures races en Algérie",
-      step1Title: "1. Choisissez",
-      step1Desc: "Parcourez les catégories et choisissez la quantité souhaitée.",
-      step2Title: "2. Confirmez",
-      step2Desc: "Notre équipe vous appellera pour confirmer l'adresse et la date.",
-      step3Title: "3. Recevez",
-      step3Desc: "Livraison 58 wilayas. Vérifiez la qualité puis payez à la livraison.",
-      cta: "Commander via WhatsApp",
-      deliveryNote: "Service de livraison disponible dans tout le pays"
-    },
-    socialProof: {
-      nationalCoverage: "Couverture Nationale",
-      deliveryTitle: "Nous livrons dans",
-      wilaya: "Wilayas",
-      deliveryDescription: "Notre réseau de distribution couvre tout le territoire national. Nous garantissons que les œufs et les poussins arrivent dans des conditions sûres et climatisées. Le prix de livraison varie selon la wilaya et la quantité.",
-      fastDelivery: "Livraison Rapide",
-      deliveryTime: "En 24 - 72 heures"
-    },
-    testimonials: {
-      title: "Ce que disent nos clients",
-      t1: {
-        text: "J'ai commandé des œufs Brahma Bleus, le taux d'éclosion était de 90%, Mashallah. Service professionnel et livraison rapide.",
-        name: "Ahmed B.",
-        loc: "Blida"
-      },
-      t2: {
-        text: "L'incubateur fonctionne parfaitement, la température est stable. Je le recommande à tous les débutants.",
-        name: "Mourad S.",
-        loc: "Sétif"
-      },
-      t3: {
-        text: "Les poussins sont arrivés en bonne santé. Merci Abu Imran pour votre crédibilité.",
-        name: "Karim W.",
-        loc: "Oran"
-      }
-    }
-
-  },
-  en: {
-    common: {
-      brand: "Abu Imran Farm",
-      brandFull: "Abu Imran Authentic Farms",
-      shopNow: "Shop Now",
-      contactUs: "Contact Us",
-      rareBreeds: "Rare Breeds",
-      hatchRate: "Hatch Rate",
-      deliveryZones: "Delivery Zones",
-      expertGuidance: "Expert Guidance",
-      buyEggs: "Buy Hatching Eggs",
-      buyChicks: "Buy Chicks",
-      buyFeed: "Feed & Supplies",
-      orderNow: "Order Now",
-      premiumGenetics: "PREMIUM GENETICS",
-      location: "Location",
-      contactMethod: "WhatsApp / Phone",
-      home: "Home",
-      hatchingEggs: "Hatching Eggs",
-      chicks: "Chicks",
-      adultChickens: "Adult Chickens",
-      equipment: "Equipment",
-      back: "Back",
-      total: "Total",
-      confirm: "Confirm",
-      cancel: "Cancel",
-      hatchingService: "Hatching Service",
-      shoppingCart: "Shopping Cart",
-      orderDetails: "Order Details",
-      subtotal: "Subtotal",
-      delivery: "Delivery",
-      calLater: "Calculated Later",
-      orderConfirmed: "Order Confirmed!",
-      orderThanks: "Thank you for your trust. Our team will contact you soon.",
-      returnHome: "Return Home",
-      emptyCart: "Your cart is empty",
-      emptyCartDesc: "Add some fresh items to get started!",
-      startShop: "Start Shopping",
-      fastDelivery: "Fast Delivery (58 Wilayas)",
-      cashOnDelivery: "Cash on Delivery",
-      processing: "Processing...",
-      confirmOrder: "Confirm Order",
-      fullName: "Full Name",
-      phone: "Phone Number",
-      wilaya: "Wilaya",
-      address: "Address / City",
-      more: "+ and more",
-    },
-
-    footer: {
-      description: "Providing the best chicken breeds, fertile eggs, and professional incubators for passionate breeders across the country.",
-      shop: "Shop",
-      support: "Support",
-      contact: "Contact",
-      delivery58: "Algeria, 58 Wilayas",
-      rights: "All rights reserved.",
-      links: {
-        eggs: "Fertile Eggs",
-        chicks: "Premium Chicks",
-        adult: "Adult Chickens",
-        machine: "Incubators",
-        contactUs: "Contact Us",
-        shipping: "Shipping Policy",
-        return: "Returns & Exchanges",
-        faq: "FAQ"
-      }
-    },
-    hero: {
-      title: "The Elite of Poultry Genetics in Algeria",
-      titleMain: "Elite",
-      titleRare: "Genetics",
-      titleAnd: "& Professional",
-      titleWorld: "Incubation",
-      description: "We produce excellence. Pure Brahma and Sebright lineages, fertile eggs with record hatch rates, and an industrial incubation service to secure your project's start.",
-      bookIncubator: "Book Incubator",
-      scrollDown: "Scroll Down"
-    },
-    portfolio: {
-      badge: "Elite Showcase",
-      titlePrefix: "We don't breed chickens, we produce",
-      titleAccent: "Genetic Excellence",
-      description: "A curated selection of the finest world breeds, carefully selected to ensure the highest levels of productivity and purity.",
-      genetics: "Genetics",
-      standards: "World Standards",
-      quality: "100% Quality Guaranteed",
-      protection: "Genetic Protection",
-      purity: "Pure Bred, Non-Hybrid",
-      purityElite: "Elite",
-      purityChampion: "Champion",
-      purityHighHatch: "High-Hatch",
-      brahma: "Brahma Pura",
-      sebright: "Sebright Royal",
-      eggs: "Premium Eggs"
-    },
-    hatching: {
-      badge: "Professional Incubation",
-      title: "Bring Your",
-      titleAccent: "Eggs to Life.",
-      description: "Our state-of-the-art industrial incubators ensure maximum hatch rates. 21 days of perfect temperature, humidity, and care.",
-      precision: "37.7°C Precision",
-      oxygen: "Active Oxygen",
-      cycle: "21 Day Cycle",
-      spots: "Available Spots",
-      howItWorks: "How it works",
-      step1: "Book your slot online by specifying the number of eggs.",
-      step2: "Bring your fresh eggs to the farm on the start date.",
-      step3: "We manage the 21-day professional incubation cycle.",
-      step4: "Collect your healthy chicks after hatching.",
-      serviceFee: "Service Fee",
-      perEgg: "/ egg",
-      reserve: "Reserve Space",
-      selectBreed: "Select Breed (Optional)",
-      customBreed: "Custom / Mixed Breed",
-      eggCount: "Number of Eggs",
-      max: "Max",
-      dropDate: "Drop-off Date",
-      fullName: "Your Full Name",
-      phone: "Phone Number",
-      wilaya: "Wilaya / Location",
-      estimatedCost: "Estimated Service Cost",
-      confirm: "Confirm Booking",
-      processing: "Processing...",
-      shield: "Professional Grade Incubation • Guaranteed Climate",
-      fullProtection: "Full Protection",
-      breederTrust: "Join 500+ breeders trusting our incubators",
-      startBooking: "Start Booking Now",
-      breedCount: "Breed & Egg Count",
-      breedEx: "Ex: 100 Brahma Eggs"
-    },
-    howToOrder: {
-      badge: "Trusted Purchase Experience",
-      title: "How to Order?",
-      titleAccent: "from us?",
-      description: "Three simple steps separate you from the best breeds in Algeria",
-      step1Title: "1. Choose Your Breed",
-      step1Desc: "Browse categories, choose the type and quantity for your project.",
-      step2Title: "2. Confirm Your Booking",
-      step2Desc: "Our team will call you immediately to confirm the address and date.",
-      step3Title: "3. Receive and Pay",
-      step3Desc: "We deliver to 58 wilayas. Check your order quality then pay at the door.",
-      cta: "Order via WhatsApp Now",
-      deliveryNote: "Delivery service available to all national wilayas"
-    },
-    socialProof: {
-      nationalCoverage: "National Coverage",
-      deliveryTitle: "We deliver to",
-      wilaya: "Wilayas",
-      deliveryDescription: "Our distribution network covers the entire national territory. We guarantee that eggs and chicks arrive in safe and conditioned environments. Delivery prices vary by wilaya and quantity.",
-      fastDelivery: "Fast Delivery",
-      deliveryTime: "Within 24 - 72 hours"
-    },
-    testimonials: {
-      title: "What our customers say",
-      t1: {
-        text: "I ordered Blue Brahma eggs, the hatch rate was 90% Mashallah. Professional service and fast delivery.",
-        name: "Ahmed B.",
-        loc: "Blida"
-      },
-      t2: {
-        text: "The incubator works perfectly, the temperature is stable. Highly recommend for beginners.",
-        name: "Mourad S.",
-        loc: "Sétif"
-      },
-      t3: {
-        text: "Chicks arrived in great health. Thank you Abu Imran for your credibility.",
-        name: "Karim W.",
-        loc: "Oran"
-      }
-    }
-
-  }
 };
 
-export type TranslationKeys = typeof translations.en;
+export type TranslationKeys = typeof translations.ar;

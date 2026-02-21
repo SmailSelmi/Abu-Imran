@@ -101,16 +101,16 @@ export default function DashboardContent({
         .gte('created_at', today)
     
     if (error || !orders) {
-        toast.error('Failed to fetch daily orders')
+        toast.error('فشل في جلب طلبات اليوم')
         return
     }
 
     if (orders.length === 0) {
-        toast.info('No orders recorded today yet.')
+        toast.info('لا توجد طلبات مسجلة اليوم.')
         return
     }
 
-    const headers = ['Order ID', 'Customer', 'Phone', 'Product', 'Variant', 'Qty', 'Total', 'Status']
+    const headers = ['رقم الطلب', 'الزبون', 'الهاتف', 'المنتج', 'النوع', 'الكمية', 'المجموع', 'الحالة']
     const rows = orders.map((o) => [
         `#${o.id.slice(0, 8)}`,
         o.customer_name || 'N/A',
@@ -144,23 +144,23 @@ export default function DashboardContent({
       {/* Header Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-           <h1 className="text-4xl font-black tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Dashboard</h1>
+           <h1 className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">لوحة التحكم</h1>
            <p className="text-zinc-500 dark:text-zinc-400 font-bold text-sm mt-1">المزرعة • مركز التحكم والعمليات</p>
         </div>
 
         <div className="flex items-center gap-3">
-            <Button 
-                variant="outline" 
+            <Button
+                variant="outline"
                 onClick={() => window.print()}
-                className="rounded-2xl border-2 font-black uppercase text-[10px] tracking-widest px-6 h-12 hover:bg-zinc-100 transition-all border-zinc-200"
+                className="rounded-2xl border-2 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:bg-zinc-100 transition-all border-zinc-200"
             >
-                <Printer className="w-4 h-4" /> Print Report
+                <Printer className="w-4 h-4" /> طباعة التقرير
             </Button>
-            <Button 
+            <Button
                 onClick={exportDailyCSV}
-                className="rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] tracking-widest px-6 h-12 hover:scale-105 transition-all shadow-xl shadow-zinc-500/20"
+                className="rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:scale-105 transition-all shadow-xl shadow-zinc-500/20"
             >
-                <Download className="w-4 h-4" /> Export CSV
+                <Download className="w-4 h-4" /> تصدير CSV
             </Button>
         </div>
       </div>
@@ -191,7 +191,7 @@ export default function DashboardContent({
         {/* Active Orders */}
         <motion.div variants={item} className="md:col-span-4 md:row-span-1">
             <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-6 group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -me-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
                         <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] opacity-50">الطلبات النشطة</span>

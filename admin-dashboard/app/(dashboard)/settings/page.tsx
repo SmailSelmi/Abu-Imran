@@ -61,11 +61,11 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid gap-2">
-            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">عنوان البريد الإلكتروني</Label>
+            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">عنوان البريد الإلكتروني</Label>
             <Input value={user?.email || ''} disabled readOnly className="h-12 rounded-xl bg-muted/50 border-none font-black" />
           </div>
           <div className="grid gap-2">
-            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">معرف المستخدم</Label>
+            <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">معرف المستخدم</Label>
             <Input value={user?.id || ''} disabled readOnly className="font-mono text-xs h-12 rounded-xl bg-muted/50 border-none" />
           </div>
         </CardContent>
@@ -84,7 +84,7 @@ export default function SettingsPage() {
         <CardContent>
           <form onSubmit={handleUpdatePassword} className="space-y-4">
              <div className="grid gap-2">
-              <Label htmlFor="new-password" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">كلمة المرور الجديدة</Label>
+              <Label htmlFor="new-password" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">كلمة المرور الجديدة</Label>
               <Input 
                 id="new-password" 
                 type="password" 
@@ -97,7 +97,7 @@ export default function SettingsPage() {
               />
             </div>
             <Button type="submit" disabled={loading || !newPassword} className="h-12 px-8 rounded-xl font-black bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-700">
-              {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+              {loading && <Loader2 className="ms-2 h-4 w-4 animate-spin" />}
               تحديث كلمة المرور
             </Button>
           </form>
@@ -116,7 +116,7 @@ export default function SettingsPage() {
         <CardContent>
             <Link href="/settings/zones">
                 <AnimatedButton variant="outline" className="w-full justify-start h-14 rounded-xl border-dashed border-2 hover:border-emerald-500 hover:bg-emerald-50 font-black text-lg">
-                    <Truck className="ml-3 h-5 w-5 text-emerald-600" /> إعداد مناطق التوصيل
+                    <Truck className="ms-3 h-5 w-5 text-emerald-600" /> إعداد مناطق التوصيل
                 </AnimatedButton>
             </Link>
         </CardContent>

@@ -1,85 +1,64 @@
 'use client';
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ChickenLoaderProps {
-  /**
-   * 'dashboard' = white/orange for dark backgrounds
-   * 'store' = black/orange for white backgrounds
-   */
   mode?: "dashboard" | "store"; 
   size?: "sm" | "md" | "lg";
 }
 
-// Chicken Footprint SVG
-const ChickenFootprint = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M12 2L12 15 M12 15L5 22 M12 15L19 22"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 export default function ChickenLoader({ mode = "store", size = "md" }: ChickenLoaderProps) {
-  const colorClass = mode === "dashboard" ? "text-orange-500" : "text-orange-600";
+  const sizeValue = 
+    size === "sm" ? 40 : 
+    size === "lg" ? 120 : 80;
+
+  const textClass = mode === 'dashboard' ? 'text-zinc-400' : 'text-zinc-500';
   
-  const sizeClass = 
-    size === "sm" ? "w-4 h-4" : 
-    size === "lg" ? "w-10 h-10" : "w-6 h-6";
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3, 
-        repeat: Infinity,     
-        repeatDelay: 1        
-      }
-    }
-  };
-
-  const footprintVariants = {
-    hidden: { opacity: 0, scale: 0.5, y: 10 },
-    show: { opacity: 1, scale: 1, y: 0 }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-[200px] w-full gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[200px] w-full gap-6">
       <motion.div
-        className="flex gap-4"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
+        animate={{ 
+          scale: [1, 1.05, 1],
+          opacity: [0.8, 1, 0.8]
+        }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="relative"
+        style={{ width: sizeValue, height: sizeValue }}
       >
-        <motion.div variants={footprintVariants} className={`transform -rotate-12 mt-2 ${colorClass}`}>
-          <ChickenFootprint className={sizeClass} />
-        </motion.div>
-
-        <motion.div variants={footprintVariants} className={`transform rotate-12 mb-2 ${colorClass}`}>
-          <ChickenFootprint className={sizeClass} />
-        </motion.div>
-
-        <motion.div variants={footprintVariants} className={`transform -rotate-12 mt-2 ${colorClass}`}>
-          <ChickenFootprint className={sizeClass} />
-        </motion.div>
-        
-        <motion.div variants={footprintVariants} className={`transform rotate-12 mb-2 ${colorClass}`}>
-          <ChickenFootprint className={sizeClass} />
-        </motion.div>
+        <Image 
+          src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg"
+          alt="Loading..."
+          fill
+          className="object-contain"
+        />
       </motion.div>
 
-      <p className={`text-xs font-medium animate-pulse ${mode === 'dashboard' ? 'text-zinc-400' : 'text-zinc-500'}`}>
-        Fetching Fresh Data...
-      </p>
+      <div className="flex flex-col items-center gap-2">
+        <p className={`text-sm font-black tracking-widest uppercase animate-pulse ${textClass}`}>
+          جاري التحميل...
+        </p>
+        <div className="flex gap-1.5">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 1, 0.3]
+              }}
+              transition={{ 
+                duration: 1, 
+                repeat: Infinity, 
+                delay: i * 0.2 
+              }}
+              className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

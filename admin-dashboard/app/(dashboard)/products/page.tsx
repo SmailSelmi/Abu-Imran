@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Plus, Trash2, Edit, Save, X } from "lucide-react"
+import { toast } from "sonner"
 
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
@@ -74,10 +75,17 @@ export default function ProductsPage() {
   // Handle Add/Edit Product
   const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault()
+    const finalSlug = newProduct.slug || 
+        (newProduct.name_en || newProduct.name_ar)
+            .toLowerCase()
+            .replace(/[^a-z0-9\u0600-\u06FF]+/g, '-')
+            .replace(/(^-|-$)+/g, '') ||
+        `product-${Date.now()}`
+
     const payload: ProductInsert = {
-        name: newProduct.name_ar, // Map Arabic name to 'name' column
+        name: newProduct.name_ar,
         name_en: newProduct.name_en,
-        slug: newProduct.slug,
+        slug: finalSlug,
         category: newProduct.category,
         subcategory: newProduct.subcategory,
         price: Number(newProduct.price),
@@ -95,9 +103,10 @@ export default function ProductsPage() {
 
 
         if (error) {
-            alert('Error updating product!')
+            toast.error('فشل تحديث المنتج: ' + error.message)
             console.error(error)
         } else {
+            toast.success('تم تحديث المنتج بنجاح!')
             resetForm()
             fetchProducts()
         }
@@ -109,9 +118,10 @@ export default function ProductsPage() {
 
         
         if (error) {
-            alert('Error adding product!')
+            toast.error('فشل إضافة المنتج: ' + error.message)
             console.error(error)
         } else {
+            toast.success('تمت إضافة المنتج بنجاح!')
             resetForm()
             fetchProducts()
         }
@@ -145,9 +155,10 @@ export default function ProductsPage() {
 
       
       if (error) {
-          alert('Error moving to recycle bin. Check if "deleted_at" column exists.')
+          toast.error('فشل حذف المنتج: ' + error.message)
           console.error(error)
       } else {
+          toast.success('تم نقل المنتج إلى سلة المحذوفات')
           setProducts(products.filter(p => p.id !== deletingId))
       }
       setConfirmOpen(false)
@@ -171,16 +182,16 @@ export default function ProductsPage() {
 
   return (
     <div className="space-y-6">
-      <ConfirmDialog 
+      <ConfirmDialog
         isOpen={confirmOpen}
         onClose={() => {
             setConfirmOpen(false)
             setDeletingId(null)
         }}
         onConfirm={handleDelete}
-        title="Move to Recycle Bin?"
-        description="Are you sure you want to move this product to the recycle bin? It can be restored later but will be hidden from the storefront."
-        confirmText="Move to Bin"
+        title="نقل إلى سلة المحذوفات؟"
+        description="هل أنت متأكد من نقل هذا المنتج إلى سلة المحذوفات؟ يمكن استعادته لاحقاً."
+        confirmText="نقل للسلة"
         variant="destructive"
       />
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -191,12 +202,12 @@ export default function ProductsPage() {
         <div className="flex gap-3">
             <Link href="/products/recycle-bin">
                 <AnimatedButton variant="outline" className="rounded-xl h-12 bg-white dark:bg-card border-none shadow-md text-red-500 font-black">
-                    <Trash2 className="ml-2 h-4 w-4" /> سلة المحذوفات
+                    <Trash2 className="ms-2 h-4 w-4" /> سلة المحذوفات
                 </AnimatedButton>
             </Link>
             {!isAdding && (
                 <AnimatedButton onClick={() => setIsAdding(true)} className="rounded-xl h-12 px-6 bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 font-black">
-                    <Plus className="ml-2 h-5 w-5" /> إضافة منتج
+                    <Plus className="ms-2 h-5 w-5" /> إضافة منتج
                 </AnimatedButton>
             )}
         </div>
@@ -214,7 +225,7 @@ export default function ProductsPage() {
               <CardContent className="p-8 pt-0">
                   <form onSubmit={handleSaveProduct} className="grid gap-6 md:grid-cols-2">
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الاسم بالإنجليزية</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الاسم بالإنجليزية</Label>
                           <Input required placeholder="مثال: Brahma Gold" value={newProduct.name_en} onChange={e => {
                                 const name = e.target.value;
                                 const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -222,17 +233,17 @@ export default function ProductsPage() {
                           }} className="h-12 rounded-xl bg-muted/50 border-none font-black" />
                       </div>
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الاسم بالعربية</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الاسم بالعربية</Label>
                           <Input placeholder="مثال: براهما ذهبي" value={newProduct.name_ar} onChange={e => setNewProduct({...newProduct, name_ar: e.target.value})} className="h-12 rounded-xl bg-muted/50 border-none font-black text-right" />
                       </div>
 
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">المعرف البرمجي (Slug)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">المعرف البرمجي (Slug)</Label>
                           <Input placeholder="يتم توليده تلقائياً" value={newProduct.slug} onChange={e => setNewProduct({...newProduct, slug: e.target.value})} className="h-12 rounded-xl bg-muted/50 border-none font-mono text-sm" />
                       </div>
                       
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الفئة الأساسية</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الفئة الأساسية</Label>
                           <select 
                             className="flex h-12 w-full rounded-xl border-none bg-muted/50 px-4 py-2 text-sm font-black outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
                             value={newProduct.category}
@@ -246,7 +257,7 @@ export default function ProductsPage() {
                       </div>
 
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الفئة الفرعية</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الفئة الفرعية</Label>
                            <select 
                             className="flex h-12 w-full rounded-xl border-none bg-muted/50 px-4 py-2 text-sm font-black outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
                             value={newProduct.subcategory}
@@ -262,12 +273,12 @@ export default function ProductsPage() {
                       </div>
 
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">السعر (دج)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">السعر (دج)</Label>
                           <Input required type="number" placeholder="0" value={newProduct.price} onChange={e => setNewProduct({...newProduct, price: e.target.value})} className="h-12 rounded-xl bg-muted/50 border-none font-black" />
                       </div>
 
                       <div className="grid gap-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">كمية المخزون</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">كمية المخزون</Label>
                           <Input required type="number" placeholder="0" value={newProduct.stock} onChange={e => setNewProduct({...newProduct, stock: e.target.value})} className="h-12 rounded-xl bg-muted/50 border-none font-black" />
                       </div>
                       

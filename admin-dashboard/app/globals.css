@@ -100,6 +100,9 @@
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-tajawal), system-ui, sans-serif;
   }
+  button, a {
+    @apply transition-all duration-200 active:scale-95;
+  }
 }
 
 @utility glass-card {
@@ -125,4 +128,45 @@
 
 ::selection {
   @apply bg-primary/20 text-primary;
+}
+
+/* Enforce Tajawal on every element */
+*,
+*::before,
+*::after {
+  font-family: var(--font-tajawal), system-ui, sans-serif !important;
+}
+
+/* Print Styles — Only show the main data content */
+@media print {
+  header,
+  aside,
+  nav,
+  [data-sidebar],
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 1rem !important;
+    width: 100% !important;
+  }
+
+  table,
+  .print-visible {
+    display: block !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
 }

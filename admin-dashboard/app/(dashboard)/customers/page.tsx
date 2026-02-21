@@ -186,7 +186,7 @@ export default function CustomersPage() {
                                   )}
 
                                   <div className="flex items-center justify-between pt-2">
-                                      <div className="h-2 flex-1 bg-muted rounded-full overflow-hidden mr-4">
+                                      <div className="h-2 flex-1 bg-muted rounded-full overflow-hidden me-4">
                                           <motion.div 
                                             initial={{ width: 0 }}
                                             animate={{ width: `${customer.reliability_score || 0}%` }}

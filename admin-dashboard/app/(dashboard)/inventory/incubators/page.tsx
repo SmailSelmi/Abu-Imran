@@ -173,7 +173,7 @@ export default function IncubatorsPage() {
         </div>
         {!isAdding && (
             <AnimatedButton onClick={() => setIsAdding(true)} className="h-14 px-10 rounded-xl font-black text-lg shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white border-none">
-                <Plus className="ml-3 h-6 w-6" /> إضافة حاضنة
+                <Plus className="ms-3 h-6 w-6" /> إضافة حاضنة
             </AnimatedButton>
         )}
       </div>
@@ -191,11 +191,11 @@ export default function IncubatorsPage() {
               <CardContent className="p-8 pt-0">
                   <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       <div className="space-y-2 lg:col-span-1">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">تسمية الأصل</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">تسمية الأصل</Label>
                           <Input required value={formData.name_en} onChange={handleNameChange} placeholder="مثال: حاضنة أوتوماتيكية 48 بيضة" className="h-12 rounded-xl bg-muted/50 border-none focus:ring-emerald-500/20 font-black" />
                       </div>
                        <div className="space-y-2 lg:col-span-1">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">معرف الرابط (Slug)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">معرف الرابط (Slug)</Label>
                           <div className="flex gap-2">
                             <Input required value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} placeholder="مثال: industrial-automatic-48" dir="ltr" className="h-12 rounded-xl bg-muted/50 border-none focus:ring-emerald-500/20 font-mono text-xs" />
                             <Button type="button" variant="outline" size="icon" className="h-12 w-12 shrink-0 rounded-xl" onClick={() => setFormData({...formData, slug: generateSlug(formData.name_en)})} title="توليد تلقائي">
@@ -204,15 +204,15 @@ export default function IncubatorsPage() {
                           </div>
                       </div>
                        <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">نوع الكتلة</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">نوع الكتلة</Label>
                           <Input value={formData.subcategory} onChange={e => setFormData({...formData, subcategory: e.target.value})} className="h-12 rounded-xl bg-muted/50 border-none focus:ring-emerald-500/20 font-black" />
                       </div>
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">القيمة السوقية (دج)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">القيمة السوقية (دج)</Label>
                           <Input type="number" value={formData.price} onChange={e => setFormData({...formData, price: Number(e.target.value)})} className="h-12 rounded-xl bg-muted/50 border-none focus:ring-emerald-500/20 font-black" />
                       </div>
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الوحدات المتوفرة</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الوحدات المتوفرة</Label>
                           <Input type="number" value={formData.stock} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} className="h-12 rounded-xl bg-muted/50 border-none focus:ring-emerald-500/20 font-black" />
                       </div>
                       

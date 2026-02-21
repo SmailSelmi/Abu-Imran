@@ -115,7 +115,7 @@ export default function DeliveryZonesPage() {
         </div>
         {!isAdding && (
             <Button onClick={() => setIsAdding(true)} className="rounded-xl px-6 h-12 font-black shadow-lg shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Plus className="ml-2 h-5 w-5" /> منطقة جديدة
+                <Plus className="ms-2 h-5 w-5" /> منطقة جديدة
             </Button>
         )}
       </div>
@@ -134,19 +134,19 @@ export default function DeliveryZonesPage() {
               <CardContent className="pt-6">
                   <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">عنوان المنطقة</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">عنوان المنطقة</Label>
                           <Input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="مثال: الجزائر العاصمة وضواحيها" className="bg-muted/50 border-none focus:bg-background h-12 rounded-xl font-black" />
                       </div>
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">رسوم الشحن (دج)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">رسوم الشحن (دج)</Label>
                           <Input type="number" required value={formData.base_fee} onChange={e => setFormData({...formData, base_fee: Number(e.target.value)})} className="bg-muted/50 border-none focus:bg-background h-12 rounded-xl font-black" />
                       </div>
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الوقت المتوقع (أيام)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الوقت المتوقع (أيام)</Label>
                           <Input required value={formData.estimated_days} onChange={e => setFormData({...formData, estimated_days: e.target.value})} placeholder="مثال: 24-48 ساعة" className="bg-muted/50 border-none focus:bg-background h-12 rounded-xl font-black" />
                       </div>
                       <div className="space-y-2">
-                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">الولايات (مفصولة بفاصلة)</Label>
+                          <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">الولايات (مفصولة بفاصلة)</Label>
                           <Input required value={wilayaInput} onChange={e => setWilayaInput(e.target.value)} placeholder="الجزائر، البليدة..." className="bg-muted/50 border-none focus:bg-background h-12 rounded-xl font-black" />
                       </div>
                       

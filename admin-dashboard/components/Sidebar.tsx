@@ -10,7 +10,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nContext";
-import { Locale } from "@/lib/i18n/translations";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -27,7 +26,7 @@ export function Sidebar({ className }: { className?: string }) {
   const pathname = usePathname();
   const router = useRouter();
   const supabase = createClient();
-  const { t, isRTL, locale, setLocale } = useI18n();
+  const { t } = useI18n();
 
   const links = [
     { name: t.sidebar.overview, href: "/", icon: LayoutDashboard },
@@ -54,12 +53,12 @@ export function Sidebar({ className }: { className?: string }) {
     >
       <div className={cn("h-24 flex items-center border-b border-border/40", isCollapsed ? "justify-center px-0" : "px-8")}>
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="w-12 h-12 bg-emerald-600 p-2 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 shrink-0 transition-all group-hover:scale-110 group-hover:rotate-6 ring-4 ring-white/5 relative">
+          <div className="w-16 h-16 p-1 rounded-xl flex items-center justify-center shrink-0 transition-all group-hover:scale-110 group-hover:rotate-6 relative">
             <Image 
-                src="/logo-white.png" 
+                src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg" 
                 alt="Logo" 
                 fill 
-                className="object-contain p-2"
+                className="object-contain"
             />
           </div>
           {!isCollapsed && (
@@ -169,7 +168,7 @@ export function MobileSidebar() {
   const router = useRouter();
   const supabase = createClient();
   const [open, setOpen] = useState(false);
-  const { t, isRTL, locale, setLocale } = useI18n();
+  const { t, isRTL } = useI18n();
 
   const links = [
     { name: t.sidebar.overview, href: "/", icon: LayoutDashboard },

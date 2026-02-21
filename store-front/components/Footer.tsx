@@ -36,7 +36,12 @@ export function Footer() {
           <div className="space-y-8">
             <Link className="flex items-center gap-4 group" href="/">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-xl text-white shadow-2xl transition-all group-hover:scale-110 group-hover:rotate-3 ring-1 ring-white/10 p-2 overflow-hidden relative">
-              <Image src="/logo-official.png" alt="Abu Imran Logo" fill className="object-contain p-2" />
+               <Image 
+                 src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg" 
+                 alt="Abu Imran Logo" 
+                 fill 
+                 className="object-contain" 
+               />
             </div>
               <div className="flex flex-col">
                 <span className="font-black text-2xl tracking-tighter leading-none">{t.common.brand}</span>
@@ -116,7 +121,7 @@ export function Footer() {
                 </div>
                 <div className="flex flex-col gap-1">
                     <span className="text-[10px] uppercase font-black tracking-widest text-zinc-500">{t.common.contactMethod}</span>
-                    <span className="font-black text-xl text-emerald-500 tracking-tighter tabular-nums">+213 550 123 456</span>
+                    <a href="https://wa.me/213665243819" className="font-black text-xl text-emerald-500 tracking-tighter tabular-nums hover:text-emerald-400 transition-colors">+213 665 24 38 19</a>
                 </div>
               </li>
             </ul>
@@ -128,9 +133,8 @@ export function Footer() {
             © 2026 {t.common.brand}. {t.footer.rights}
           </p>
           <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-            {['Privacy', 'Terms', 'Sitemap'].map((link) => (
-                <Link key={link} href="#" className="hover:text-emerald-500 transition-colors opacity-70 hover:opacity-100">{link}</Link>
-            ))}
+            <Link href="/privacy" className="hover:text-emerald-500 transition-colors opacity-70 hover:opacity-100">سياسة الخصوصية</Link>
+            <Link href="/terms" className="hover:text-emerald-500 transition-colors opacity-70 hover:opacity-100">شروط الاستخدام</Link>
           </div>
         </div>
       </div>

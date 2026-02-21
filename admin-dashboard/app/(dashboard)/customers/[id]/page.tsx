@@ -92,7 +92,7 @@ export default function CustomerDetailsPage() {
     <div className="space-y-8 max-w-7xl mx-auto">
       <div className="flex items-center justify-between">
           <Button variant="ghost" onClick={() => router.back()} className="rounded-full hover:bg-muted font-bold group">
-              <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Customer List
+              <ArrowLeft className="me-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" /> قائمة الزبائن
           </Button>
           <div className="flex items-center gap-2">
                <Badge className={clsx(
@@ -110,7 +110,7 @@ export default function CustomerDetailsPage() {
                         if (phone) window.open(`https://wa.me/${phone.startsWith('0') ? '213' + phone.slice(1) : phone}`, '_blank');
                     }}
                 >
-                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
+                    <MessageCircle className="w-4 h-4 me-2" /> واتساب
                 </Button>
           </div>
       </div>
@@ -196,10 +196,10 @@ export default function CustomerDetailsPage() {
 
               {/* Admin Context */}
               <Card className="border-none shadow-xl rounded-xl bg-muted/30">
-                  <CardHeader><CardTitle className="text-lg font-black uppercase tracking-widest text-muted-foreground/60">Risk Management</CardTitle></CardHeader>
+                  <CardHeader><CardTitle className="text-lg font-black uppercase tracking-widest text-muted-foreground/60">إدارة المخاطر</CardTitle></CardHeader>
                   <CardContent className="space-y-6">
                       <div className="space-y-3">
-                          <Label className="text-xs font-black uppercase tracking-widest ml-1">Behavioral Notes</Label>
+                          <Label className="text-xs font-black uppercase tracking-widest ms-1">ملاحظات سلوكية</Label>
                           <Textarea 
                               placeholder="Describe interactions, preferences or flags..." 
                               value={notes} 
@@ -208,7 +208,7 @@ export default function CustomerDetailsPage() {
                           />
                       </div>
                       <div className="space-y-3">
-                          <Label className="text-xs font-black uppercase tracking-widest ml-1">Reliability Index ({reliability}%)</Label>
+                          <Label className="text-xs font-black uppercase tracking-widest ms-1">مؤشر الموثوقية ({reliability}%)</Label>
                           <div className="flex items-center gap-4">
                               <Input 
                                   type="range" 
@@ -226,7 +226,7 @@ export default function CustomerDetailsPage() {
                           </div>
                       </div>
                       <Button className="w-full h-14 rounded-xl font-black text-lg shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90" onClick={handleSave}>
-                          <Save className="mr-2 h-5 w-5" /> Synchronize Profile
+                          <Save className="me-2 h-5 w-5" /> مزامنة الملف الشخصي
                       </Button>
                   </CardContent>
               </Card>

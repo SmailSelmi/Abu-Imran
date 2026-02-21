@@ -17,10 +17,19 @@ import type { OrderWithRelations } from '@/types/orders'
 import { EditOrderDialog } from '@/components/orders/EditOrderDialog'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
+
+const STATUS_LABELS: Record<string, string> = {
+  shipped: 'تم الشحن',
+  delivered: 'تم التوصيل',
+  cancelled: 'ملغى',
+  pending: 'قيد الانتظار',
+}
+
 export default function OrdersPage() {
+
   const [orders, setOrders] = useState<OrderWithRelations[]>([])
   const [loading, setLoading] = useState(true)
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useState('pending')
   const [search, setSearch] = useState('')
   const [editingOrder, setEditingOrder] = useState<OrderWithRelations | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -133,10 +142,16 @@ export default function OrdersPage() {
   }, [supabase])
 
   const markBulkStatus = async (status: 'pending' | 'shipped' | 'delivered' | 'cancelled') => {
+      const statusLabels: Record<string, string> = {
+          shipped: 'تم الشحن',
+          delivered: 'تم التوصيل',
+          cancelled: 'ملغى',
+          pending: 'قيد الانتظار',
+      }
       setConfirmConfig({
-          title: `Update ${selectedOrders.length} Orders?`,
-          description: `Are you sure you want to mark these orders as ${status}?`,
-          confirmText: `Confirm ${status}`,
+          title: `تحديث ${selectedOrders.length} طلبيات؟`,
+          description: `سيتم تغيير حالة هذه الطلبيات إلى: ${statusLabels[status]}`,
+          confirmText: `تأكيد`,
           variant: status === 'cancelled' ? 'destructive' : 'default',
           onConfirm: async () => {
               const { error } = await (supabase as any)
@@ -145,11 +160,10 @@ export default function OrdersPage() {
                 .in('id', selectedOrders)
 
               if (error) {
-                toast.error('Bulk update failed')
+                toast.error('فشل تحديث الطلبيات')
               } else {
-                  toast.success('Orders updated')
+                  toast.success('تم تحديث الطلبيات بنجاح')
                   
-                  // Recalculate Reliability for all affected customers
                   if (status === 'delivered' || status === 'cancelled') {
                       const uniqueCustomerIds = Array.from(new Set(
                           orders
@@ -157,22 +171,30 @@ export default function OrdersPage() {
                             .map(o => o.customer_id)
                             .filter(Boolean)
                       ))
-
                       if (uniqueCustomerIds.length > 0) {
-                          toast.promise(
-                              Promise.all(uniqueCustomerIds.map(id => recalculateReliability(id as string))),
-                              {
-                                  loading: 'Updating customer metrics...',
-                                  success: 'All customer data updated',
-                                  error: 'Failed to update some customers'
-                              }
-                          )
+                          await Promise.all(uniqueCustomerIds.map(id => recalculateReliability(id as string)))
                       }
                   }
-
                   setSelectedOrders([])
                   fetchOrders()
               }
+          }
+      })
+      setConfirmOpen(true)
+  }
+
+  const markBulkDelete = async () => {
+      setConfirmConfig({
+          title: `حذف ${selectedOrders.length} طلبيات؟`,
+          description: 'سيتم حذف هذه الطلبيات نهائياً. هذه العملية لا يمكن التراجع عنها.',
+          confirmText: 'حذف نهائي',
+          variant: 'destructive',
+          onConfirm: async () => {
+              const { error } = await supabase.from('orders').delete().in('id', selectedOrders)
+              if (error) toast.error('فشل الحذف الجماعي')
+              else toast.success('تم حذف الطلبيات بنجاح')
+              setSelectedOrders([])
+              fetchOrders()
           }
       })
       setConfirmOpen(true)
@@ -238,14 +260,14 @@ export default function OrdersPage() {
   const updateStatus = async (id: string, newStatus: 'pending' | 'shipped' | 'delivered' | 'cancelled', customerId?: string | null) => {
     const { error } = await supabase.from('orders').update({ status: newStatus as string }).eq('id', id)
     if (error) {
-        toast.error('Failed to update status')
+      toast.error('فشل تحديث الحالة')
     } else {
-        toast.success(`Order updated to ${newStatus}`)
+        toast.success(`تم تحديث حالة الطلب إلى ${STATUS_LABELS[newStatus] || newStatus}`)
         
-        // Recalculate Customer Reliability if status is terminal (delivered or cancelled)
         if (customerId && (newStatus === 'delivered' || newStatus === 'cancelled')) {
             await recalculateReliability(customerId)
         }
+        setOrders(prev => prev.map(o => o.id === id ? { ...o, status: newStatus } : o))
     }
   }
 
@@ -283,14 +305,14 @@ export default function OrdersPage() {
 
   const deleteOrder = async (id: string) => {
       setConfirmConfig({
-          title: "Delete Order?",
-          description: "Are you sure you want to delete this order? This action cannot be undone.",
-          confirmText: "Delete Permanently",
-          variant: "destructive",
+          title: 'حذف الطلبية؟',
+          description: 'هل أنت متأكد من حذف هذه الطلبية؟ هذه العملية لا يمكن التراجع عنها.',
+          confirmText: 'حذف نهائي',
+          variant: 'destructive',
           onConfirm: async () => {
               const { error } = await supabase.from('orders').delete().eq('id', id)
-              if (error) toast.error('Delete failed')
-              else toast.success('Order deleted')
+              if (error) toast.error('فشل الحذف')
+              else toast.success('تم حذف الطلبية')
               fetchOrders()
           }
       })
@@ -375,10 +397,10 @@ export default function OrdersPage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Button size="sm" variant="secondary" className="bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl font-black" onClick={() => markBulkStatus('shipped')}>
-                        <Truck className="w-4 h-4 ml-2" /> شحن المحدد
+                        <Truck className="w-4 h-4 ms-2" /> شحن المحدد
                     </Button>
                     <Button size="sm" variant="secondary" className="bg-white/10 hover:bg-white/20 text-white border-white/20 rounded-xl font-black" onClick={() => markBulkStatus('delivered')}>
-                        <CheckCircle className="w-4 h-4 ml-2" /> توصيل المحدد
+                        <CheckCircle className="w-4 h-4 ms-2" /> توصيل المحدد
                     </Button>
                     <Button size="sm" variant="ghost" className="text-white hover:bg-white/10" onClick={() => setSelectedOrders([])}>
                         <X className="w-4 h-4" />

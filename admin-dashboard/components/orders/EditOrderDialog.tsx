@@ -82,7 +82,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-6 p-8 pt-6 max-h-[80vh] overflow-y-auto">
           <div className="grid gap-2">
-            <Label htmlFor="customer_name" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+            <Label htmlFor="customer_name" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
               اسم الزبون
             </Label>
             <Input
@@ -93,7 +93,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="phone_number" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+            <Label htmlFor="phone_number" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
               رقم الهاتف
             </Label>
             <Input
@@ -104,7 +104,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="wilaya_address" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+            <Label htmlFor="wilaya_address" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
               العنوان / الولاية
             </Label>
             <Input
@@ -115,7 +115,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="product_name" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+            <Label htmlFor="product_name" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
               المنتج
             </Label>
             <Input
@@ -126,7 +126,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="status" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+            <Label htmlFor="status" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
               حالة الطلب
             </Label>
              <div>
@@ -145,7 +145,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-                <Label htmlFor="quantity" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+                <Label htmlFor="quantity" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
                 الكمية
                 </Label>
                 <Input
@@ -157,7 +157,7 @@ export function EditOrderDialog({ order, open, onOpenChange, onSuccess }: EditOr
                 />
             </div>
             <div className="grid gap-2">
-                <Label htmlFor="price" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mr-1">
+                <Label htmlFor="price" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground me-1">
                 السعر الفردي
                 </Label>
                 <Input
