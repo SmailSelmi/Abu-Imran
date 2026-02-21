@@ -198,10 +198,10 @@ export function MobileSidebar() {
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3 font-black text-2xl tracking-tighter text-emerald-600">
             <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 shadow-sm shrink-0 relative overflow-hidden p-1">
                 <Image 
-                    src="/logo-official.png" 
+                    src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg" 
                     alt="Logo" 
                     fill 
-                    className="object-contain p-1"
+                    className="object-contain"
                 />
             </div>
             <span>{t.sidebar.brand}</span>

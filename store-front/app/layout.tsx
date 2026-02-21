@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
+import { Header } from "@/components/Header";
+import { BottomNav } from "@/components/BottomNav";
+import { Footer } from "@/components/Footer";
+import { SplashScreen } from "@/components/SplashScreen";
+import { Toaster } from "sonner";
+import { I18nProvider } from "@/lib/i18n/I18nContext";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -9,6 +17,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://abu-imran-farm.com'),
   title: {
     default: "أبو عمران | سلالات نادرة ومعدات تفقيس",
     template: "%s | أبو عمران"
@@ -63,14 +72,7 @@ export const viewport = {
     userScalable: false,
 };
 
-import { Header } from "@/components/Header";
-import { BottomNav } from "@/components/BottomNav";
-import { Footer } from "@/components/Footer";
-import { SplashScreen } from "@/components/SplashScreen";
-import { Toaster } from "sonner";
-import { I18nProvider } from "@/lib/i18n/I18nContext";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+
 
 export default function RootLayout({
   children,

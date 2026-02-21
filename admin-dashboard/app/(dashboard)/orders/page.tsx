@@ -61,7 +61,7 @@ const fetcher = async () => {
     
     if (error) {
         console.error('Join fetch failed, falling back:', error)
-        const { data: simpleData } = await supabase.from('orders').select('*').order('created_at', { ascending: false })
+        const { data: simpleData } = await supabase.from('orders').select('id, status, total_amount, customer_name, phone_number, created_at, product_name, egg_count').order('created_at', { ascending: false })
         return simpleData as unknown as OrderWithRelations[]
     }
     return data as unknown as OrderWithRelations[]

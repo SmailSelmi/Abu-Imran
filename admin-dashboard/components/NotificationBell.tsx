@@ -206,7 +206,7 @@ export function NotificationBell() {
                         </span>
                         <span className="text-[10px] text-muted-foreground flex items-center gap-1 opacity-60">
                           <Clock className="w-3 h-3" />
-                          {n.created_at ? formatDistanceToNow(parseISO(n.created_at + 'Z'), { addSuffix: true, locale: ar }) : ''}
+                          {n.created_at ? formatDistanceToNow(new Date(n.created_at) > new Date() ? new Date() : new Date(n.created_at), { addSuffix: true, locale: ar }) : ''}
                         </span>
                       </div>
                     </div>

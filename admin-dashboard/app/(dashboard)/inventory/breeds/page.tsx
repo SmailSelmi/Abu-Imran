@@ -242,24 +242,7 @@ export default function BreedsPage() {
               <CardContent className="pt-6">
                   <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       
-                      <div className="space-y-2 col-span-full border-b border-dashed pb-4 mb-2 hidden">
-                          <h3 className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground opacity-50">التصنيف البيولوجي</h3>
-                      </div>
-                      
-                      <div className="space-y-2 hidden">
-                          <Label className="text-[11px] md:text-xs font-black uppercase tracking-widest text-muted-foreground/80">الاسم الداخلي</Label>
-                          <Input required value={formData.name_en} onChange={handleNameChange} placeholder="مثال: بيض ساسو فضي" className="bg-muted/50 border-transparent focus:bg-background h-12 rounded-xl font-black" />
-                      </div>
 
-                      <div className="space-y-2 hidden">
-                        <Label className="text-[11px] md:text-xs font-black uppercase tracking-widest text-muted-foreground/80">معرف الرابط (Slug)</Label>
-                        <div className="flex gap-2">
-                            <Input required value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} placeholder="مثال: sasso-silver-eggs" dir="ltr" className="bg-muted/50 border-transparent focus:bg-background h-12 rounded-xl font-mono text-xs" />
-                            <Button type="button" variant="outline" size="icon" className="h-12 w-12 shrink-0 rounded-xl" onClick={() => setFormData({...formData, slug: generateSlug(formData.name_en)})} title="توليد تلقائي">
-                                <Activity className="w-4 h-4" />
-                            </Button>
-                        </div>
-                      </div>
                       
                       <div className="space-y-2">
                           <Label className="text-[11px] md:text-xs font-black uppercase tracking-widest text-muted-foreground/80">مرحلة النمو</Label>
@@ -369,7 +352,7 @@ export default function BreedsPage() {
                           </div>
                       ) : (
                         <div className="space-y-2">
-                            <Label className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground/80">Total Available Stock</Label>
+                            <Label className="text-[11px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground/80">إجمالي المخزون المتوفر</Label>
                             <Input type="number" value={formData.stock} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} className="bg-muted/50 border-transparent focus:bg-background h-11" />
                         </div>
                       )}

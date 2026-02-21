@@ -120,34 +120,6 @@ button:active, a:active {
 
 /* Print Styles — Only show the main data content */
 @media print {
-  header,
-  aside,
-  nav,
-  [data-sidebar],
-  .no-print {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  main {
-    margin: 0 !important;
-    padding: 1rem !important;
-    width: 100% !important;
-  }
-
-  table,
-  .print-visible {
-    display: block !important;
-    width: 100% !important;
-    page-break-inside: avoid;
-  }
-
-  @page {
-    margin: 1cm;
-    size: A4;
-  }
+  nav, aside, header { display: none !important; }
+  main { width: 100% !important; margin: 0 !important; padding: 0 !important; }
 }

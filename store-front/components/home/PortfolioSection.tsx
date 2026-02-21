@@ -12,7 +12,7 @@ type ProductWithBreed = Database['public']['Tables']['products']['Row'] & {
 }
 
 interface PortfolioSectionProps {
-    initialProducts?: any[]
+    initialProducts?: ProductWithBreed[]
 }
 
 const FALLBACK_BREEDS = [
@@ -119,6 +119,7 @@ export default function PortfolioSection({ initialProducts = [] }: PortfolioSect
                                     src={breed.image} 
                                     alt={breed.name} 
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                     className="object-cover transition-transform duration-1000 group-hover:scale-110" 
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />

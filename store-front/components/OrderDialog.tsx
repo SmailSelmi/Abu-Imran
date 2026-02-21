@@ -32,8 +32,6 @@ import Image from "next/image";
 
 type Product = Database['public']['Tables']['products']['Row'];
 
-const supabase = createClient();
-
 const orderSchema = z.object({
   name: z.string().min(3, "يجب أن يكون الاسم 3 أحرف على الأقل"),
   phone: z.string().regex(/^(05|06|07)[0-9]{8}$/, "رقم هاتف جزائري غير صحيح"),
@@ -63,6 +61,7 @@ export function OrderDialog({
 }: OrderDialogProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const supabase = createClient();
 
   const activeCategory = initialProduct?.category || category;
   const config = CATEGORY_DATA[activeCategory] || CATEGORY_DATA.eggs;

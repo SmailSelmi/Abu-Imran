@@ -45,8 +45,12 @@ export default async function DashboardPage() {
   );
 
   const sevenDaysAgo = subDays(new Date(), 7);
+  const fourteenDaysAgo = subDays(new Date(), 14);
   const recentOrders = orders.filter(
     (o) => o.created_at && new Date(o.created_at) > sevenDaysAgo,
+  );
+  const prevPeriodOrders = orders.filter(
+    (o) => o.created_at && new Date(o.created_at) > fourteenDaysAgo && new Date(o.created_at) <= sevenDaysAgo,
   );
   const uniqueCustomers = new Set(
     recentOrders.map((o) => o.customer_id).filter(Boolean),
@@ -232,6 +236,20 @@ export default async function DashboardPage() {
       : 0;
   const topBreedName = topProducts.length > 0 ? topProducts[0].name : "N/A";
 
+  // Compute real revenue & order change percentages (last 7d vs prior 7d)
+  const recentRevenue = recentOrders
+    .filter((o) => o.status !== 'cancelled')
+    .reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
+  const prevRevenue = prevPeriodOrders
+    .filter((o) => o.status !== 'cancelled')
+    .reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
+  const revenueChange = prevRevenue > 0
+    ? Math.round(((recentRevenue - prevRevenue) / prevRevenue) * 100)
+    : recentRevenue > 0 ? 100 : 0;
+  const ordersChange = prevPeriodOrders.length > 0
+    ? Math.round(((recentOrders.length - prevPeriodOrders.length) / prevPeriodOrders.length) * 100)
+    : recentOrders.length > 0 ? 100 : 0;
+
   const stats: DashboardStats = {
     revenue,
     activeOrders,
@@ -240,8 +258,8 @@ export default async function DashboardPage() {
     totalCustomers,
     avgOrderValue,
     topBreed: topBreedName,
-    revenueChange: 12,
-    ordersChange: 5,
+    revenueChange,
+    ordersChange,
   };
 
   const analyticsData: AnalyticsData = {

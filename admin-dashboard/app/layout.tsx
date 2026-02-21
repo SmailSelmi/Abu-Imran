@@ -14,6 +14,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://admin.abu-imran-farm.com'),
   title: "أبو عمران | لوحة التحكم",
   description: "نظام إدارة متجر أبو عمران لتربية الدواجن ومعداتها",
   applicationName: "أبو عمران أدمين",

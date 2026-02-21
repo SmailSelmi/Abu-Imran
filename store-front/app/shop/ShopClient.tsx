@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Database } from '@/types/supabase'
 import { OrderDialog } from '@/components/OrderDialog'
+import { CATEGORY_DATA } from '@/lib/constants'
 
 type Product = Database['public']['Tables']['products']['Row'] & {
   families?: Database['public']['Tables']['families']['Row'] | null
@@ -17,17 +18,21 @@ type Product = Database['public']['Tables']['products']['Row'] & {
 
 interface ShopClientProps {
   initialProducts: Product[]
+  initialCategory?: string
 }
 
-const CATEGORIES = [
-    { id: 'eggs', name: 'بيض مخصب', name_ar: 'بيض مخصب', icon: Egg, color: 'bg-amber-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg' },
-    { id: 'chicks', name: 'كتاكيت وفلاليس', name_ar: 'كتاكيت وفلاليس', icon: Bird, color: 'bg-emerald-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp' },
-    { id: 'chickens', name: 'دجاج بالغ', name_ar: 'دجاج بالغ', icon: Bird, color: 'bg-blue-500', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg' },
-    { id: 'machine', name: 'عتاد وفقاسات', name_ar: 'عتاد وفقاسات', icon: Drill, color: 'bg-zinc-800', image: 'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg' },
-]
+const CATEGORIES = Object.entries(CATEGORY_DATA).map(([id, data]) => ({
+  id,
+  name_ar: data.name_ar,
+  icon: data.icon,
+  image: data.image,
+  color: id === 'eggs' ? 'bg-amber-500' : 
+         id === 'chicks' ? 'bg-emerald-500' : 
+         id === 'chickens' ? 'bg-blue-500' : 'bg-zinc-800'
+}))
 
-export default function ShopClient({ initialProducts }: ShopClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+export default function ShopClient({ initialProducts, initialCategory }: ShopClientProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory || null)
 
   return (
     <div className="space-y-24">
@@ -63,7 +68,7 @@ export default function ShopClient({ initialProducts }: ShopClientProps) {
               <div className="relative h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-transparent hover:border-emerald-500/20 shadow-2xl transition-all duration-700">
                 <Image 
                     src={cat.image} 
-                    alt={cat.name} 
+                    alt={cat.name_ar} 
                     fill 
                     className="object-cover transition-transform duration-1000 group-hover:scale-110" 
                     priority={idx < 2}
