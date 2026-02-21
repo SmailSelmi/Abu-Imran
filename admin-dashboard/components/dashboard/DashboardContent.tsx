@@ -158,7 +158,7 @@ export default function DashboardContent({
             </Button>
             <Button
                 onClick={exportDailyCSV}
-                className="rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:scale-105 transition-all shadow-xl shadow-zinc-500/20"
+                className="rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:scale-105 transition-all shadow-sm"
             >
                 <Download className="w-4 h-4" /> تصدير CSV
             </Button>
@@ -190,7 +190,7 @@ export default function DashboardContent({
 
         {/* Active Orders */}
         <motion.div variants={item} className="md:col-span-4 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
+            <Card className="h-full border border-border/40 shadow-sm bg-white dark:bg-zinc-950 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -me-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
@@ -314,7 +314,7 @@ export default function DashboardContent({
       <div className="grid gap-8 lg:grid-cols-12 pb-20">
         {/* Live Activity */}
         <motion.div variants={item} className="lg:col-span-12 xl:col-span-7">
-             <Card className="h-full border-none shadow-premium rounded-[2.5rem] bg-white dark:bg-zinc-900 overflow-hidden">
+             <Card className="h-full border border-border/40 shadow-sm rounded-[2.5rem] bg-white dark:bg-zinc-950 overflow-hidden">
                 <CardHeader className="p-10 pb-4 flex flex-row items-center justify-between">
                     <div>
                         <CardTitle className="text-3xl font-black tracking-tighter flex items-center gap-3">
@@ -437,7 +437,7 @@ export default function DashboardContent({
                     ))}
                 </div>
 
-                <Card className="border-none shadow-premium rounded-[2.5rem] bg-white dark:bg-zinc-900 overflow-hidden">
+                <Card className="border border-border/40 shadow-sm rounded-[2.5rem] bg-white dark:bg-zinc-950 overflow-hidden">
                     <CardHeader className="p-8">
                         <CardTitle className="text-xl font-black tracking-tight flex items-center gap-3">
                             <Truck className="w-6 h-6 text-blue-500" /> التوزيع الجغرافي

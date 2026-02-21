@@ -66,7 +66,7 @@ export default function SettingsPage() {
         <p className="text-muted-foreground font-black">إدارة تفضيلات حسابك وتكوين النظام</p>
       </div>
 
-      <Card className="border-none shadow-xl rounded-xl bg-white dark:bg-card overflow-hidden">
+      <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-3 font-black text-xl">
             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
@@ -88,7 +88,7 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-xl rounded-xl bg-white dark:bg-card overflow-hidden">
+      <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
            <CardTitle className="flex items-center gap-3 font-black text-xl">
             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
@@ -113,14 +113,14 @@ export default function SettingsPage() {
                 className="h-12 rounded-xl bg-muted/50 border-none font-black"
               />
             </div>
-            <Button type="submit" disabled={loading || !newPassword} className="h-12 px-8 rounded-xl font-black bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 hover:bg-emerald-700">
+            <Button type="submit" disabled={loading || !newPassword} className="h-12 px-8 rounded-xl font-black bg-emerald-600 text-white shadow-sm hover:bg-emerald-700">
               {loading && <Loader2 className="ms-2 h-4 w-4 animate-spin" />}
               تحديث كلمة المرور
             </Button>
           </form>
         </CardContent>
       </Card>
-      <Card className="border-none shadow-xl rounded-xl bg-white dark:bg-card overflow-hidden">
+      <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
            <CardTitle className="flex items-center gap-3 font-black text-xl">
             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
@@ -139,7 +139,7 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-xl rounded-xl bg-red-50 dark:bg-red-950/20 overflow-hidden ring-1 ring-red-200 dark:ring-red-900 border border-red-100">
+      <Card className="border border-red-200 dark:border-red-900 shadow-sm rounded-xl bg-red-50 dark:bg-red-950/20 overflow-hidden">
         <CardHeader className="pb-4">
            <CardTitle className="flex items-center gap-3 font-black text-xl text-red-600">
             <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/50 flex items-center justify-center">

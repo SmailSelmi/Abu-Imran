@@ -105,14 +105,14 @@ export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, cate
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Revenue Trend Area Chart */}
-                <Card className="border-none shadow-2xl rounded-xl bg-white dark:bg-card overflow-hidden ring-1 ring-border/50">
+                <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
                     <CardHeader className="p-8 pb-4">
                         <div className="flex items-center justify-between">
                             <div className="space-y-1">
                                 <CardTitle className="text-3xl font-black tracking-tighter">إحصائيات المبيعات</CardTitle>
                                 <CardDescription className="font-bold text-base opacity-60">تتبع الإيرادات وحجم النمو المالي</CardDescription>
                             </div>
-                            <div className="w-14 h-14 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 shadow-inner">
+                            <div className="w-14 h-14 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600">
                                 <TrendingUp className="w-7 h-7" />
                             </div>
                         </div>
@@ -164,14 +164,14 @@ export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, cate
                 </Card>
 
                 {/* Top Products Bar Chart */}
-                <Card className="border-none shadow-2xl rounded-xl bg-white dark:bg-card overflow-hidden ring-1 ring-border/50">
+                <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
                     <CardHeader className="p-8 pb-4">
                         <div className="flex items-center justify-between">
                             <div className="space-y-1">
                                 <CardTitle className="text-3xl font-black tracking-tighter">المنتجات الأكثر طلباً</CardTitle>
                                 <CardDescription className="font-bold text-base opacity-60">تحليل أداء المخزون والطلب</CardDescription>
                             </div>
-                            <div className="w-14 h-14 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-indigo-600 shadow-inner">
+                            <div className="w-14 h-14 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-indigo-600">
                                 <Package className="w-7 h-7" />
                             </div>
                         </div>
@@ -217,7 +217,7 @@ export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, cate
                         const label = CATEGORY_LABELS[cat.name] || cat.name
 
                         return (
-                            <Card key={i} className="border-none shadow-xl rounded-xl bg-white dark:bg-card p-8 group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden ring-1 ring-border/50">
+                            <Card key={i} className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card p-8 group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                                 <div className="flex items-center justify-between mb-6">
                                     <div className={clsx('w-12 h-12 rounded-xl flex items-center justify-center shadow-inner', colors.bg, colors.text)}>
                                         <DollarSign className="w-6 h-6" />

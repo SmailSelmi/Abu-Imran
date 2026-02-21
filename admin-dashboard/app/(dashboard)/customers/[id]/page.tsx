@@ -118,8 +118,8 @@ export default function CustomerDetailsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Profile Card */}
           <div className="lg:col-span-1 space-y-8">
-              <Card className="border-none shadow-2xl bg-white dark:bg-card rounded-xl overflow-hidden group">
-                  <div className="h-32 bg-gradient-to-br from-primary to-emerald-600 relative">
+              <Card className="border border-border/40 shadow-sm bg-white dark:bg-zinc-950 rounded-xl overflow-hidden group">
+                  <div className="h-24 bg-primary relative">
                        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
                             <div className="w-24 h-24 bg-white dark:bg-card p-1.5 rounded-xl shadow-xl group-hover:scale-105 transition-transform">
                                  <div className="w-full h-full bg-muted rounded-xl flex items-center justify-center overflow-hidden">
@@ -195,7 +195,7 @@ export default function CustomerDetailsPage() {
               </Card>
 
               {/* Admin Context */}
-              <Card className="border-none shadow-xl rounded-xl bg-muted/30">
+              <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-zinc-950">
                   <CardHeader><CardTitle className="text-lg font-black uppercase tracking-widest text-muted-foreground/60">إدارة المخاطر</CardTitle></CardHeader>
                   <CardContent className="space-y-6">
                       <div className="space-y-3">
@@ -225,7 +225,7 @@ export default function CustomerDetailsPage() {
                               </div>
                           </div>
                       </div>
-                      <Button className="w-full h-14 rounded-xl font-black text-lg shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90" onClick={handleSave}>
+                      <Button className="w-full h-14 rounded-xl font-black text-lg shadow-sm bg-primary hover:bg-primary/90" onClick={handleSave}>
                           <Save className="me-2 h-5 w-5" /> مزامنة الملف الشخصي
                       </Button>
                   </CardContent>
@@ -234,7 +234,7 @@ export default function CustomerDetailsPage() {
 
           {/* Activity Logs (Order History) */}
           <div className="lg:col-span-2">
-              <Card className="h-full border-none shadow-2xl rounded-xl bg-white dark:bg-card relative overflow-hidden">
+              <Card className="h-full border border-border/40 shadow-sm rounded-xl bg-white dark:bg-zinc-950 relative overflow-hidden">
                   <CardHeader className="p-8 pb-4">
                       <div className="flex justify-between items-center">
                            <CardTitle className="text-2xl font-black flex items-center gap-3">
