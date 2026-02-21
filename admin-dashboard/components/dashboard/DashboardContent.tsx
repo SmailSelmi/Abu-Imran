@@ -138,7 +138,7 @@ export default function DashboardContent({
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-6 max-h-[calc(100vh-4rem)] overflow-y-auto pr-2 scrollbar-thin"
+      className="space-y-6"
     >
 
       {/* Header Actions */}
