@@ -86,7 +86,7 @@ export default function PortfolioSection({ initialProducts = [] }: PortfolioSect
                         <motion.h2 
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] text-zinc-900 dark:text-zinc-100"
+                            className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.85] text-zinc-900 dark:text-zinc-100"
                         >
                             {t.portfolio.titlePrefix} <br /> 
                             <span className="text-primary italic ps-4">{t.portfolio.titleAccent}</span>

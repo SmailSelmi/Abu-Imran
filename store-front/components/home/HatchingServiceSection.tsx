@@ -36,25 +36,25 @@ export default function HatchingServiceSection() {
             
             <div className="container mx-auto px-4 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <div className="space-y-10">
+                    <div className="space-y-6 lg:space-y-10 order-2 lg:order-1">
                         <motion.div 
                             initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            className="space-y-6"
+                            className="space-y-4"
                         >
                             <span className="text-emerald-600 font-black text-xs uppercase tracking-[0.3em] bg-emerald-100 dark:bg-emerald-900/30 px-6 py-2 rounded-full border border-emerald-500/20">
                                 {t.hatching.badge}
                             </span>
-                            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9]">
+                            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9]">
                                 {t.hatching.title} <br />
                                 <span className="text-emerald-600 italic">{t.hatching.titleAccent}</span>
                             </h2>
-                            <p className="text-xl text-muted-foreground font-medium leading-relaxed max-w-xl">
+                            <p className="text-base lg:text-xl text-muted-foreground font-medium leading-relaxed max-w-xl">
                                 {t.hatching.description}
                             </p>
                         </motion.div>
 
-                        <div className="grid grid-cols-2 gap-6">
+                        <div className="grid grid-cols-2 gap-3 lg:gap-6">
                             {[
                                 { icon: Thermometer, color: 'emerald', label: t.hatching.precision },
                                 { icon: Activity, color: 'blue', label: t.hatching.oxygen },
@@ -66,17 +66,17 @@ export default function HatchingServiceSection() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="flex items-center gap-4 bg-white dark:bg-zinc-900 p-6 rounded-3xl shadow-sm border border-border/50"
+                                    className="flex items-center gap-3 bg-white dark:bg-zinc-900 p-4 lg:p-6 rounded-2xl shadow-sm border border-border/50"
                                 >
-                                    <div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-                                        <item.icon className="w-6 h-6 text-zinc-600 dark:text-zinc-400" />
+                                    <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl lg:rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
+                                        <item.icon className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-600 dark:text-zinc-400" />
                                     </div>
                                     <span className="text-[10px] font-black uppercase tracking-tight opacity-70">{item.label}</span>
                                 </motion.div>
                             ))}
                         </div>
 
-                        <div className="pt-8 flex items-center gap-8">
+                        <div className="hidden lg:flex pt-8 items-center gap-8">
                             <div className="flex -space-x-3 rtl:space-x-reverse">
                                 {[1,2,3,4].map(i => (
                                     <div key={i} className="w-12 h-12 rounded-full border-4 border-white dark:border-zinc-950 bg-zinc-200 overflow-hidden" />
@@ -91,14 +91,14 @@ export default function HatchingServiceSection() {
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        className="relative"
+                        className="relative order-1 lg:order-2"
                     >
                         <div className="absolute inset-0 bg-emerald-600 blur-[80px] opacity-10 rounded-full" />
-                        <div className="bg-white dark:bg-zinc-900 rounded-[3.5rem] p-10 md:p-14 shadow-sm border border-border/40 relative z-10">
-                            <div className="flex items-center justify-between mb-12">
-                                <h3 className="text-3xl font-black tracking-tight">{t.hatching.reserve}</h3>
-                                <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center border border-emerald-500/10">
-                                    <Egg className="w-8 h-8 text-emerald-600" />
+                        <div className="bg-white dark:bg-zinc-900 rounded-[2.5rem] lg:rounded-[3.5rem] p-6 md:p-10 lg:p-14 shadow-sm border border-border/40 relative z-10">
+                            <div className="flex items-center justify-between mb-8 lg:mb-12">
+                                <h3 className="text-2xl lg:text-3xl font-black tracking-tight">{t.hatching.reserve}</h3>
+                                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center border border-emerald-500/10">
+                                    <Egg className="w-6 h-6 lg:w-8 lg:h-8 text-emerald-600" />
                                 </div>
                             </div>
 

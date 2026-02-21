@@ -150,40 +150,40 @@ function HatchingPageContent() {
             <div className="container mx-auto px-4 max-w-7xl">
                 {/* Hero Header */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
-                    <div className="space-y-8 text-center lg:text-end">
+                    <div className="space-y-6 lg:space-y-8 text-center lg:text-end">
                         <Badge className="bg-emerald-600/10 text-emerald-600 hover:bg-emerald-600/20 border-none px-6 py-2 rounded-full font-black text-xs uppercase tracking-[0.2em]">
                             {t.hatching.badge}
                         </Badge>
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-foreground leading-[0.95] drop-shadow-sm">
+                        <h1 className="text-3xl sm:text-5xl md:text-8xl font-black tracking-tighter text-foreground leading-[0.95] drop-shadow-sm">
                             {t.hatching.title}<br />
                             <span className="text-emerald-600 italic">{t.hatching.titleAccent}</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        <p className="text-base lg:text-xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
                             {t.hatching.description}
                         </p>
-                        <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                            <div className="flex items-center gap-3 bg-card border border-border/50 px-5 py-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
-                                    <Thermometer className="w-5 h-5 text-emerald-600" />
+                        <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                            <div className="flex items-center gap-2 bg-card border border-border/50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div className="p-1.5 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
+                                    <Thermometer className="w-4 h-4 text-emerald-600" />
                                 </div>
                                 <span className="text-xs font-black uppercase tracking-tight">{t.hatching.precision}</span>
                             </div>
-                            <div className="flex items-center gap-3 bg-card border border-border/50 px-5 py-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div className="p-2 bg-blue-100 dark:bg-blue-900/40 rounded-lg">
-                                    <Activity className="w-5 h-5 text-blue-600" />
+                            <div className="flex items-center gap-2 bg-card border border-border/50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/40 rounded-lg">
+                                    <Activity className="w-4 h-4 text-blue-600" />
                                 </div>
                                 <span className="text-xs font-black uppercase tracking-tight">{t.hatching.oxygen}</span>
                             </div>
-                            <div className="flex items-center gap-3 bg-card border border-border/50 px-5 py-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div className="p-2 bg-amber-100 dark:bg-amber-900/40 rounded-lg">
-                                    <Clock className="w-5 h-5 text-amber-600" />
+                            <div className="flex items-center gap-2 bg-card border border-border/50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div className="p-1.5 bg-amber-100 dark:bg-amber-900/40 rounded-lg">
+                                    <Clock className="w-4 h-4 text-amber-600" />
                                 </div>
                                 <span className="text-xs font-black uppercase tracking-tight">{t.hatching.cycle}</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div className="relative">
+                    <div className="relative hidden lg:block">
                         <div className="relative aspect-square glass-card rounded-xl flex items-center justify-center p-12 overflow-hidden group border-2 border-emerald-500/10 shadow-[0_0_100px_rgba(16,185,129,0.05)]">
                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent opacity-50" />
                            <motion.div 

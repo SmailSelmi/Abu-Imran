@@ -65,7 +65,7 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
               className="group cursor-pointer"
               onClick={() => setSelectedCategory(cat.id)}
             >
-              <div className="relative h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-transparent hover:border-emerald-500/20 shadow-sm border border-border/40 transition-all duration-700">
+              <div className="relative h-[240px] sm:h-[400px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border-2 border-transparent hover:border-emerald-500/20 shadow-sm border-border/40 transition-all duration-700">
                 <Image 
                     src={cat.image} 
                     alt={cat.name_ar} 
@@ -79,13 +79,13 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
                     <motion.div 
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className={`w-20 h-20 ${cat.color} rounded-[2rem] flex items-center justify-center text-white shadow-sm group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
+                        className={`w-14 h-14 md:w-20 md:h-20 ${cat.color} rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center text-white shadow-sm group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
                     >
-                        <cat.icon className="w-10 h-10" />
+                        <cat.icon className="w-7 h-7 md:w-10 md:h-10" />
                     </motion.div>
                     
                     <div className="space-y-2">
-                        <p className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none">{cat.name_ar}</p>
+                        <p className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-none">{cat.name_ar}</p>
                     </div>
 
                     <div className="flex items-center gap-4 text-xs font-black uppercase text-emerald-400 tracking-widest pt-4 group-hover:gap-6 transition-all">

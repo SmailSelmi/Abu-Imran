@@ -47,11 +47,11 @@ export default function HeroSection() {
                initial={{ opacity: 0, y: 50 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.2, duration: 1.2, ease: "circOut" }}
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-balance mb-6"
+               className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-balance mb-4 sm:mb-6"
             >
               {t.hero.titleMain} <span className="text-primary italic drop-shadow-[0_0_40px_rgba(16,185,129,0.5)]">{t.hero.titleRare}</span>
               <br />
-              <span className="text-sm sm:text-base md:text-xl font-black glass-card px-4 sm:px-6 py-2.5 rounded-full inline-block mt-4 mb-4 border-white/10">{t.hero.titleAnd}</span>
+              <span className="text-xs sm:text-base md:text-xl font-black glass-card px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full inline-block mt-3 mb-3 border-white/10">{t.hero.titleAnd}</span>
               <br className="hidden md:block" />
               <span className="text-white drop-shadow-xl">{t.hero.titleWorld}</span>
             </motion.h1>
@@ -66,33 +66,33 @@ export default function HeroSection() {
               {t.hero.description}
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — hidden on mobile (bottom nav has the CTA), visible on xl+ */}
             <motion.div
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.6, duration: 0.8, ease: "circOut" }}
-               className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto"
+               className="hidden xl:flex flex-row gap-4 justify-center items-center"
             >
-                <Link href="/hatching" className="w-full sm:w-auto">
-                   <Button className="w-full h-12 px-8 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all shadow-xl shadow-primary/30 hover:-translate-y-1 active:scale-95 group">
+                <Link href="/hatching">
+                   <Button className="h-12 px-8 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all shadow-xl shadow-primary/30 hover:-translate-y-1 active:scale-95 group">
                        {t.hero.bookIncubator}
                        <ArrowUpRight className="me-2 w-5 h-5 transition-transform group-hover:rotate-45" />
                    </Button>
                 </Link>
-               <Link href="https://wa.me/213665243819" target="_blank" className="w-full sm:w-auto">
-                   <Button variant="outline" className="w-full h-12 px-8 text-base font-bold border-2 border-white/30 glass-card text-white hover:bg-white hover:text-black rounded-full transition-all hover:-translate-y-1 active:scale-95 shadow-lg">
+               <Link href="https://wa.me/213665243819" target="_blank">
+                   <Button variant="outline" className="h-12 px-8 text-base font-bold border-2 border-white/30 glass-card text-white hover:bg-white hover:text-black rounded-full transition-all hover:-translate-y-1 active:scale-95 shadow-lg">
                         {t.common.contactUs}
                    </Button>
                </Link>
             </motion.div>
         </div>
 
-        {/* Floating Scroll Indicator */}
+        {/* Floating Scroll Indicator — hidden on mobile */}
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+            className="hidden xl:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3"
         >
             <div className="w-px h-16 bg-gradient-to-b from-emerald-500 to-transparent opacity-40" />
             <span className="-rotate-90 text-[8px] font-black uppercase tracking-[0.5em] opacity-30 origin-left mt-6">

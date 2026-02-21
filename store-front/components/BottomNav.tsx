@@ -20,10 +20,11 @@ export function BottomNav() {
 
   return (
     <div
-      className="fixed bottom-0 start-0 end-0 z-50 xl:hidden pb-safe"
+      className="fixed bottom-0 start-0 end-0 z-50 xl:hidden"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border-t border-border/40 px-2 pt-2 pb-3 flex items-center justify-around gap-1">
+      <div className="bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-t border-border/40 px-3 pt-2 pb-3 flex items-stretch justify-around gap-1.5">
         {/* 4 nav icons */}
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href.split('?')[0]));
@@ -55,9 +56,12 @@ export function BottomNav() {
           );
         })}
 
-        {/* CTA: Full-height Order Now */}
+        {/* Divider */}
+        <div className="w-px bg-border/40 my-1.5 shrink-0" />
+
+        {/* CTA: Order Now — links to hatching (primary service) */}
         <Link
-          href="/shop"
+          href="/hatching"
           className="flex-1 min-w-0 max-w-[110px]"
         >
           <motion.div
