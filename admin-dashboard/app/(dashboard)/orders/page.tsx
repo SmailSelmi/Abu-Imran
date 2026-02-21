@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/client'
 import { Badge } from '@/components/ui/badge'
 import { 
   Trash2, Phone, MapPin, Truck, ShieldCheck, 
-  CheckCircle, Search, Edit, X, MessageSquare
+  CheckCircle, Search, Edit, X, MessageSquare, ShoppingCart
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -542,6 +542,17 @@ export default function OrdersPage() {
                     ))}
                 </tbody>
             </table>
+            {filteredOrders.length === 0 && (
+                <div className="flex flex-col items-center justify-center p-12 text-center text-muted-foreground animate-in fade-in zoom-in-95 duration-500">
+                    <div className="w-20 h-20 bg-muted/30 rounded-full flex items-center justify-center mb-4">
+                        <ShoppingCart className="w-10 h-10 opacity-20" />
+                    </div>
+                    <h3 className="text-xl font-black text-foreground mb-2">لا توجد طلبيات</h3>
+                    <p className="text-sm font-medium opacity-80 max-w-[250px]">
+                        لم يتم العثور على أي طلبيات تطابق بحثك أو الفلتر الحالي.
+                    </p>
+                </div>
+            )}
         </div>
       </div>
       

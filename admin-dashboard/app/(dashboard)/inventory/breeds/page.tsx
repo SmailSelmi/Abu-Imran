@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Edit, Trash2, Search, Egg, Bird, AlertTriangle, Package, Activity } from "lucide-react"
+import { Plus, Edit, Trash2, Search, Egg, Bird, AlertTriangle, Package, Activity, Loader2 } from "lucide-react"
 import { clsx } from 'clsx'
 import { toast } from 'sonner'
 import ChickenLoader from "@/components/ui/chicken-loader"
@@ -370,8 +370,11 @@ export default function BreedsPage() {
                       )}
 
                       <div className="col-span-full flex justify-end gap-3 pt-6 border-t border-dashed mt-4">
-                          <Button type="button" variant="ghost" className="rounded-xl px-6 font-black" onClick={resetForm}>إلغاء العملية</Button>
-                          <Button type="submit" className="rounded-xl px-12 h-14 font-black shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white">{editingId ? 'تحديث المخزون' : 'تأكيد الإضافة'}</Button>
+                          <Button type="button" variant="ghost" className="rounded-xl px-6 min-h-[48px] font-black" onClick={resetForm}>إلغاء العملية</Button>
+                          <Button disabled={loading} type="submit" className="rounded-xl px-12 min-h-[48px] font-black shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white">
+                              {loading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
+                              {editingId ? 'تحديث المخزون' : 'تأكيد الإضافة'}
+                          </Button>
                       </div>
                   </form>
               </CardContent>

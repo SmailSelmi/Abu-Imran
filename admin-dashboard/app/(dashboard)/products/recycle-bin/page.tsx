@@ -187,10 +187,10 @@ export default function RecycleBinPage() {
                     <span className="text-xs font-black text-muted-foreground px-3">
                         {selectedItems.length} محدد
                     </span>
-                    <AnimatedButton size="sm" onClick={handleBulkRestore} className="h-9 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-black text-white">
+                    <AnimatedButton disabled={loading} size="sm" onClick={handleBulkRestore} className="min-h-[48px] px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-black text-white">
                         <RefreshCcw className="h-4 w-4 ms-2" /> استعادة
                     </AnimatedButton>
-                    <AnimatedButton size="sm" variant="ghost" onClick={() => setConfirmAction('bulk_delete')} className="h-9 px-4 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 font-black">
+                    <AnimatedButton disabled={loading} size="sm" variant="ghost" onClick={() => setConfirmAction('bulk_delete')} className="min-h-[48px] px-4 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 font-black">
                         <Trash2 className="h-4 w-4 ms-2" /> حذف
                     </AnimatedButton>
                 </div>

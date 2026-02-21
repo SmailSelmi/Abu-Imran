@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Edit, Trash2, Search, Thermometer, Settings, Package, Activity } from "lucide-react"
+import { Plus, Edit, Trash2, Search, Thermometer, Settings, Package, Activity, Loader2 } from "lucide-react"
 import { toast } from 'sonner'
 import ChickenLoader from "@/components/ui/chicken-loader"
 import { AnimatedButton } from "@/components/ui/AnimatedButton"
@@ -217,8 +217,9 @@ export default function IncubatorsPage() {
                       </div>
                       
                       <div className="lg:col-span-4 flex justify-end gap-3 pt-6 border-t border-muted/50 mt-4">
-                          <Button type="button" variant="ghost" onClick={resetForm} className="h-12 rounded-xl font-black">إلغاء العملية</Button>
-                          <Button type="submit" className="h-12 px-10 rounded-xl font-black bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 border-none">
+                          <Button type="button" variant="ghost" onClick={resetForm} className="min-h-[48px] h-12 rounded-xl font-black">إلغاء العملية</Button>
+                          <Button disabled={loading} type="submit" className="min-h-[48px] h-12 px-10 rounded-xl font-black bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 border-none">
+                             {loading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
                              {editingId ? 'تحديث البيانات' : 'تأكيد الحفظ'}
                           </Button>
                       </div>

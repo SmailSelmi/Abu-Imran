@@ -26,7 +26,7 @@ import { createClient } from "@/utils/supabase/client";
 import { CATEGORY_DATA, WILAYAS } from "@/lib/constants";
 import type { Database } from "@/types/supabase";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Truck, ShieldCheck, X } from "lucide-react";
+import { CheckCircle, Truck, ShieldCheck, X, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 
@@ -216,7 +216,7 @@ export function OrderDialog({
               </div>
 
               {/* Left Side: Form */}
-              <div className="flex-1 p-6 md:p-8 space-y-6 overflow-y-auto pb-12 md:pb-8">
+              <div className="flex-1 p-6 md:p-8 space-y-6 overflow-y-auto pb-32 md:pb-8 relative z-20">
                 <div className="flex justify-between items-start">
                    <div className="space-y-0.5">
                       <h2 className="text-2xl font-black tracking-tighter leading-none">تفاصيل الطلب</h2>
@@ -311,9 +311,13 @@ export function OrderDialog({
                       <Button
                           type="submit"
                           disabled={loading}
-                          className="h-12 w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-base text-white shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 transition-all group"
+                          className="h-12 min-h-[48px] w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 font-bold text-base text-white shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 transition-all group"
                       >
-                          {loading ? "جاري الإرسال..." : (
+                          {loading ? (
+                              <span className="flex items-center gap-2">
+                                  <Loader2 className="w-5 h-5 animate-spin" /> جاري الإرسال...
+                              </span>
+                          ) : (
                               <span className="flex items-center gap-2">
                                   <CheckCircle className="w-5 h-5" /> تأكيد الطلب
                               </span>
