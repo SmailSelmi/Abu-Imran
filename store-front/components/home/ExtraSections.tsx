@@ -79,7 +79,7 @@ export function CategoryCards() {
                 {categories.map((cat) => (
                     <motion.div key={cat.id} variants={itemVariants} className="h-full">
                         <Link href={cat.link} className="group relative block h-full">
-                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
+                            <div className="absolute inset-0 bg-emerald-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity blur-md" />
                             <Card className="h-full relative overflow-hidden border-border/50 bg-background/50 backdrop-blur-sm hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-md rounded-xl">
                                 <CardContent className="p-8 text-center space-y-6 flex flex-col items-center h-full">
                                     <div className={`w-24 h-24 rounded-full bg-${cat.color}-100/50 dark:bg-${cat.color}-900/20 flex items-center justify-center text-${cat.color}-600 dark:text-${cat.color}-400 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shadow-inner`}>
@@ -171,12 +171,11 @@ export function HowItWorks() {
                         className="relative group h-full"
                       >
                           <div className="h-full p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl hover:bg-white/[0.08] hover:border-white/20 transition-all duration-500 flex flex-col items-center text-center space-y-6">
-                              {/* Step Indicator */}
-                              <div className="absolute -top-4 -right-4 w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-black font-black text-xl shadow-xl rotate-12 group-hover:rotate-0 transition-transform">
+                              <div className="absolute -top-4 -right-4 w-12 h-12 rounded-2xl bg-white border border-border/40 flex items-center justify-center text-black font-black text-xl shadow-sm rotate-12 group-hover:rotate-0 transition-transform">
                                   {i + 1}
                               </div>
 
-                              <div className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${step.color} p-0.5 shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
+                              <div className={`w-24 h-24 rounded-3xl bg-neutral-800 p-0.5 shadow-sm border border-border/20 group-hover:scale-110 transition-transform duration-500`}>
                                   <div className="w-full h-full bg-black rounded-[inherit] flex items-center justify-center">
                                       <step.icon className="w-10 h-10 text-white" />
                                   </div>
@@ -197,7 +196,7 @@ export function HowItWorks() {
                  className="mt-20 text-center"
               >
                   <Link href="https://wa.me/213665243819" target="_blank" className="inline-block">
-                      <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xl px-12 h-20 rounded-2xl shadow-2xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-2 transition-all duration-300 group">
+                      <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xl px-12 h-20 rounded-2xl shadow-sm hover:shadow hover:-translate-y-2 transition-all duration-300 group">
                           <Phone className="w-6 h-6 me-3 animate-bounce" />
                           {t.howToOrder.cta}
                       </Button>

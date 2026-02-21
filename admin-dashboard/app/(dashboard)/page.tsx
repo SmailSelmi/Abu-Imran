@@ -19,10 +19,10 @@ export default async function DashboardPage() {
   const [ordersRes, productsRes, customersRes] = await Promise.all([
     supabase
       .from("orders")
-      .select("*")
+      .select("id, status, total_amount, created_at, customer_id, product_name, category, wilaya_address")
       .order("created_at", { ascending: false })
       .limit(200),
-    supabase.from("products").select("*").is("deleted_at", null),
+    supabase.from("products").select("id, name, name_en, stock").is("deleted_at", null),
     supabase.from("customers").select("id", { count: "exact", head: true }),
   ]);
 

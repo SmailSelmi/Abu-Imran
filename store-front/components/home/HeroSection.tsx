@@ -47,7 +47,7 @@ export default function HeroSection() {
                initial={{ opacity: 0, y: 50 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.2, duration: 1.2, ease: "circOut" }}
-               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] drop-shadow-2xl text-balance mb-6"
+               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-balance mb-6"
             >
               {t.hero.titleMain} <span className="text-primary italic drop-shadow-[0_0_40px_rgba(16,185,129,0.5)]">{t.hero.titleRare}</span>
               <br />

@@ -140,7 +140,7 @@ export function OrderDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden border-none rounded-2xl bg-background shadow-2xl">
+      <DialogContent className="max-w-3xl p-0 overflow-hidden border border-border/40 rounded-2xl bg-background shadow-sm">
         <AnimatePresence mode="wait">
           {success ? (
             <motion.div

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { I18nProvider } from "@/lib/i18n/I18nContext";
 import { RealtimeNotifications } from "@/components/RealtimeNotifications";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -49,13 +50,14 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${tajawal.className} antialiased bg-gray-50 dark:bg-gray-950`}
+        className={`${tajawal.className} antialiased bg-white dark:bg-zinc-950`}
       >
         <ErrorBoundary>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <I18nProvider>
                     {children}
                     <RealtimeNotifications />
+                    <PWAInstallPrompt />
                     <Toaster richColors position="top-center" />
                 </I18nProvider>
             </ThemeProvider>

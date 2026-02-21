@@ -49,18 +49,18 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
             <div className="space-y-8 sticky top-32">
                 <motion.div 
                     layoutId={`image-${slug}`}
-                    className="relative aspect-[4/4] bg-muted rounded-xl overflow-hidden border border-border/60 shadow-2xl"
+                    className="relative aspect-[4/4] bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-border/40 shadow-sm"
                 >
                     {selectedVariant?.image_url ? (
                         <Image src={selectedVariant.image_url} alt={selectedVariant.name_en} fill className="object-cover" priority />
                     ) : (
                         <div className="flex items-center justify-center h-full text-muted-foreground">No Image Available</div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-black/5 opacity-60" />
                     
                     {selectedVariant?.stock === 0 && (
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-md">
-                            <span className="bg-red-600 text-white px-8 py-3 rounded-xl font-black uppercase tracking-[0.2em] text-xl -rotate-2 border-2 border-white/20 shadow-2xl">نفدت الكمية</span>
+                            <span className="bg-red-600 text-white px-8 py-3 rounded-xl font-black uppercase tracking-[0.2em] text-xl -rotate-2 border-2 border-white/20 shadow-sm">نفدت الكمية</span>
                         </div>
                     )}
                     
@@ -77,7 +77,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                             <button 
                                 key={v.id}
                                 onClick={() => setSelectedVariant(v)}
-                                className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-500 ${selectedVariant?.id === v.id ? 'border-emerald-500 shadow-xl shadow-emerald-500/20 scale-105' : 'border-border/40 opacity-40 hover:opacity-100 grayscale hover:grayscale-0'}`}
+                                className={`relative aspect-square rounded-xl overflow-hidden border transition-all duration-500 ${selectedVariant?.id === v.id ? 'border-emerald-500 shadow-sm scale-105' : 'border-border/40 opacity-40 hover:opacity-100 grayscale hover:grayscale-0'}`}
                             >
                                 {v.image_url && <Image src={v.image_url} alt={v.name_en} fill className="object-cover" />}
                             </button>
@@ -146,8 +146,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
 
                 {/* Direct Order Component */}
                 <div className="relative group/order">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl blur opacity-20 group-hover/order:opacity-40 transition duration-1000"></div>
-                    <div className="relative bg-card border border-border rounded-xl p-8 md:p-12 shadow-2xl overflow-hidden">
+                    <div className="relative bg-white dark:bg-zinc-950 border border-border/40 rounded-xl p-8 md:p-12 shadow-sm overflow-hidden">
                         <div className="absolute top-0 right-0 p-4 opacity-10">
                             <ShoppingBag className="w-24 h-24" />
                         </div>
@@ -207,7 +206,7 @@ export default function ProductContent({ initialProduct, variants, slug }: Produ
                                     type="button" 
                                     size="lg" 
                                     onClick={handleOrderNow}
-                                    className="w-full h-20 rounded-xl shadow-2xl shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-1 transition-all duration-500 font-black text-2xl bg-emerald-600 hover:bg-emerald-700 text-white overflow-hidden group/btn"
+                                    className="w-full h-20 rounded-xl shadow-sm hover:shadow hover:-translate-y-1 transition-all duration-500 font-black text-2xl bg-emerald-600 hover:bg-emerald-700 text-white overflow-hidden group/btn"
                                     disabled={(selectedVariant?.stock || 0) < 1}
                                 >
                                          <span className="flex items-center justify-between w-full px-4">

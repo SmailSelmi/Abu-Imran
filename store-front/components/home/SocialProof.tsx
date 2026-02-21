@@ -26,7 +26,7 @@ export function DeliveryZones() {
   }, [])
 
   return (
-    <section className="py-24 bg-background" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className="py-24 bg-white dark:bg-zinc-950" dir={isRTL ? 'rtl' : 'ltr'}>
         <div className="container px-4 mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className={cn("flex-1 space-y-8", isRTL ? "text-right" : "text-left")}>
                 <span className="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold">{t.socialProof.nationalCoverage}</span>
@@ -46,7 +46,7 @@ export function DeliveryZones() {
                     <span className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-bold border border-green-200 dark:border-green-800 cursor-pointer hover:bg-green-200 transition-colors">{t.common.more}</span>
                 </div>
             </div>
-            <div className="flex-1 relative h-[500px] w-full bg-white dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden border-8 border-white dark:border-zinc-800 rotate-1 hover:rotate-0 transition-all duration-500 flex items-center justify-center p-4">
+            <div className="flex-1 relative h-[500px] w-full bg-white dark:bg-zinc-950 rounded-xl shadow-sm border border-border/40 overflow-hidden transition-all duration-500 flex items-center justify-center p-4">
                  <AlgeriaMap 
                   className="w-full h-full"
                   highlightedWilayas={highlightedWilayas.length > 0 ? highlightedWilayas : ["16", "09", "42", "35", "31"]}
@@ -88,8 +88,7 @@ export function Testimonials() {
     ]
 
     return (
-        <section className="py-24 bg-muted/30 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-            <div className="absolute top-0 start-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <section className="py-24 bg-white dark:bg-zinc-950 border-t border-border/40 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
             
             <div className="container px-4 mx-auto text-center relative z-10">
                 <h2 className="text-4xl font-black mb-16 tracking-tighter">{t.testimonials.title}</h2>

@@ -71,8 +71,8 @@ export default function FeaturedCarousel() {
                         onClick={() => setSelectedCategory(cat.id === 'adults' ? 'chickens' : cat.id === 'incubators' ? 'machine' : cat.id)}
                     >
                         <div className="group block relative h-full">
-                            <div className="h-full p-6 md:p-8 rounded-2xl bg-muted/30 border border-border/50 hover:border-emerald-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/5 group-hover:-translate-y-1">
-                                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white mb-6 shadow-lg shadow-black/5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                            <div className="h-full p-6 md:p-8 rounded-2xl bg-white dark:bg-zinc-950 border border-border/40 transition-all duration-500 hover:border-emerald-500/30 group-hover:-translate-y-1">
+                                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl ${cat.bg} border border-border/40 flex items-center justify-center ${cat.text} mb-6 transition-transform duration-500`}>
                                     <cat.icon className="w-7 h-7 md:w-8 md:h-8" />
                                 </div>
                                 <div className="space-y-2">

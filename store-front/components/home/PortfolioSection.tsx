@@ -114,7 +114,7 @@ export default function PortfolioSection({ initialProducts = [] }: PortfolioSect
                             transition={{ delay: i * 0.1 }}
                             className="group relative"
                         >
-                            <div className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl transition-all duration-700 group-hover:rounded-[2rem] group-hover:scale-[0.98]">
+                            <div className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-sm border border-border/40 transition-all duration-700 group-hover:rounded-[2rem] group-hover:scale-[0.98]">
                                 <Image
                                     src={breed.image} 
                                     alt={breed.name} 
@@ -126,7 +126,7 @@ export default function PortfolioSection({ initialProducts = [] }: PortfolioSect
                                 
                                 <div className="absolute inset-0 p-12 flex flex-col justify-end text-white space-y-6">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center border-white/20 shadow-2xl">
+                                        <div className="w-14 h-14 rounded-2xl bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-sm">
                                             <ShieldCheck className="w-7 h-7 text-primary" />
                                         </div>
                                         <div className="px-5 py-2 rounded-full border border-white/20 bg-primary/20 backdrop-blur-md">
@@ -153,7 +153,7 @@ export default function PortfolioSection({ initialProducts = [] }: PortfolioSect
                                                </p>
                                            </div>
                                         </div>
-                                        <div className="w-14 h-14 rounded-full bg-white text-zinc-950 flex items-center justify-center shadow-2xl scale-0 group-hover:scale-100 transition-transform delay-100 group-hover:shadow-primary/30">
+                                        <div className="w-14 h-14 rounded-full bg-white text-zinc-950 flex items-center justify-center shadow-sm border border-border/40 scale-0 group-hover:scale-100 transition-transform delay-100">
                                             <ArrowUpRight className={cn("w-7 h-7 transition-transform", isRTL ? "rotate-180" : "group-hover:rotate-45")} />
                                         </div>
 

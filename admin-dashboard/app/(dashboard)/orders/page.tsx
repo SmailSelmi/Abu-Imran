@@ -58,10 +58,11 @@ const fetcher = async () => {
         )
       `)
       .order('created_at', { ascending: false })
+      .limit(50)
     
     if (error) {
         console.error('Join fetch failed, falling back:', error)
-        const { data: simpleData } = await supabase.from('orders').select('id, status, total_amount, customer_name, phone_number, created_at, product_name, egg_count').order('created_at', { ascending: false })
+        const { data: simpleData } = await supabase.from('orders').select('id, status, total_amount, customer_name, phone_number, created_at, product_name, egg_count').order('created_at', { ascending: false }).limit(50)
         return simpleData as unknown as OrderWithRelations[]
     }
     return data as unknown as OrderWithRelations[]
@@ -71,7 +72,8 @@ export default function OrdersPage() {
 
   const { data: orders = [], error, isLoading: loading, mutate: fetchOrders } = useSWR('admin_orders', fetcher, {
       revalidateOnFocus: true,
-      dedupingInterval: 10000,
+      dedupingInterval: 60000, 
+      focusThrottleInterval: 30000,
   })
 
   const [filter, setFilter] = useState('active')

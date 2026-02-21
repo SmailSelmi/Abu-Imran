@@ -81,9 +81,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <body
-        className={`${tajawal.className} antialiased min-h-screen flex flex-col`}
-      >
+      <body className={`${tajawal.className} antialiased bg-white dark:bg-zinc-950 min-h-screen flex flex-col`}>
         <ErrorBoundary>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <I18nProvider>
