@@ -57,7 +57,7 @@ export function CategoryCards() {
   ]
 
   return (
-    <section className="py-24 bg-muted/30" dir="rtl">
+    <section className="py-24 bg-white dark:bg-zinc-950" dir="rtl">
         <div className="container px-4 mx-auto">
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export function CategoryCards() {
                viewport={{ once: true }}
                className="text-center mb-16 space-y-4"
             >
-                <span className="text-emerald-600 font-bold tracking-wider text-[10px] uppercase bg-emerald-100 px-4 py-1.5 rounded-full border border-emerald-200 opacity-80">اكتشف منتجاتنا</span>
+                <span className="text-emerald-600 font-bold tracking-wider text-[10px] uppercase bg-emerald-100 dark:bg-emerald-900/30 px-4 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800/50 opacity-80">اكتشف منتجاتنا</span>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tighter">تسوق حسب الفئة</h2>
             </motion.div>
             
@@ -90,7 +90,7 @@ export function CategoryCards() {
                                         <p className="text-muted-foreground leading-relaxed font-bold text-sm opacity-60">{cat.desc}</p>
                                     </div>
                                     <div className="pt-4 opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
-                                        <span className="text-xs font-black text-emerald-600 flex items-center gap-1 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100">
+                                        <span className="text-xs font-black text-emerald-600 flex items-center gap-1 bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 rounded-xl border border-emerald-100 dark:border-emerald-800/50">
                                             تصفح الآن <ArrowLeft className="w-4 h-4" />
                                         </span>
                                     </div>
@@ -209,3 +209,6 @@ export function HowItWorks() {
       </section>
     )
   }
+
+
+

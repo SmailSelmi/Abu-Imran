@@ -366,3 +366,4 @@ export default function HatchingPage() {
         </Suspense>
     )
 }
+

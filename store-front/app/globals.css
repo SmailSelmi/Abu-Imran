@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 :root {
   --background: 160 20% 98%;
   --foreground: 160 10% 3.9%;
@@ -74,24 +78,24 @@
 }
 
 .dark {
-  --background: 160 20% 2%;
-  --foreground: 160 10% 98%;
-  --card: 160 10% 4%;
-  --card-foreground: 160 10% 90%;
-  --popover: 160 10% 3%;
-  --popover-foreground: 160 10% 90%;
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 5%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 4%;
+  --popover-foreground: 0 0% 98%;
   --primary: 158 90% 45%;
   --primary-foreground: 160 20% 4%;
-  --secondary: 160 10% 8%;
-  --secondary-foreground: 160 10% 90%;
-  --muted: 160 10% 6%;
-  --muted-foreground: 160 5% 55%;
+  --secondary: 240 5% 10%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 8%;
+  --muted-foreground: 240 5% 65%;
   --accent: 158 90% 45%;
   --accent-foreground: 160 100% 98%;
-  --destructive: 0 60% 35%;
+  --destructive: 0 62% 35%;
   --destructive-foreground: 0 0% 98%;
-  --border: 160 5% 12%;
-  --input: 160 5% 12%;
+  --border: 240 5% 12%;
+  --input: 240 5% 12%;
   --ring: 158 90% 45%;
 }
 
@@ -101,21 +105,37 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-tajawal), system-ui, sans-serif !important;
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Force Tajawal on every element — prevents system font fallbacks */
+*,
+*::before,
+*::after {
+  font-family: var(--font-tajawal), system-ui, sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: -0.05em;
   font-weight: 900;
 }
 
-button, a {
+button,
+a {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
 }
-button:active, a:active {
+button:active,
+a:active {
   transform: scale(0.98);
 }
 
@@ -132,14 +152,20 @@ button:active, a:active {
 }
 
 .premium-gradient {
-  background-image: linear-gradient(to bottom right, hsla(160, 84%, 96%, 0.5), #fff);
+  background-image: linear-gradient(
+    to bottom right,
+    hsla(160, 84%, 96%, 0.5),
+    #fff
+  );
 }
 
 .dark .premium-gradient {
-  background-image: linear-gradient(to bottom right, hsla(160, 84%, 4%, 0.1), #09090b);
+  background-image: linear-gradient(
+    to bottom right,
+    hsla(160, 84%, 4%, 0.1),
+    #09090b
+  );
 }
-
-
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -153,7 +179,8 @@ button:active, a:active {
 ::-webkit-scrollbar-thumb {
   background-color: hsla(158, 80%, 40%, 0.2);
   border-radius: 9999px;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }

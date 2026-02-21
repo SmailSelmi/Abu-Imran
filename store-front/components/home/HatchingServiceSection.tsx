@@ -28,7 +28,7 @@ export default function HatchingServiceSection() {
     }
 
     return (
-        <section className="py-32 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+        <section className="py-32 bg-white dark:bg-zinc-900 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
             <div className={cn(
                 "absolute top-0 w-1/2 h-full bg-emerald-500/[0.02] -skew-x-12",
                 isRTL ? "left-0 -translate-x-1/2 skew-x-12" : "right-0 translate-x-1/2"

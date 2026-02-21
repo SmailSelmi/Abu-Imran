@@ -14,8 +14,8 @@ export default function FeaturedCarousel() {
         desc: 'نسب خصب عالية لسلالات نقية', 
         icon: Egg, 
         color: 'from-amber-400 to-amber-600',
-        bg: 'bg-amber-50',
-        text: 'text-amber-600',
+        bg: 'bg-amber-50 dark:bg-amber-900/20',
+        text: 'text-amber-600 dark:text-amber-400',
     },
     { 
         id: 'chicks', 
@@ -23,8 +23,8 @@ export default function FeaturedCarousel() {
         desc: 'محصنة وبصحة ممتازة (جميع الأعمار)', 
         icon: Bird, 
         color: 'from-emerald-400 to-emerald-600',
-        bg: 'bg-emerald-50',
-        text: 'text-emerald-600',
+        bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+        text: 'text-emerald-600 dark:text-emerald-400',
     },
     { 
         id: 'adults', 
@@ -32,8 +32,8 @@ export default function FeaturedCarousel() {
         desc: 'أمهات وديكة جاهزة للإنتاج', 
         icon: Bird, 
         color: 'from-blue-400 to-blue-600',
-        bg: 'bg-blue-50',
-        text: 'text-blue-600',
+        bg: 'bg-blue-50 dark:bg-blue-900/20',
+        text: 'text-blue-600 dark:text-blue-400',
     },
     { 
         id: 'incubators', 
@@ -41,8 +41,8 @@ export default function FeaturedCarousel() {
         desc: 'سعات مختلفة (50-500 بيضة)', 
         icon: Thermometer, 
         color: 'from-zinc-700 to-zinc-900',
-        bg: 'bg-zinc-100',
-        text: 'text-zinc-800',
+        bg: 'bg-zinc-100 dark:bg-zinc-800',
+        text: 'text-zinc-800 dark:text-zinc-200',
     },
   ]
 

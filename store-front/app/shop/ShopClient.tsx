@@ -39,7 +39,7 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
       {/* Category Hub Hero */}
       <section className="space-y-16">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50 px-6 py-2 rounded-full font-black uppercase tracking-widest text-[10px]">
+          <Badge variant="outline" className="text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 px-6 py-2 rounded-full font-black uppercase tracking-widest text-[10px]">
             <Sparkles className="w-4 h-4 me-2" />
             سوق الجودة الفلاحية
           </Badge>
@@ -140,4 +140,5 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
     </div>
   )
 }
+
 

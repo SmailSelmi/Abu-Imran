@@ -95,7 +95,7 @@ export function Testimonials() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {testimonials.map((test, i) => (
                         <div key={i} className={cn(
-                            "p-10 rounded-xl border border-transparent hover:border-border/60 shadow-sm hover:shadow-md transition-all duration-300 bg-background relative group hover:-translate-y-2",
+                            "p-10 rounded-xl border border-transparent hover:border-border/60 shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-zinc-900 relative group hover:-translate-y-2",
                             isRTL ? "text-right" : "text-left"
                         )}>
                             <Quote className={cn("absolute top-8 w-12 h-12 text-muted-foreground/10", isRTL ? "left-8 rotate-180" : "right-8")} />
