@@ -94,7 +94,7 @@ export default function HatchingServiceSection() {
                         className="relative"
                     >
                         <div className="absolute inset-0 bg-emerald-600 blur-[80px] opacity-10 rounded-full" />
-                        <div className="bg-white dark:bg-zinc-900 rounded-[3.5rem] p-10 md:p-14 shadow-2xl border border-border/50 relative z-10">
+                        <div className="bg-white dark:bg-zinc-900 rounded-[3.5rem] p-10 md:p-14 shadow-sm border border-border/40 relative z-10">
                             <div className="flex items-center justify-between mb-12">
                                 <h3 className="text-3xl font-black tracking-tight">{t.hatching.reserve}</h3>
                                 <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center border border-emerald-500/10">
@@ -151,7 +151,7 @@ export default function HatchingServiceSection() {
                                 <div className="pt-8">
                                     <Button 
                                         onClick={handleStartBooking}
-                                        className="w-full h-24 bg-emerald-600 hover:bg-emerald-700 text-white rounded-[2rem] font-black text-3xl shadow-2xl shadow-emerald-600/30 group transition-all transform hover:-translate-y-1 active:scale-95"
+                                        className="w-full h-24 bg-emerald-600 hover:bg-emerald-700 text-white rounded-[2rem] font-black text-3xl shadow-sm group transition-all transform hover:-translate-y-1 active:scale-95"
                                     >
                                         <span className="flex items-center gap-4">
                                             {t.hatching.startBooking}
@@ -172,3 +172,4 @@ export default function HatchingServiceSection() {
         </section>
     )
 }
+

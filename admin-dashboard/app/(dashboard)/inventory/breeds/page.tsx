@@ -234,7 +234,7 @@ export default function BreedsPage() {
       </div>
 
       {isAdding && (
-          <Card className="border-none shadow-2xl bg-card/50 backdrop-blur-xl relative overflow-hidden">
+          <Card className="border border-border/40 shadow-sm bg-white dark:bg-zinc-950 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-600" />
               <CardHeader className="p-4 md:p-6 pb-2 md:pb-4">
                   <CardTitle className="text-xl md:text-2xl font-black leading-tight">{editingId ? 'تعديل بيانات المخزون' : 'إضافة مخزون جديد للمزرعة'}</CardTitle>
@@ -371,7 +371,7 @@ export default function BreedsPage() {
 
                       <div className="col-span-full flex justify-end gap-3 pt-6 border-t border-dashed mt-4">
                           <Button type="button" variant="ghost" className="rounded-xl px-6 min-h-[48px] font-black" onClick={resetForm}>إلغاء العملية</Button>
-                          <Button disabled={loading} type="submit" className="rounded-xl px-12 min-h-[48px] font-black shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white">
+                          <Button disabled={loading} type="submit" className="rounded-xl px-12 min-h-[48px] font-black shadow-sm shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white">
                               {loading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
                               {editingId ? 'تحديث المخزون' : 'تأكيد الإضافة'}
                           </Button>
@@ -383,7 +383,7 @@ export default function BreedsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
           {products.map((product) => (
-              <Card key={product.id} className="group border-none shadow-xl hover:shadow-2xl transition-all duration-500 rounded-xl md:rounded-xl overflow-hidden bg-white dark:bg-card">
+              <Card key={product.id} className="group border border-border/40 shadow-sm hover:shadow-sm transition-all duration-500 rounded-xl md:rounded-xl overflow-hidden bg-white dark:bg-card">
                   <CardHeader className="bg-muted/30 p-5 md:p-6">
                       <div className="flex justify-between items-start mb-4">
                            <div className={clsx(
@@ -461,3 +461,4 @@ export default function BreedsPage() {
     </div>
   )
 }
+

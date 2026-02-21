@@ -392,7 +392,7 @@ export default function OrdersPage() {
         </div>
       </div>
 
-      <div className="hidden md:block rounded-xl bg-card/50 backdrop-blur-md border border-border/50 shadow-2xl overflow-hidden relative">
+      <div className="hidden md:block rounded-xl bg-white dark:bg-zinc-950 border border-border/40 shadow-sm overflow-hidden relative">
         {selectedOrders.length > 0 && (
             <div className="absolute top-0 left-0 right-0 bg-emerald-600 text-white p-3 z-10 flex items-center justify-between animate-in slide-in-from-top-2">
                 <div className="px-4 font-black flex items-center gap-3">

@@ -144,7 +144,7 @@ export default function HatchingPage() {
         </div>
       </div>
 
-      <div className="rounded-xl bg-card border border-border/50 shadow-2xl overflow-hidden">
+      <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
             <table className="w-full text-sm">
                 <thead className="bg-muted/50 border-b border-border/50">
@@ -200,3 +200,4 @@ export default function HatchingPage() {
     </div>
   )
 }
+

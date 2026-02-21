@@ -65,7 +65,7 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
               className="group cursor-pointer"
               onClick={() => setSelectedCategory(cat.id)}
             >
-              <div className="relative h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-transparent hover:border-emerald-500/20 shadow-2xl transition-all duration-700">
+              <div className="relative h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden border-4 border-transparent hover:border-emerald-500/20 shadow-sm border border-border/40 transition-all duration-700">
                 <Image 
                     src={cat.image} 
                     alt={cat.name_ar} 
@@ -79,7 +79,7 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
                     <motion.div 
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className={`w-20 h-20 ${cat.color} rounded-[2rem] flex items-center justify-center text-white shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
+                        className={`w-20 h-20 ${cat.color} rounded-[2rem] flex items-center justify-center text-white shadow-sm group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
                     >
                         <cat.icon className="w-10 h-10" />
                     </motion.div>
@@ -140,3 +140,4 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
     </div>
   )
 }
+

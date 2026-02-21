@@ -172,14 +172,14 @@ export default function IncubatorsPage() {
             <p className="text-muted-foreground font-black">مراقبة حالة انتشار الآلات وتوفرها.</p>
         </div>
         {!isAdding && (
-            <AnimatedButton onClick={() => setIsAdding(true)} className="h-14 px-10 rounded-xl font-black text-lg shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white border-none">
+            <AnimatedButton onClick={() => setIsAdding(true)} className="h-14 px-10 rounded-xl font-black text-lg shadow-sm shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white border-none">
                 <Plus className="ms-3 h-6 w-6" /> إضافة حاضنة
             </AnimatedButton>
         )}
       </div>
 
       {isAdding && (
-          <Card className="border-none shadow-2xl rounded-xl bg-white dark:bg-card overflow-hidden animate-in zoom-in-95 duration-300">
+          <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden animate-in zoom-in-95 duration-300">
               <CardHeader className="p-8 pb-4">
                   <CardTitle className="text-2xl font-black flex items-center gap-3">
                        <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/20">
@@ -230,7 +230,7 @@ export default function IncubatorsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-              <Card key={product.id} className="relative overflow-hidden group border-none shadow-xl rounded-xl bg-white dark:bg-card hover:shadow-2xl transition-all duration-500">
+              <Card key={product.id} className="relative overflow-hidden group border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card hover:shadow-sm transition-all duration-500">
                     <CardHeader className="p-7 pb-2 relative z-10">
                       <div className="flex justify-between items-start">
                           <Badge variant="secondary" className="capitalize rounded-full px-4 py-1.5 font-black text-[10px] tracking-widest bg-emerald-50 text-emerald-600 border-none">{product.subcategory === 'Incubator' ? 'حاضنة' : product.subcategory}</Badge>
@@ -283,3 +283,4 @@ export default function IncubatorsPage() {
     </div>
   )
 }
+

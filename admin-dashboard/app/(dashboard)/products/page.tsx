@@ -215,7 +215,7 @@ export default function ProductsPage() {
 
       {/* Add/Edit Product Form (Collapsible) */}
       {isAdding && (
-          <Card className={`border-none shadow-2xl rounded-xl overflow-hidden ${editingId ? 'bg-blue-50/10' : 'bg-emerald-50/10'}`}>
+          <Card className={`border border-border/40 shadow-sm rounded-xl overflow-hidden ${editingId ? 'bg-blue-50/30 dark:bg-blue-950/10' : 'bg-emerald-50/30 dark:bg-emerald-950/10'}`}>
               <CardHeader className="flex flex-row items-center justify-between p-8">
                   <CardTitle className="text-xl font-black">{editingId ? 'تعديل المنتج' : 'إضافة مادة جديدة'}</CardTitle>
                   <Button variant="ghost" size="icon" onClick={resetForm} className="rounded-xl">
@@ -283,7 +283,7 @@ export default function ProductsPage() {
                       </div>
                       
                       <div className="col-span-2 flex gap-4 mt-4">
-                          <Button type="submit" className="flex-1 h-14 rounded-xl bg-emerald-600 text-white shadow-xl shadow-emerald-500/20 font-black text-lg hover:bg-emerald-700">
+                          <Button type="submit" className="flex-1 h-14 rounded-xl bg-emerald-600 text-white shadow-sm font-black text-lg hover:bg-emerald-700">
                               {editingId ? 'تعديل البيانات' : 'حفظ المنتج الجديد'}
                           </Button>
                           <Button type="button" variant="outline" onClick={resetForm} className="h-14 px-8 rounded-xl font-black">
@@ -295,7 +295,7 @@ export default function ProductsPage() {
           </Card>
       )}
 
-      <Card className="border-none shadow-xl rounded-xl bg-white dark:bg-card overflow-hidden">
+      <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="p-8 pb-4">
             <CardTitle className="text-xl font-black">المخزون الحالي ({products.length})</CardTitle>
         </CardHeader>

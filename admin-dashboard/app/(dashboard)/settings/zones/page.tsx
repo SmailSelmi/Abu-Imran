@@ -121,7 +121,7 @@ export default function DeliveryZonesPage() {
       </div>
 
       {isAdding && (
-          <Card className="border-none shadow-2xl bg-card/50 backdrop-blur-xl relative overflow-hidden">
+          <Card className="border border-border/40 shadow-sm bg-white dark:bg-zinc-950 relative overflow-hidden">
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-600" />
                <CardHeader>
                   <CardTitle className="flex items-center gap-3 font-black text-xl">
@@ -152,7 +152,7 @@ export default function DeliveryZonesPage() {
                       
                       <div className="col-span-full flex justify-end gap-3 pt-6 border-t border-dashed mt-4">
                           <Button type="button" variant="ghost" className="rounded-xl px-6 font-black" onClick={resetForm}>إلغاء</Button>
-                          <Button type="submit" className="rounded-xl px-10 h-12 font-black shadow-xl shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white border-none">{editingId ? 'تحديث المنطقة' : 'تفعيل المنطقة'}</Button>
+                          <Button type="submit" className="rounded-xl px-10 h-12 font-black shadow-sm shadow-emerald-500/20 bg-emerald-600 hover:bg-emerald-700 text-white border-none">{editingId ? 'تحديث المنطقة' : 'تفعيل المنطقة'}</Button>
                       </div>
                   </form>
               </CardContent>
@@ -161,7 +161,7 @@ export default function DeliveryZonesPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {zones.map((zone) => (
-              <Card key={zone.id} className="group border-none shadow-xl hover:shadow-2xl transition-all duration-500 rounded-xl overflow-hidden bg-white dark:bg-card">
+              <Card key={zone.id} className="group border border-border/40 shadow-sm hover:shadow-sm transition-all duration-500 rounded-xl overflow-hidden bg-white dark:bg-card">
                   <CardHeader className="bg-muted/30 p-6">
                        <div className="flex justify-between items-start mb-4">
                             <div className="w-12 h-12 rounded-xl bg-white dark:bg-muted flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
@@ -199,3 +199,4 @@ export default function DeliveryZonesPage() {
     </div>
   )
 }
+

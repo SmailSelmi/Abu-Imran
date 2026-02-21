@@ -83,7 +83,7 @@ export default function CustomersPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto">
-            <div className="flex items-center gap-2 p-1.5 bg-white dark:bg-card rounded-xl shadow-xl border border-border/50 shrink-0">
+            <div className="flex items-center gap-2 p-1.5 bg-white dark:bg-card rounded-xl shadow-sm border border-border/50 shrink-0">
                 {(['spent', 'orders', 'reliability'] as const).map((type) => (
                     <button
                         key={type}
@@ -102,7 +102,7 @@ export default function CustomersPage() {
                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground opacity-50" />
                 <Input 
                     placeholder="ابحث بالاسم، الهاتف، أو الوسوم..." 
-                    className="pr-12 h-14 rounded-xl border-none bg-white dark:bg-card shadow-xl focus:ring-emerald-500/10 transition-all font-black" 
+                    className="pr-12 h-14 rounded-xl border-none bg-white dark:bg-card shadow-sm focus:ring-emerald-500/10 transition-all font-black" 
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -116,7 +116,7 @@ export default function CustomersPage() {
               const tier = getCustomerTier(customer.total_spent || 0);
               return (
                   <Link href={`/customers/${customer.id}`} key={customer.id} className="block group">
-                      <Card className="h-full border-none shadow-xl group-hover:shadow-2xl transition-all duration-500 rounded-xl overflow-hidden bg-white dark:bg-card cursor-pointer relative">
+                      <Card className="h-full border border-border/40 shadow-sm group-hover:shadow-sm transition-all duration-500 rounded-xl overflow-hidden bg-white dark:bg-card cursor-pointer relative">
                           <div className={clsx("absolute top-0 right-0 left-0 h-1.5 opacity-30", tier.color.split(' ')[0])} />
                           
                           <CardHeader className="p-7 pb-4">
@@ -216,3 +216,4 @@ export default function CustomersPage() {
     </div>
   )
 }
+
