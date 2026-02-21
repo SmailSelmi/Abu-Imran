@@ -196,7 +196,7 @@ export function MobileSidebar() {
       <SheetContent side={isRTL ? "right" : "left"} className={cn("w-72 p-0 border-border bg-card/95 backdrop-blur-xl", isRTL ? "border-l" : "border-r")}>
         <div className="h-20 flex items-center px-8 border-b border-border/50">
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3 font-black text-2xl tracking-tighter text-emerald-600">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 shadow-sm shrink-0 relative overflow-hidden p-1">
+            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-600 shadow-sm shrink-0 relative overflow-hidden p-1">
                 <Image 
                     src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg" 
                     alt="Logo" 

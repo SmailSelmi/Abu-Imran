@@ -172,7 +172,7 @@ export default function RecycleBinPage() {
             <AnimatedButton 
                 variant="outline" 
                 onClick={() => setConfirmAction('empty_trash')}
-                className="rounded-xl h-12 px-6 bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 font-black border-red-200"
+                className="rounded-xl h-12 px-6 bg-red-50 dark:bg-red-500/10 text-red-600 hover:bg-red-100 dark:bg-red-500/20 hover:text-red-700 font-black border-red-200"
             >
                 <Trash2 className="h-5 w-5 ms-2" /> تفريغ السلة
             </AnimatedButton>
@@ -190,7 +190,7 @@ export default function RecycleBinPage() {
                     <AnimatedButton disabled={loading} size="sm" onClick={handleBulkRestore} className="min-h-[48px] px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-black text-white">
                         <RefreshCcw className="h-4 w-4 ms-2" /> استعادة
                     </AnimatedButton>
-                    <AnimatedButton disabled={loading} size="sm" variant="ghost" onClick={() => setConfirmAction('bulk_delete')} className="min-h-[48px] px-4 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 font-black">
+                    <AnimatedButton disabled={loading} size="sm" variant="ghost" onClick={() => setConfirmAction('bulk_delete')} className="min-h-[48px] px-4 rounded-lg text-red-500 hover:text-red-700 hover:bg-red-50 dark:bg-red-500/10 font-black">
                         <Trash2 className="h-4 w-4 ms-2" /> حذف
                     </AnimatedButton>
                 </div>
@@ -228,14 +228,14 @@ export default function RecycleBinPage() {
                                     <div className="text-xs text-muted-foreground opacity-50 font-mono">#{product.id.slice(0,8)}</div>
                                 </td>
                                 <td className="px-8 py-5 capitalize">
-                                    <Badge variant="outline" className="rounded-full px-3 py-1 border-emerald-200 bg-emerald-50 text-emerald-600 font-black">{product.subcategory}</Badge>
+                                    <Badge variant="outline" className="rounded-full px-3 py-1 border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 font-black">{product.subcategory}</Badge>
                                 </td>
                                 <td className="px-8 py-5 font-black text-lg">{product.price?.toLocaleString()} <span className="text-xs opacity-50">دج</span></td>
                                 <td className="px-8 py-5 text-left flex justify-start gap-3">
                                     <AnimatedButton 
                                         variant="outline" 
                                         size="sm" 
-                                        className="h-10 rounded-xl px-4 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 border-emerald-200 font-black"
+                                        className="h-10 rounded-xl px-4 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/30 font-black"
                                         onClick={() => handleRestore(product.id)}
                                     >
                                         <RefreshCcw className="h-4 w-4 ms-2" /> استعادة
@@ -243,7 +243,7 @@ export default function RecycleBinPage() {
                                     <AnimatedButton 
                                         variant="ghost" 
                                         size="sm" 
-                                        className="h-10 w-10 rounded-xl p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                                        className="h-10 w-10 rounded-xl p-0 text-red-500 hover:text-red-700 hover:bg-red-50 dark:bg-red-500/10"
                                         onClick={() => {
                                             setItemToDelete(product.id)
                                             setConfirmAction('single')
@@ -293,7 +293,7 @@ export default function RecycleBinPage() {
                              <AnimatedButton 
                                 variant="outline" 
                                 size="sm" 
-                                className="h-10 w-10 text-emerald-600 border-emerald-200 bg-emerald-50 rounded-xl p-0"
+                                className="h-10 w-10 text-emerald-600 border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl p-0"
                                 onClick={() => handleRestore(product.id)}
                             >
                                 <RefreshCcw className="h-4 w-4" />
@@ -301,7 +301,7 @@ export default function RecycleBinPage() {
                             <AnimatedButton 
                                 variant="outline" 
                                 size="sm" 
-                                className="h-10 w-10 text-red-500 border-red-200 bg-red-50 rounded-xl p-0"
+                                className="h-10 w-10 text-red-500 border-red-200 bg-red-50 dark:bg-red-500/10 rounded-xl p-0"
                                 onClick={() => {
                                     setItemToDelete(product.id)
                                     setConfirmAction('single')

@@ -69,7 +69,7 @@ export default function SettingsPage() {
       <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-3 font-black text-xl">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 flex items-center justify-center">
                 <User className="h-5 w-5" />
             </div>
             معلومات الملف الشخصي
@@ -91,7 +91,7 @@ export default function SettingsPage() {
       <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
            <CardTitle className="flex items-center gap-3 font-black text-xl">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 flex items-center justify-center">
                 <Shield className="h-5 w-5" />
             </div>
             الأمان والحماية
@@ -123,7 +123,7 @@ export default function SettingsPage() {
       <Card className="border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card overflow-hidden">
         <CardHeader className="pb-4">
            <CardTitle className="flex items-center gap-3 font-black text-xl">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 flex items-center justify-center">
                 <Truck className="h-5 w-5" />
             </div>
             الخدمات اللوجستية
@@ -132,7 +132,7 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent>
             <Link href="/settings/zones">
-                <AnimatedButton variant="outline" className="w-full justify-start h-14 rounded-xl border-dashed border-2 hover:border-emerald-500 hover:bg-emerald-50 font-black text-lg">
+                <AnimatedButton variant="outline" className="w-full justify-start h-14 rounded-xl border-dashed border-2 hover:border-emerald-500 hover:bg-emerald-50 dark:bg-emerald-500/10 font-black text-lg">
                     <Truck className="ms-3 h-5 w-5 text-emerald-600" /> إعداد مناطق التوصيل
                 </AnimatedButton>
             </Link>

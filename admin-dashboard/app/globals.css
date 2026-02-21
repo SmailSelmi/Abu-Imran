@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: 210 20% 98%;
@@ -26,25 +26,25 @@
 }
 
 .dark {
-  --background: 160 20% 4%;
+  --background: 240 5.3% 6%; /* Premium dark zinc, not #000 */
   --foreground: 0 0% 98%;
-  --card: 160 20% 6%;
+  --card: 240 5.3% 9%; /* Slightly lighter for cards */
   --card-foreground: 0 0% 98%;
-  --popover: 160 20% 5%;
+  --popover: 240 5.3% 9%;
   --popover-foreground: 0 0% 98%;
-  --primary: 142 70% 50%;
+  --primary: 142 70% 42%;
   --primary-foreground: 144.9 80.4% 10%;
-  --secondary: 160 5% 12%;
+  --secondary: 240 4% 15%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 160 5% 10%;
-  --muted-foreground: 240 5% 70%;
-  --accent: 160 5% 15%;
+  --muted: 240 4% 15%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 4% 18%;
   --accent-foreground: 0 0% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 160 5% 15%;
-  --input: 160 5% 15%;
-  --ring: 142 70% 50%;
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 142 70% 42%;
 }
 
 

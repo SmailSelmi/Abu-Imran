@@ -48,8 +48,8 @@ export default function CustomersPage() {
   }
 
   const getReliabilityLevel = (score: number) => {
-      if (score >= 90) return { label: 'موثوق', color: 'text-emerald-600 bg-emerald-100', icon: 'https://cdn.lordicon.com/lomfljuq.json' }
-      if (score < 70) return { label: 'تحذير', color: 'text-red-600 bg-red-100', icon: 'https://cdn.lordicon.com/tdrtiskw.json' }
+      if (score >= 90) return { label: 'موثوق', color: 'text-emerald-600 bg-emerald-100 dark:bg-emerald-500/20', icon: 'https://cdn.lordicon.com/lomfljuq.json' }
+      if (score < 70) return { label: 'تحذير', color: 'text-red-600 bg-red-100 dark:bg-red-500/20', icon: 'https://cdn.lordicon.com/tdrtiskw.json' }
       return { label: 'عادي', color: 'text-muted-foreground bg-muted', icon: 'https://cdn.lordicon.com/bgebyztw.json' }
   }
 

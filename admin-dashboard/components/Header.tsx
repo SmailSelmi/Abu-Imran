@@ -3,9 +3,9 @@ import { Search } from "lucide-react"
 import { MobileSidebar } from "@/components/Sidebar"
 import { SystemHealth } from "@/components/SystemHealth"
 import { motion } from "framer-motion"
-import { ThemeToggle } from "@/components/ThemeToggle"
 import { useI18n } from "@/lib/i18n/I18nContext"
 import { NotificationBell } from "@/components/NotificationBell"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 export function Header() {
   const { t } = useI18n()
@@ -33,6 +33,8 @@ export function Header() {
         </div>
 
         <div className="h-8 w-px bg-border/40" />
+
+        <ThemeToggle />
 
         <NotificationBell />
       </div>

@@ -64,7 +64,7 @@ export function SystemHealth() {
                 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition-all hover:bg-opacity-80
                 ${status === 'healthy' ? 'bg-green-100 text-green-700' : ''}
                 ${status === 'warning' ? 'bg-yellow-100 text-yellow-700' : ''}
-                ${status === 'error' ? 'bg-red-100 text-red-700 animate-pulse' : ''}
+                ${status === 'error' ? 'bg-red-100 dark:bg-red-500/20 text-red-700 animate-pulse' : ''}
             `}>
                 {status === 'healthy' && <CheckCircle className="w-3 h-3" />}
                 {status === 'warning' && <Activity className="w-3 h-3" />}
@@ -84,7 +84,7 @@ export function SystemHealth() {
             <div className="space-y-4 py-4">
                 <div className={`p-4 rounded-lg border ${
                     status === 'healthy' ? 'bg-green-50 border-green-200' : 
-                    status === 'error' ? 'bg-red-50 border-red-200' : 'bg-yellow-50 border-yellow-200'
+                    status === 'error' ? 'bg-red-50 dark:bg-red-500/10 border-red-200' : 'bg-yellow-50 border-yellow-200'
                 }`}>
                     <h3 className={`font-bold ${
                          status === 'healthy' ? 'text-green-800' : 

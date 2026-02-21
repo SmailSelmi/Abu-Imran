@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
+    icon: "/favicon.ico",
     apple: "/icons/icon-192.png",
   }
 };
@@ -53,7 +54,7 @@ export default function RootLayout({
         className={`${tajawal.className} antialiased bg-white dark:bg-zinc-950`}
       >
         <ErrorBoundary>
-            <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <I18nProvider>
                     {children}
                     <RealtimeNotifications />

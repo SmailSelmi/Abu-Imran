@@ -330,8 +330,8 @@ export default function OrdersPage() {
   const getStatusColor = (status: string | null) => {
       switch(status || 'pending') {
           case 'delivered': return 'bg-green-100 text-green-700 border-green-200';
-          case 'shipped': return 'bg-blue-100 text-blue-700 border-blue-200';
-          case 'cancelled': return 'bg-red-100 text-red-700 border-red-200';
+          case 'shipped': return 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 border-blue-200';
+          case 'cancelled': return 'bg-red-100 dark:bg-red-500/20 text-red-700 border-red-200';
           default: return 'bg-yellow-100 text-yellow-700 border-yellow-200';
       }
   }
@@ -364,7 +364,7 @@ export default function OrdersPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h1 className="text-3xl font-black tracking-tighter flex items-center gap-3">
-                الطلبيات <span className="bg-emerald-100 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{filteredOrders.length}</span>
+                الطلبيات <span className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{filteredOrders.length}</span>
             </h1>
             <p className="text-muted-foreground">إدارة وتتبع إنتاج المزرعة في الوقت الحقيقي.</p>
         </div>
@@ -469,7 +469,7 @@ export default function OrdersPage() {
                                         </a>
                                     </div>
                                     {(order.customers?.total_orders || 0) > 1 && (
-                                        <Badge variant="outline" className="text-[10px] h-4 px-2 py-0 border-emerald-200 text-emerald-600 bg-emerald-50 w-fit font-black">
+                                        <Badge variant="outline" className="text-[10px] h-4 px-2 py-0 border-emerald-200 dark:border-emerald-500/30 text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 w-fit font-black">
                                             زبون وفي
                                         </Badge>
                                     )}
@@ -477,7 +477,7 @@ export default function OrdersPage() {
                             </td>
                             <td className="p-4 align-middle">
                                 <div className="space-y-1 max-w-[300px]">
-                                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full w-fit">
+                                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full w-fit">
                                         <MapPin className="h-3 w-3" /> {order.delivery_zones?.name || 'Algérie'}
                                     </div>
                                     <div className="text-xs text-muted-foreground leading-relaxed">
@@ -491,7 +491,7 @@ export default function OrdersPage() {
                                         <div className="space-y-1">
                                             {order.order_items.map((item: any, idx: number) => (
                                                 <div key={idx} className="flex items-center gap-2 text-[11px] font-bold">
-                                                    <span className="bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded text-[9px] min-w-[20px] text-center">x{item.quantity}</span>
+                                                    <span className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 px-1.5 py-0.5 rounded text-[9px] min-w-[20px] text-center">x{item.quantity}</span>
                                                     <span className="truncate">{getItemNameAr(item)}</span>
                                                 </div>
                                             ))}
@@ -524,13 +524,13 @@ export default function OrdersPage() {
                                     </Button>
                                     {order.status !== 'delivered' && order.status !== 'cancelled' && (
                                         <>
-                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'shipped')} className="h-10 w-10 p-0 border-emerald-100 text-emerald-600" title="شحن">
+                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'shipped')} className="h-10 w-10 p-0 border-emerald-100 dark:border-emerald-500/20 text-emerald-600" title="شحن">
                                                 <Truck className="h-4 w-4" />
                                             </Button>
-                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'delivered', order.customer_id)} className="h-10 w-10 p-0 bg-emerald-50 text-emerald-600 border-emerald-100" title="تم التوصيل">
+                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'delivered', order.customer_id)} className="h-10 w-10 p-0 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border-emerald-100 dark:border-emerald-500/20" title="تم التوصيل">
                                                 <CheckCircle className="h-4 w-4" />
                                             </Button>
-                                            <Button size="sm" variant="ghost" onClick={() => updateStatus(order.id, 'cancelled', order.customer_id)} className="h-10 w-10 p-0 text-red-500 hover:bg-red-50" title="إلغاء">
+                                            <Button size="sm" variant="ghost" onClick={() => updateStatus(order.id, 'cancelled', order.customer_id)} className="h-10 w-10 p-0 text-red-500 hover:bg-red-50 dark:bg-red-500/10" title="إلغاء">
                                                 <X className="h-4 w-4" />
                                             </Button>
                                         </>

@@ -2,6 +2,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
 import { NotificationBell } from "@/components/NotificationBell";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DashboardLayout({
   children,
@@ -13,9 +14,9 @@ export default function DashboardLayout({
       <Sidebar />
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden transition-all duration-300 relative">
         <Header />
-        
-        {/* Floating Notification Bell for Mobile */}
-        <div className="md:hidden fixed top-6 left-6 z-50">
+        {/* Floating Actions for Mobile */}
+        <div className="md:hidden fixed top-6 left-6 z-50 flex items-center gap-2">
+          <ThemeToggle />
           <NotificationBell />
         </div>
 

@@ -109,7 +109,7 @@ export default function DeliveryZonesPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h1 className="text-4xl font-black tracking-tighter flex items-center gap-3 text-foreground">
-                مناطق التوصيل <span className="bg-emerald-100 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{zones.length}</span>
+                مناطق التوصيل <span className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{zones.length}</span>
             </h1>
             <p className="text-muted-foreground font-black">تحديد الحدود اللوجستية وأسعار التوصيل الإقليمية.</p>
         </div>
@@ -125,7 +125,7 @@ export default function DeliveryZonesPage() {
                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-600" />
                <CardHeader>
                   <CardTitle className="flex items-center gap-3 font-black text-xl">
-                       <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                       <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 flex items-center justify-center">
                             <Truck className="w-5 h-5" />
                        </div>
                        {editingId ? 'تعديل التكوين' : 'إنشاء حدود لوجستية'}

@@ -80,8 +80,8 @@ export default function CustomerDetailsPage() {
   const getStatusColor = (status: string | null) => {
       switch(status || 'pending') {
           case 'delivered': return 'bg-green-100 text-green-700';
-          case 'shipped': return 'bg-blue-100 text-blue-700';
-          case 'cancelled': return 'bg-red-100 text-red-700';
+          case 'shipped': return 'bg-blue-100 dark:bg-blue-500/20 text-blue-700';
+          case 'cancelled': return 'bg-red-100 dark:bg-red-500/20 text-red-700';
           default: return 'bg-orange-100 text-orange-700';
       }
   }
@@ -104,7 +104,7 @@ export default function CustomerDetailsPage() {
                <Button 
                     variant="outline" 
                     size="sm"
-                    className="rounded-full border-emerald-200 text-emerald-600 hover:bg-emerald-50 h-9 font-black"
+                    className="rounded-full border-emerald-200 dark:border-emerald-500/30 text-emerald-600 hover:bg-emerald-50 dark:bg-emerald-500/10 h-9 font-black"
                     onClick={() => {
                         const phone = customer?.phone?.replace(/\s/g, '');
                         if (phone) window.open(`https://wa.me/${phone.startsWith('0') ? '213' + phone.slice(1) : phone}`, '_blank');

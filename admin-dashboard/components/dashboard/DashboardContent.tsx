@@ -152,14 +152,14 @@ export default function DashboardContent({
             <Button
                 variant="outline"
                 onClick={() => window.print()}
-                className="flex-1 sm:flex-none rounded-2xl border-2 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:bg-zinc-100 transition-all border-zinc-200"
+                className="flex-1 sm:flex-none rounded-2xl border-2 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:bg-zinc-100 dark:bg-zinc-800 transition-all border-zinc-200"
             >
                 <Printer className="w-4 h-4 ms-1.5" /> <span className="hidden sm:inline">طباعة التقرير</span>
                 <span className="sm:hidden">طباعة</span>
             </Button>
             <Button
                 onClick={exportDailyCSV}
-                className="flex-1 sm:flex-none rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:scale-105 transition-all shadow-sm"
+                className="flex-1 sm:flex-none rounded-2xl bg-zinc-900 dark:bg-zinc-100 dark:bg-zinc-800 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:scale-105 transition-all shadow-sm"
             >
                 <Download className="w-4 h-4 ms-1.5" /> <span className="hidden sm:inline">تصدير CSV</span>
                 <span className="sm:hidden">تصدير</span>
@@ -293,7 +293,7 @@ export default function DashboardContent({
                         <div className="text-5xl font-black tracking-tighter text-red-600">{stats.criticalStock}</div>
                         <Link href="/inventory/breeds" className="mt-4 flex items-center justify-between group/link">
                             <span className="text-[10px] font-black text-red-900/40 uppercase tracking-widest group-hover/link:text-red-900 transition-colors">إدارة المخزون</span>
-                            <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center group-hover/link:translate-x-1 transition-transform">
+                            <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center group-hover/link:translate-x-1 transition-transform">
                                 <ArrowUpRight className="w-3 h-3 text-red-600" />
                             </div>
                         </Link>
@@ -345,10 +345,10 @@ export default function DashboardContent({
                                         <p className="text-lg font-black truncate text-zinc-900 dark:text-zinc-100 uppercase group-hover:text-emerald-600 transition-colors tracking-tight">{order.product_name}</p>
                                         <div className={clsx(
                                             "shrink-0 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 whitespace-nowrap",
-                                            order.status === 'pending' ? 'bg-amber-100 text-amber-700' : 
-                                            order.status === 'delivered' ? 'bg-emerald-100 text-emerald-700' :
-                                            order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
-                                            'bg-blue-100 text-blue-700'
+                                            order.status === 'pending' ? 'bg-amber-100 dark:bg-amber-500/20 text-amber-700' : 
+                                            order.status === 'delivered' ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700' :
+                                            order.status === 'cancelled' ? 'bg-red-100 dark:bg-red-500/20 text-red-700' :
+                                            'bg-blue-100 dark:bg-blue-500/20 text-blue-700'
                                         )}>
                                             <div className={clsx("w-1.5 h-1.5 rounded-full", 
                                                 order.status === 'pending' ? 'bg-amber-500 animate-pulse' : 

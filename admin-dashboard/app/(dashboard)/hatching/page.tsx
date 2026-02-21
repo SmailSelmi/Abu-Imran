@@ -127,7 +127,7 @@ export default function HatchingPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h1 className="text-3xl font-black tracking-tighter flex items-center gap-3">
-                حجوزات الحضانة <span className="bg-emerald-100 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{filteredBookings.length}</span>
+                حجوزات الحضانة <span className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 text-sm font-black px-4 py-1 rounded-full">{filteredBookings.length}</span>
             </h1>
             <p className="text-muted-foreground">تتبع وإدارة عمليات الحضانة والبيض.</p>
         </div>
@@ -166,7 +166,7 @@ export default function HatchingPage() {
                                 <div className="text-xs text-muted-foreground">{booking.customers?.phone}</div>
                             </td>
                             <td className="p-4">
-                                <Badge variant="secondary" className="bg-emerald-50 text-emerald-700">
+                                <Badge variant="secondary" className="bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700">
                                     {booking.breeds?.name_ar || 'سلالة مخصصة'}
                                 </Badge>
                             </td>

@@ -320,13 +320,13 @@ export default function ProductsPage() {
                     <div className="text-xs text-muted-foreground opacity-50 font-mono">#{product.id.substring(0, 8)}</div>
                 </td>
                                 <td className="px-8 py-5 capitalize">
-                                    <Badge variant="outline" className="rounded-full px-3 py-1 border-emerald-200 bg-emerald-50 text-emerald-600 font-black">{product.subcategory}</Badge>
+                                    <Badge variant="outline" className="rounded-full px-3 py-1 border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 font-black">{product.subcategory}</Badge>
                                 </td>
                                 <td className="px-8 py-5 font-black text-lg">{product.price?.toLocaleString()}</td>
                                 <td className="px-8 py-5 text-center font-black">
                                     <div className={cn(
                                     "text-2xl font-black px-4 py-1.5 rounded-xl inline-block shadow-sm",
-                                    (product.stock ?? 0) < 10 ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                    (product.stock ?? 0) < 10 ? 'bg-red-50 dark:bg-red-500/10 text-red-600 border border-red-100' : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border border-emerald-100 dark:border-emerald-500/20'
                                 )}>
                                     {product.stock ?? 0}
                                 </div>
@@ -334,17 +334,17 @@ export default function ProductsPage() {
                                 <td className="px-8 py-5 text-center">
                                     <Badge className={cn(
                                         "rounded-full px-3 py-1 font-black border-none",
-                                        (product.stock ?? 0) > 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-red-100 text-red-600'
+                                        (product.stock ?? 0) > 0 ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600' : 'bg-red-100 dark:bg-red-500/20 text-red-600'
                                     )}>
                                         {(product.stock ?? 0) > 0 ? 'متوفر' : 'تنفذ'}
                                     </Badge>
                                 </td>
                                 <td className="px-8 py-5 text-left">
                                     <div className="flex gap-2">
-                                        <AnimatedButton variant="ghost" size="sm" className="h-10 w-10 p-0 text-blue-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl" onClick={() => handleEdit(product)}>
+                                        <AnimatedButton variant="ghost" size="sm" className="h-10 w-10 p-0 text-blue-500 hover:text-blue-600 hover:bg-blue-50 dark:bg-blue-500/10 rounded-xl" onClick={() => handleEdit(product)}>
                                             <Edit className="h-4 w-4" />
                                         </AnimatedButton>
-                                        <AnimatedButton variant="ghost" size="sm" className="h-10 w-10 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 rounded-xl" onClick={() => {
+                                        <AnimatedButton variant="ghost" size="sm" className="h-10 w-10 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:bg-red-500/10 rounded-xl" onClick={() => {
                                             setDeletingId(product.id)
                                             setConfirmOpen(true)
                                         }}>

@@ -233,10 +233,10 @@ export default function IncubatorsPage() {
               <Card key={product.id} className="relative overflow-hidden group border border-border/40 shadow-sm rounded-xl bg-white dark:bg-card hover:shadow-sm transition-all duration-500">
                     <CardHeader className="p-7 pb-2 relative z-10">
                       <div className="flex justify-between items-start">
-                          <Badge variant="secondary" className="capitalize rounded-full px-4 py-1.5 font-black text-[10px] tracking-widest bg-emerald-50 text-emerald-600 border-none">{product.subcategory === 'Incubator' ? 'حاضنة' : product.subcategory}</Badge>
+                          <Badge variant="secondary" className="capitalize rounded-full px-4 py-1.5 font-black text-[10px] tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border-none">{product.subcategory === 'Incubator' ? 'حاضنة' : product.subcategory}</Badge>
                           <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all flex gap-1 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
-                               <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-muted/50 hover:bg-emerald-100 text-emerald-600" onClick={() => handleEdit(product)}><Edit className="h-4 w-4" /></Button>
-                               <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-red-50 hover:bg-red-100 text-red-500" onClick={() => {
+                               <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-muted/50 hover:bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600" onClick={() => handleEdit(product)}><Edit className="h-4 w-4" /></Button>
+                               <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:bg-red-500/20 text-red-500" onClick={() => {
                                    setItemToDelete(product.id)
                                    setConfirmOpen(true)
                                }}><Trash2 className="h-4 w-4" /></Button>
@@ -259,7 +259,7 @@ export default function IncubatorsPage() {
                                 <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Stock Level</div>
                                 <div className={clsx(
                                     "text-2xl font-black px-4 py-1.5 rounded-xl inline-block shadow-sm",
-                                    (product.stock ?? 0) < 5 ? "bg-red-50 text-red-600 border border-red-100" : "bg-emerald-50 text-emerald-600 border border-emerald-100"
+                                    (product.stock ?? 0) < 5 ? "bg-red-50 dark:bg-red-500/10 text-red-600 border border-red-100" : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border border-emerald-100 dark:border-emerald-500/20"
                                 )}>
                                     {product.stock ?? 0}
                                 </div>

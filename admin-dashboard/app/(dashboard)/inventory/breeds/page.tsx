@@ -221,7 +221,7 @@ export default function BreedsPage() {
         </div>
         <div className="flex items-center gap-3">
             <Link href="/products/recycle-bin">
-                <Button variant="outline" className="rounded-xl px-4 border-muted-foreground/20 text-muted-foreground hover:text-red-500 hover:bg-red-50 font-black h-12">
+                <Button variant="outline" className="rounded-xl px-4 border-muted-foreground/20 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:bg-red-500/10 font-black h-12">
                     <Trash2 className="ms-2 h-4 w-4" /> سلة المحذوفات
                 </Button>
             </Link>
@@ -405,7 +405,7 @@ export default function BreedsPage() {
                                   }}><Trash2 className="h-4 w-4" /></Button>
                            </div>
                       </div>
-                      <Badge variant="outline" className="mb-3 capitalize border-emerald-200 bg-emerald-50 text-emerald-600 font-black px-3 py-1 rounded-full">
+                      <Badge variant="outline" className="mb-3 capitalize border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 font-black px-3 py-1 rounded-full">
                           {product.category === 'eggs' ? 'بيض' : product.category === 'chicks' ? 'صيصان' : 'دواجن'}
                           { product.families?.name_ar && ` • ${product.families.name_ar}` }
                       </Badge>
@@ -431,7 +431,7 @@ export default function BreedsPage() {
                                <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">مستوى المخزون</div>
                                <div className={clsx(
                                    "text-2xl font-black px-4 py-1.5 rounded-xl inline-block shadow-sm",
-                                   (product.stock || 0) < 10 ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                   (product.stock || 0) < 10 ? 'bg-red-50 dark:bg-red-500/10 text-red-600 border border-red-100' : 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 border border-emerald-100 dark:border-emerald-500/20'
                                )}>
                                    {product.stock || 0}
                                </div>
