@@ -53,7 +53,7 @@ export default function RootLayout({
         className={`${tajawal.className} antialiased bg-white dark:bg-zinc-950`}
       >
         <ErrorBoundary>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
                 <I18nProvider>
                     {children}
                     <RealtimeNotifications />

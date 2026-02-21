@@ -11,7 +11,7 @@ export function Header() {
   const { t } = useI18n()
 
   return (
-    <header className="flex h-16 items-center justify-between gap-6 border-b border-border/40 bg-white/70 dark:bg-zinc-950/70 px-6 lg:px-8 backdrop-blur-2xl sticky top-0 z-40 ring-1 ring-border/50">
+    <header className="hidden md:flex h-16 items-center justify-between gap-6 border-b border-border/40 bg-white/70 px-6 lg:px-8 backdrop-blur-2xl sticky top-0 z-40 ring-1 ring-border/50">
 
       <div className="flex items-center gap-4 flex-1">
         <MobileSidebar />
@@ -33,8 +33,6 @@ export function Header() {
         </div>
 
         <div className="h-8 w-px bg-border/40" />
-
-        <ThemeToggle />
 
         <NotificationBell />
       </div>
