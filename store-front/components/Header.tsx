@@ -37,6 +37,8 @@ export function Header() {
   }, [isMobileMenuOpen]);
 
   const navLinks = NAV_LINKS(t);
+  const isHomePage = pathname === '/';
+  const isTransparent = isHomePage && !isScrolled;
 
   return (
     <>
@@ -44,10 +46,12 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={cn(
-          'fixed top-0 start-0 end-0 z-50 transition-all duration-700',
+          'fixed top-0 start-0 end-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-white/85 dark:bg-zinc-950/90 backdrop-blur-2xl border border-border/40 mt-3 mx-4 md:mx-8 rounded-[2rem] py-2 shadow-sm'
-            : 'bg-transparent py-5'
+            ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl border border-border/40 mt-3 mx-4 md:mx-8 rounded-[2rem] py-2 shadow-sm'
+            : isTransparent
+              ? 'bg-transparent py-5'
+              : 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-border/30 py-3'
         )}
       >
         <div className="container mx-auto px-5 flex items-center justify-between">
@@ -70,7 +74,7 @@ export function Header() {
             </div>
             <span className={cn(
                 "font-black text-xl lg:text-2xl tracking-tighter transition-all duration-500",
-                isScrolled ? "text-emerald-950 dark:text-white" : "text-white"
+                isTransparent ? "text-white" : "text-emerald-950 dark:text-white"
             )}>
               {t.common.brand}
             </span>
@@ -90,8 +94,10 @@ export function Header() {
                   className={cn(
                     'text-sm font-bold tracking-tight transition-all flex items-center gap-2 px-3 py-2 rounded-xl relative group',
                     isActive
-                      ? 'text-emerald-600 bg-emerald-50/50'
-                      : isScrolled ? 'text-muted-foreground hover:text-emerald-600 hover:bg-muted/50' : 'text-white/80 hover:text-white hover:bg-white/10'
+                      ? 'text-emerald-600 bg-emerald-50/50 dark:bg-emerald-900/20'
+                      : isTransparent
+                        ? 'text-white/80 hover:text-white hover:bg-white/10'
+                        : 'text-muted-foreground hover:text-emerald-600 hover:bg-muted/50'
                   )}
                 >
                   <Icon
@@ -99,7 +105,7 @@ export function Header() {
                     parentHover={isHovered}
                     size={18}
                     colors={{
-                        primary: isActive ? '#059669' : (isScrolled ? '#10b981' : '#ffffff'),
+                        primary: isActive ? '#059669' : (isTransparent ? '#ffffff' : '#10b981'),
                         secondary: '#ffffff'
                     }}
                   />
@@ -112,9 +118,9 @@ export function Header() {
           <div className="flex items-center gap-2 md:gap-4">
             <ThemeToggle className={cn(
                 "hidden md:flex h-9 w-9 rounded-xl transition-all duration-500",
-                isScrolled
-                    ? "text-foreground bg-muted/50 border border-border hover:bg-muted"
-                    : "text-white bg-white/10 border border-white/20 hover:bg-white/30 backdrop-blur-md shadow-lg shadow-black/5"
+                isTransparent
+                    ? "text-white bg-white/10 border border-white/20 hover:bg-white/30 backdrop-blur-md shadow-lg"
+                    : "text-foreground bg-muted/50 border border-border hover:bg-muted"
             )} />
 
             <Link href="/shop" className="hidden md:flex">
@@ -129,7 +135,7 @@ export function Header() {
               size="icon"
               className={cn(
                 "xl:hidden rounded-xl h-10 w-10",
-                isScrolled ? "text-foreground bg-muted/50" : "text-white bg-white/10 hover:bg-white/20"
+                isTransparent ? "text-white bg-white/10 hover:bg-white/20" : "text-foreground bg-muted/50 hover:bg-muted"
               )}
               onClick={() => setIsMobileMenuOpen(true)}
             >

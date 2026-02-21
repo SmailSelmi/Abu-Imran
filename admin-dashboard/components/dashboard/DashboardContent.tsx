@@ -148,19 +148,21 @@ export default function DashboardContent({
            <p className="text-zinc-500 dark:text-zinc-400 font-bold text-sm mt-1">المزرعة • مركز التحكم والعمليات</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
             <Button
                 variant="outline"
                 onClick={() => window.print()}
-                className="rounded-2xl border-2 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:bg-zinc-100 transition-all border-zinc-200"
+                className="flex-1 sm:flex-none rounded-2xl border-2 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:bg-zinc-100 transition-all border-zinc-200"
             >
-                <Printer className="w-4 h-4" /> طباعة التقرير
+                <Printer className="w-4 h-4 ms-1.5" /> <span className="hidden sm:inline">طباعة التقرير</span>
+                <span className="sm:hidden">طباعة</span>
             </Button>
             <Button
                 onClick={exportDailyCSV}
-                className="rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] tracking-widest px-6 h-11 hover:scale-105 transition-all shadow-sm"
+                className="flex-1 sm:flex-none rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 font-black uppercase text-[10px] sm:text-xs tracking-widest px-2 sm:px-6 h-10 sm:h-11 hover:scale-105 transition-all shadow-sm"
             >
-                <Download className="w-4 h-4" /> تصدير CSV
+                <Download className="w-4 h-4 ms-1.5" /> <span className="hidden sm:inline">تصدير CSV</span>
+                <span className="sm:hidden">تصدير</span>
             </Button>
         </div>
       </div>

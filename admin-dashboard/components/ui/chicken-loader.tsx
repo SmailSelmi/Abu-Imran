@@ -9,8 +9,8 @@ interface ChickenLoaderProps {
 
 export default function ChickenLoader({ mode = "store", size = "md" }: ChickenLoaderProps) {
   const sizeValue = 
-    size === "sm" ? 40 : 
-    size === "lg" ? 120 : 80;
+    size === "sm" ? 32 : 
+    size === "lg" ? 96 : 64;
 
   const textClass = mode === 'dashboard' ? 'text-zinc-400' : 'text-zinc-500';
   

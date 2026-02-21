@@ -299,9 +299,9 @@ export default function ProductsPage() {
         <CardHeader className="p-8 pb-4">
             <CardTitle className="text-xl font-black">المخزون الحالي ({products.length})</CardTitle>
         </CardHeader>
-        <CardContent>
-            <div className="overflow-x-auto">
-                <table className="w-full text-sm text-right">
+        <CardContent className="px-0 sm:px-6">
+            <div className="overflow-x-auto px-4 pb-4 sm:px-0 sm:pb-0">
+                <table className="w-full text-sm text-right min-w-[800px]">
                     <thead className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground bg-muted/30">
                         <tr>
                             <th className="px-8 py-4">المنتج</th>

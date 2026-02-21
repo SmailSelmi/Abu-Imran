@@ -102,31 +102,31 @@ export default function ShopClient({ initialProducts, initialCategory }: ShopCli
         </div>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-16 border-y border-border/40">
-        <div className="flex flex-col items-center text-center gap-5 group">
-            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <Truck className="w-9 h-9" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-12 md:py-16 border-y border-border/40">
+        <div className="flex flex-col items-center text-center gap-4 group">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[2rem] bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <Truck className="w-8 h-8 md:w-9 md:h-9" />
             </div>
-            <div className="space-y-1.5">
-                <h4 className="font-black text-xl tracking-tight">توصيل سريع وطني</h4>
+            <div className="space-y-1">
+                <h4 className="font-black text-lg md:text-xl tracking-tight">توصيل سريع وطني</h4>
                 <p className="text-muted-foreground font-medium italic opacity-60 text-sm">نوصل لجميع ولايات الجزائر الـ 58.</p>
             </div>
         </div>
-        <div className="flex flex-col items-center text-center gap-5 group">
-            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <ShieldCheck className="w-9 h-9" />
+        <div className="flex flex-col items-center text-center gap-4 group">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[2rem] bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <ShieldCheck className="w-8 h-8 md:w-9 md:h-9" />
             </div>
-            <div className="space-y-1.5">
-                <h4 className="font-black text-xl tracking-tight">سلالات موثقة الجينات</h4>
+            <div className="space-y-1">
+                <h4 className="font-black text-lg md:text-xl tracking-tight">سلالات موثقة الجينات</h4>
                 <p className="text-muted-foreground font-medium italic opacity-60 text-sm">تربية مضبوطة لأقصى أداء إنتاجي.</p>
             </div>
         </div>
-        <div className="flex flex-col items-center text-center gap-5 group">
-            <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
-                <ShoppingBag className="w-9 h-9" />
+        <div className="flex flex-col items-center text-center gap-4 group">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[2rem] bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+                <ShoppingBag className="w-8 h-8 md:w-9 md:h-9" />
             </div>
-            <div className="space-y-1.5">
-                <h4 className="font-black text-xl tracking-tight">طلب آمن ومضمون</h4>
+            <div className="space-y-1">
+                <h4 className="font-black text-lg md:text-xl tracking-tight">طلب آمن ومضمون</h4>
                 <p className="text-muted-foreground font-medium italic opacity-60 text-sm">تأكيد مباشر عبر الهاتف بعد كل طلب.</p>
             </div>
         </div>

@@ -145,8 +145,8 @@ export default function HatchingPage() {
       </div>
 
       <div className="rounded-xl bg-card border border-border/50 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+        <div className="overflow-x-auto px-4 pb-4 -mx-4 sm:px-0 sm:pb-0 sm:mx-0">
+            <table className="w-full text-sm min-w-[800px]">
                 <thead className="bg-muted/50 border-b border-border/50">
                     <tr>
                         <th className="h-12 px-4 text-right font-black">الزبون</th>
@@ -183,10 +183,10 @@ export default function HatchingPage() {
                             </td>
                             <td className="p-4 text-left">
                                 <div className="flex gap-2 justify-end">
-                                    <Button size="sm" variant="outline" onClick={() => updateStatus(booking.id, 'completed')} className="h-8 w-8 p-0 text-green-600">
+                                    <Button size="sm" variant="outline" onClick={() => updateStatus(booking.id, 'completed')} className="h-10 w-10 p-0 text-green-600">
                                         <CheckCircle className="h-4 w-4" />
                                     </Button>
-                                    <Button size="sm" variant="ghost" onClick={() => deleteBooking(booking.id)} className="h-8 w-8 p-0 text-red-500">
+                                    <Button size="sm" variant="ghost" onClick={() => deleteBooking(booking.id)} className="h-10 w-10 p-0 text-red-500">
                                         <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </div>

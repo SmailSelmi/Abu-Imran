@@ -270,7 +270,7 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div className="p-8 pb-10">
+    <div className="p-3 md:p-8 pb-10">
       <DashboardContent
         stats={stats}
         alerts={alerts}

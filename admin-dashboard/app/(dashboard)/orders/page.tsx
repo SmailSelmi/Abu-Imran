@@ -63,9 +63,9 @@ const fetcher = async () => {
     if (error) {
         console.error('Join fetch failed, falling back:', error)
         const { data: simpleData } = await supabase.from('orders').select('id, status, total_amount, customer_name, phone_number, created_at, product_name, egg_count').order('created_at', { ascending: false }).limit(50)
-        return simpleData as unknown as OrderWithRelations[]
+        return (simpleData || []) as unknown as OrderWithRelations[]
     }
-    return data as unknown as OrderWithRelations[]
+    return (data || []) as unknown as OrderWithRelations[]
 }
 
 export default function OrdersPage() {
@@ -94,7 +94,7 @@ export default function OrdersPage() {
   
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const filteredOrders = orders.filter(o => {
+  const filteredOrders = (orders || []).filter(o => {
       const matchesFilter = filter === 'all' 
         ? true 
         : filter === 'active'
@@ -392,7 +392,7 @@ export default function OrdersPage() {
         </div>
       </div>
 
-      <div className="hidden md:block rounded-xl bg-white dark:bg-zinc-950 border border-border/40 shadow-sm overflow-hidden relative">
+      <div className="rounded-xl bg-white dark:bg-zinc-950 border border-border/40 shadow-sm overflow-hidden relative">
         {selectedOrders.length > 0 && (
             <div className="absolute top-0 left-0 right-0 bg-emerald-600 text-white p-3 z-10 flex items-center justify-between animate-in slide-in-from-top-2">
                 <div className="px-4 font-black flex items-center gap-3">
@@ -518,24 +518,24 @@ export default function OrdersPage() {
                                 {order.created_at ? formatDistanceToNow(new Date(order.created_at), { addSuffix: true }) : 'N/A'}
                             </td>
                             <td className="p-4 align-middle text-right">
-                                <div className="flex justify-end gap-2">
-                                    <Button size="sm" variant="ghost" onClick={() => handleEdit(order)} className="h-8 w-8 p-0" title="تعديل">
+                                <div className="flex justify-end gap-1 sm:gap-2">
+                                    <Button size="sm" variant="ghost" onClick={() => handleEdit(order)} className="h-10 w-10 p-0" title="تعديل">
                                         <Edit className="h-4 w-4 text-blue-500" />
                                     </Button>
                                     {order.status !== 'delivered' && order.status !== 'cancelled' && (
                                         <>
-                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'shipped')} className="h-8 w-8 p-0 border-emerald-100 text-emerald-600" title="شحن">
+                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'shipped')} className="h-10 w-10 p-0 border-emerald-100 text-emerald-600" title="شحن">
                                                 <Truck className="h-4 w-4" />
                                             </Button>
-                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'delivered', order.customer_id)} className="h-8 w-8 p-0 bg-emerald-50 text-emerald-600 border-emerald-100" title="تم التوصيل">
+                                            <Button size="sm" variant="outline" onClick={() => updateStatus(order.id, 'delivered', order.customer_id)} className="h-10 w-10 p-0 bg-emerald-50 text-emerald-600 border-emerald-100" title="تم التوصيل">
                                                 <CheckCircle className="h-4 w-4" />
                                             </Button>
-                                            <Button size="sm" variant="ghost" onClick={() => updateStatus(order.id, 'cancelled', order.customer_id)} className="h-8 w-8 p-0 text-red-500 hover:bg-red-50" title="إلغاء">
+                                            <Button size="sm" variant="ghost" onClick={() => updateStatus(order.id, 'cancelled', order.customer_id)} className="h-10 w-10 p-0 text-red-500 hover:bg-red-50" title="إلغاء">
                                                 <X className="h-4 w-4" />
                                             </Button>
                                         </>
                                     )}
-                                    <Button size="sm" variant="ghost" onClick={() => deleteOrder(order.id)} className="h-8 w-8 p-0 text-red-500" title="حذف">
+                                    <Button size="sm" variant="ghost" onClick={() => deleteOrder(order.id)} className="h-10 w-10 p-0 text-red-500" title="حذف">
                                         <Trash2 className="h-4 w-4" />
                                     </Button>
                                 </div>

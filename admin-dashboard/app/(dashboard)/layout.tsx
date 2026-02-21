@@ -10,9 +10,9 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen overflow-hidden bg-white dark:bg-zinc-950">
       <Sidebar />
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+      <div className="flex flex-col flex-1 min-w-0 overflow-hidden md:ml-64 transition-all duration-300">
         <Header />
-        <main className="flex-1 p-4 lg:p-6 overflow-y-auto overflow-x-hidden custom-scrollbar pb-24 md:pb-6">
+        <main className="flex-1 px-2 md:px-4 lg:p-6 overflow-y-auto overflow-x-hidden custom-scrollbar pb-24 md:pb-6">
           {children}
         </main>
         <BottomNav />

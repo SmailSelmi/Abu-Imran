@@ -2,7 +2,7 @@
 export type {};
 declare const self: ServiceWorkerGlobalScope;
 
-self.addEventListener("push", (event) => {
+self.addEventListener("push", (event: any) => {
   const data = event.data?.json() ?? {};
   const title = data.title || "إشعار جديد";
   const options = {
@@ -17,7 +17,7 @@ self.addEventListener("push", (event) => {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener("notificationclick", (event: any) => {
   event.notification.close();
   const url = event.notification.data?.url;
   if (url) {
