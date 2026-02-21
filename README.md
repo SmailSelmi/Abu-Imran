@@ -14,8 +14,6 @@ This project is a dual-application workspace (monorepo style) designed to handle
 - **Framework:** [Next.js](https://nextjs.org/) (React)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Database & Auth:** [Supabase](https://supabase.com/)
-- **Notifications:** Telegram Bot API (for real-time order alerts)
-- **Emails:** [Resend](https://resend.com/) (for professional automated emails via custom domain)
 - **Design & UI/UX:** Custom mobile-first design, RTL layout.
 
 ## ✨ Key Features
