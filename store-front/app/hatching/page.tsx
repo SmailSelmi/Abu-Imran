@@ -41,7 +41,7 @@ function HatchingPageContent() {
             setLoading(true)
             try {
                 const [breedRes, configRes] = await Promise.all([
-                    supabase.from('breeds').select('*'),
+                    supabase.from('breeds').select('id, name_en, name_ar').order('name_ar'),
                     supabase.from('app_settings').select('value').eq('key', 'hatching_config').single()
                 ])
                 

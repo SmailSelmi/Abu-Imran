@@ -23,9 +23,9 @@ export async function generateMetadata(
   const supabase = await createClient()
   const { data: product } = await supabase
     .from('products')
-    .select('*')
+    .select('id, name_en, category, image_url')
     .eq('slug', slug)
-    .single() as { data: Product | null }
+    .single() as { data: Pick<Product, 'id'|'name_en'|'category'|'image_url'> | null }
 
   if (!product) return { title: 'Product Not Found' }
 
@@ -57,7 +57,7 @@ export default async function Page({ params }: Props) {
   // 1. Fetch the specific product
   const { data: product, error } = await supabase
     .from('products')
-    .select('*')
+    .select('id, name_en, name, slug, category, subcategory, price, stock, image_url, description, family_id, breed_id, stock_breakdown, color_variation_ar')
     .eq('slug', slug)
     .is('deleted_at', null)
     .single() as { data: Product | null, error: any }
@@ -74,9 +74,10 @@ export default async function Page({ params }: Props) {
   // 2. Fetch all variants in the same subcategory
   const { data: variants } = await supabase
     .from('products')
-    .select('*')
+    .select('id, name_en, name, slug, category, subcategory, price, stock, image_url')
     .eq('subcategory', product.subcategory || '')
     .is('deleted_at', null)
+    .limit(10)
 
   const jsonLd = {
     '@context': 'https://schema.org',

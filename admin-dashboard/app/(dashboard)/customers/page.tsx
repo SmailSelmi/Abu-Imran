@@ -14,7 +14,7 @@ import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 
 export default function CustomersPage() {
-  const [customers, setCustomers] = useState<Customer[]>([])
+  const [customers, setCustomers] = useState<Partial<Customer>[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState<'spent' | 'orders' | 'reliability'>('spent')
@@ -28,15 +28,14 @@ export default function CustomersPage() {
     setLoading(true)
     const { data, error } = await supabase
       .from('customers')
-      .select('*')
+      .select('id, full_name, phone, notes, tags, total_spent, total_orders, reliability_score')
       .order('total_spent', { ascending: false })
 
     
     if (error) {
         console.error('Error fetching customers:', error)
         toast.error('Failed to load customers.')
-    } else {
-        setCustomers(data || [])
+        setCustomers((data as unknown as Partial<Customer>[]) || [])
     }
     setLoading(false)
   }

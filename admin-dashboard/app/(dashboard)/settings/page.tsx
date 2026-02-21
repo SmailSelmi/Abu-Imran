@@ -6,13 +6,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
-import { Loader2, User, Shield, Truck } from 'lucide-react'
+import { TriangleAlert, Loader2, User, Shield, Truck } from 'lucide-react'
 import Link from 'next/link'
 import { AnimatedButton } from '@/components/ui/AnimatedButton'
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
 export default function SettingsPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+  const [resetLoading, setResetLoading] = useState(false)
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
   const [newPassword, setNewPassword] = useState('')
   const supabase = createClient()
 
@@ -40,6 +43,20 @@ export default function SettingsPage() {
       setNewPassword('')
     }
     setLoading(false)
+  }
+
+  const handleFactoryReset = async () => {
+    setResetLoading(true)
+    // Delete all orders to reset stats. We cast to any to bypass TS if needed, or simply delete orders.
+    const { error: orderErr } = await supabase.from('orders').delete().neq('id', '00000000-0000-0000-0000-000000000000') // Deletes all
+
+    if (orderErr) {
+        toast.error('حدث خطأ أثناء إعادة ضبط النظام')
+    } else {
+        toast.success('تمت إعادة ضبط النظام بنجاح!')
+        setShowResetConfirm(false)
+    }
+    setResetLoading(false)
   }
 
   return (
@@ -121,6 +138,40 @@ export default function SettingsPage() {
             </Link>
         </CardContent>
       </Card>
+
+      <Card className="border-none shadow-xl rounded-xl bg-red-50 dark:bg-red-950/20 overflow-hidden ring-1 ring-red-200 dark:ring-red-900 border border-red-100">
+        <CardHeader className="pb-4">
+           <CardTitle className="flex items-center gap-3 font-black text-xl text-red-600">
+            <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/50 flex items-center justify-center">
+                <TriangleAlert className="h-5 w-5" />
+            </div>
+            منطقة الخطر (إعادة ضبط المصنع)
+          </CardTitle>
+          <CardDescription className="font-black opacity-80 text-red-800 dark:text-red-300">
+            تحذير: هذا الإجراء سيقوم بحذف جميع الطلبيات والإشعارات، وتصفير إيرادات النظام. لا يمكن التراجع عن هذا الإجراء.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+             <AnimatedButton 
+                variant="outline" 
+                onClick={() => setShowResetConfirm(true)}
+                className="w-full justify-center h-14 rounded-xl border-dashed border-2 hover:border-red-500 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-600 font-black text-lg transition-colors"
+                disabled={resetLoading}
+            >
+                {resetLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <><TriangleAlert className="ms-3 h-5 w-5" /> مسح بيانات النظام والطلبيات</>}
+            </AnimatedButton>
+        </CardContent>
+      </Card>
+
+      <ConfirmDialog 
+        isOpen={showResetConfirm}
+        onClose={() => setShowResetConfirm(false)}
+        onConfirm={handleFactoryReset}
+        title="إعادة ضبط المصنع؟"
+        description="هل أنت متأكد من رغبتك في حذف كافة الطلبيات، الإشعارات، وتصفير الإيرادات بالكامل؟ لا يمكن استرجاع البيانات بعد هذه الخطوة."
+        confirmText="نعم، احذف كل شيء!"
+        variant="destructive"
+      />
     </div>
   )
 }

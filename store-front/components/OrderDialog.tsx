@@ -175,7 +175,7 @@ export function OrderDialog({
               key="form"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative flex flex-col md:flex-row max-h-[90vh] overflow-y-auto"
+              className="relative flex flex-col max-h-[90vh] md:max-h-[85vh] md:flex-row overflow-hidden"
             >
               {/* Right Side: Product Preview */}
               <div className="md:w-72 bg-emerald-950 text-white p-6 space-y-6 relative overflow-hidden shrink-0 flex flex-col">
@@ -217,7 +217,7 @@ export function OrderDialog({
               </div>
 
               {/* Left Side: Form */}
-              <div className="flex-1 p-6 md:p-8 space-y-6 overflow-y-auto">
+              <div className="flex-1 p-6 md:p-8 space-y-6 overflow-y-auto pb-12 md:pb-8">
                 <div className="flex justify-between items-start">
                    <div className="space-y-0.5">
                       <h2 className="text-2xl font-black tracking-tighter leading-none">تفاصيل الطلب</h2>

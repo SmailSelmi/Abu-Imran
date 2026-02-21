@@ -71,9 +71,14 @@ export function SmartBreedSelector({ onSelect, selectedId, products }: SmartBree
             whileHover={{ y: -5, boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)" }}
             whileTap={{ scale: 0.98 }}
             key={breed.id}
-            onClick={() => onSelect(breed)}
+            onClick={() => {
+                if (breed.stock !== 0) {
+                    onSelect(breed)
+                }
+            }}
             className={clsx(
-              "relative group cursor-pointer border rounded-xl overflow-hidden transition-all duration-300 bg-background",
+              "relative group border rounded-xl overflow-hidden transition-all duration-300 bg-background",
+              breed.stock === 0 ? "opacity-75 cursor-not-allowed grayscale-[0.3]" : "cursor-pointer",
               selectedId === breed.id 
                 ? "border-green-500 ring-2 ring-green-500/20 shadow-md" 
                 : "border-border/50 hover:border-green-500/50"
@@ -93,10 +98,12 @@ export function SmartBreedSelector({ onSelect, selectedId, products }: SmartBree
                     <div className="flex items-center justify-center h-full text-muted-foreground">No Image</div>
                 )}
                 
-                {/* Stock Badge */}
-                {breed.stock !== undefined && breed.stock < 10 && breed.stock > 0 && (
+                {/* Stock Badges */}
+                {breed.stock === 0 ? (
+                    <Badge variant="destructive" className="absolute top-3 start-3 bg-red-600 text-white font-black uppercase shadow-lg border-2 border-white/20">نفدت الكمية</Badge>
+                ) : breed.stock !== undefined && breed.stock < 10 && breed.stock > 0 ? (
                     <Badge variant="destructive" className="absolute top-3 start-3">Low Stock</Badge>
-                )}
+                ) : null}
                 
                 {selectedId === breed.id && (
                     <div className="absolute inset-0 bg-primary/10 backdrop-blur-[2px] flex items-center justify-center">
@@ -120,9 +127,15 @@ export function SmartBreedSelector({ onSelect, selectedId, products }: SmartBree
                         <span className="text-2xl font-black text-foreground">{breed.price.toLocaleString()}</span>
                         <span className="text-[10px] font-black text-muted-foreground ms-1">DA</span>
                     </div>
-                    <Badge variant={selectedId === breed.id ? "default" : "secondary"} className={clsx("h-10 px-6 rounded-xl font-bold transition-colors", selectedId === breed.id ? "bg-primary text-white" : "bg-muted/50")}>
-                        {selectedId === breed.id ? "Selected" : "Select"}
-                    </Badge>
+                    {breed.stock === 0 ? (
+                        <Badge variant="secondary" className="h-10 px-6 rounded-xl font-bold bg-muted text-muted-foreground/50 opacity-50 cursor-not-allowed">
+                            غير متوفر
+                        </Badge>
+                    ) : (
+                        <Badge variant={selectedId === breed.id ? "default" : "secondary"} className={clsx("h-10 px-6 rounded-xl font-bold transition-colors", selectedId === breed.id ? "bg-primary text-white" : "bg-muted/50")}>
+                            {selectedId === breed.id ? "Selected" : "Select"}
+                        </Badge>
+                    )}
                 </div>
             </div>
           </motion.div>

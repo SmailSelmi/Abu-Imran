@@ -67,7 +67,7 @@ export default function IncubatorsPage() {
     setLoading(true)
     const { data, error } = await supabase
       .from('products')
-      .select('*')
+      .select('id, name_en, slug, category, subcategory, price, stock, image_url')
       .in('category', ['machine', 'incubators'])
       .is('deleted_at', null) // Only active machines
       .order('price', { ascending: true })
@@ -77,7 +77,7 @@ export default function IncubatorsPage() {
         console.error('Error fetching incubators:', error)
         toast.error('Failed to load inventory.')
     } else {
-        setProducts(data || [])
+        setProducts((data as unknown as Product[]) || [])
     }
     setLoading(false)
   }
@@ -233,7 +233,7 @@ export default function IncubatorsPage() {
                     <CardHeader className="p-7 pb-2 relative z-10">
                       <div className="flex justify-between items-start">
                           <Badge variant="secondary" className="capitalize rounded-full px-4 py-1.5 font-black text-[10px] tracking-widest bg-emerald-50 text-emerald-600 border-none">{product.subcategory === 'Incubator' ? 'حاضنة' : product.subcategory}</Badge>
-                          <div className="opacity-0 group-hover:opacity-100 transition-all flex gap-1 translate-y-2 group-hover:translate-y-0">
+                          <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all flex gap-1 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
                                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-muted/50 hover:bg-emerald-100 text-emerald-600" onClick={() => handleEdit(product)}><Edit className="h-4 w-4" /></Button>
                                <Button variant="ghost" size="icon" className="h-10 w-10 rounded-xl bg-red-50 hover:bg-red-100 text-red-500" onClick={() => {
                                    setItemToDelete(product.id)

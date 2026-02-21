@@ -79,7 +79,7 @@ export default function HeroSection() {
                        <ArrowUpRight className="me-2 w-5 h-5 transition-transform group-hover:rotate-45" />
                    </Button>
                 </Link>
-               <Link href="https://wa.me/213550123456" target="_blank" className="w-full sm:w-auto">
+               <Link href="https://wa.me/213665243819" target="_blank" className="w-full sm:w-auto">
                    <Button variant="outline" className="w-full h-12 px-8 text-base font-bold border-2 border-white/30 glass-card text-white hover:bg-white hover:text-black rounded-full transition-all hover:-translate-y-1 active:scale-95 shadow-lg">
                         {t.common.contactUs}
                    </Button>

@@ -1,6 +1,27 @@
 @import "tailwindcss";
 
-@theme {
+:root {
+  --background: 160 20% 98%;
+  --foreground: 160 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 160 10% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 160 10% 15%;
+  --primary: 158 80% 40%;
+  --primary-foreground: 160 100% 98%;
+  --secondary: 160 10% 95%;
+  --secondary-foreground: 160 10% 10%;
+  --muted: 160 5% 92%;
+  --muted-foreground: 160 5% 45%;
+  --accent: 158 80% 40%;
+  --accent-foreground: 160 100% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 160 10% 90%;
+  --input: 160 10% 90%;
+  --ring: 158 80% 40%;
+  --radius: 1.25rem;
+
   --font-tajawal: var(--font-tajawal);
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -25,11 +46,11 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  
+
   --radius-xl: 0.75rem;
   --radius-2xl: 0.75rem;
   --radius-3xl: 0.75rem;
-  
+
   /* 8pt Spacing Tokens */
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
@@ -45,36 +66,12 @@
   --spacing-32: 8rem;
 
   --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  
+
   /* Premium Shadows */
-  --shadow-premium: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  --shadow-premium:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 30px -5px rgba(0, 0, 0, 0.1);
   --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
 }
-
-
-:root {
-  --background: 160 20% 98%;
-  --foreground: 160 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 160 10% 15%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 160 10% 15%;
-  --primary: 158 80% 40%;
-  --primary-foreground: 160 100% 98%;
-  --secondary: 160 10% 95%;
-  --secondary-foreground: 160 10% 10%;
-  --muted: 160 5% 92%;
-  --muted-foreground: 160 5% 45%;
-  --accent: 158 80% 40%;
-  --accent-foreground: 160 100% 98%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 160 10% 90%;
-  --input: 160 10% 90%;
-  --ring: 158 80% 40%;
-  --radius: 1.25rem;
-}
-
 
 .dark {
   --background: 160 20% 2%;
@@ -98,37 +95,51 @@
   --ring: 158 90% 45%;
 }
 
-
-@layer base {
-  *, ::after, ::before {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tighter font-black;
-  }
-  button, a {
-    @apply transition-all duration-200 active:scale-98;
-  }
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-tajawal), system-ui, sans-serif !important;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
 }
 
-@utility glass-card {
-  @apply bg-white/40 dark:bg-black/40 backdrop-blur-2xl border border-white/20 dark:border-white/5 shadow-2xl;
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.05em;
+  font-weight: 900;
+}
+
+button, a {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+button:active, a:active {
+  transform: scale(0.98);
+}
+
+.glass-card {
+  background-color: hsla(0, 0%, 100%, 0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid hsla(0, 0%, 100%, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-card {
+  background-color: hsla(240, 5%, 4%, 0.7);
+  border-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.premium-gradient {
+  background-image: linear-gradient(to bottom right, hsla(160, 84%, 96%, 0.5), #fff);
+}
+
+.dark .premium-gradient {
+  background-image: linear-gradient(to bottom right, hsla(160, 84%, 4%, 0.1), #09090b);
 }
 
 
-@utility premium-gradient {
-  @apply bg-gradient-to-br from-emerald-50/50 via-white to-white dark:from-emerald-950/10 dark:via-zinc-950 dark:to-zinc-950;
-}
-
-@utility section-padding {
-  @apply py-20 md:py-32;
-}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -136,15 +147,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  background-color: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
+  background-color: hsla(158, 80%, 40%, 0.2);
+  border-radius: 9999px;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(158, 80%, 40%, 0.4);
 }
 
 ::selection {
-  @apply bg-primary/20 text-primary;
+  background-color: hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
 }
 
 svg {

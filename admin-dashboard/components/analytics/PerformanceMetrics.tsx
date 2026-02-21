@@ -186,8 +186,9 @@ export const PerformanceMetrics = ({ revenueData, orderTrends, topProducts, cate
                                     type="category"
                                     axisLine={false}
                                     tickLine={false}
-                                    tick={{ fontSize: 11, fontWeight: 900, fill: 'currentColor', opacity: 0.6 }}
-                                    width={120}
+                                    tick={{ fontSize: 10, fontWeight: 900, fill: 'currentColor', opacity: 0.6 }}
+                                    tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
+                                    width={110}
                                     orientation="right"
                                 />
                                 <Tooltip

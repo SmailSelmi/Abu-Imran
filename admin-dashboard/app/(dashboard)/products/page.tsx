@@ -58,7 +58,7 @@ export default function ProductsPage() {
     setLoading(true)
     const { data, error } = await (supabase as any)
       .from('products')
-      .select('*')
+      .select('id, name_en, name, slug, category, subcategory, price, stock, image_url, deleted_at')
       .is('deleted_at', null) // Only fetch active products
       .order('created_at', { ascending: false })
 

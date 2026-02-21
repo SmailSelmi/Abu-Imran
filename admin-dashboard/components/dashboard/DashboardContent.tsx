@@ -97,7 +97,7 @@ export default function DashboardContent({
     const today = new Date().toISOString().split('T')[0]
     const { data: orders, error } = await supabase
         .from('orders')
-        .select('*')
+        .select('id, customer_name, phone_number, product_name, product_variant, quantity, total_amount, status')
         .gte('created_at', today)
     
     if (error || !orders) {
@@ -148,7 +148,7 @@ export default function DashboardContent({
            <p className="text-zinc-500 dark:text-zinc-400 font-bold text-sm mt-1">المزرعة • مركز التحكم والعمليات</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
             <Button
                 variant="outline"
                 onClick={() => window.print()}
@@ -168,7 +168,7 @@ export default function DashboardContent({
       <div className="grid gap-6 md:grid-cols-12 md:grid-rows-1">
         {/* Total Revenue */}
         <motion.div variants={item} className="md:col-span-8 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-gradient-to-br from-primary to-primary/80 text-white relative overflow-hidden rounded-3xl p-6 group">
+            <Card className="h-full border-none shadow-premium bg-gradient-to-br from-primary to-primary/80 text-white relative overflow-hidden rounded-3xl p-4 md:p-6 group">
                 <div className="absolute -top-10 -right-10 p-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
                     <DollarSign className="w-64 h-64" />
                 </div>
@@ -190,7 +190,7 @@ export default function DashboardContent({
 
         {/* Active Orders */}
         <motion.div variants={item} className="md:col-span-4 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-6 group">
+            <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -me-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
@@ -220,7 +220,7 @@ export default function DashboardContent({
 
         {/* Top Breed */}
         <motion.div variants={item} className="md:col-span-3 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-primary/5 dark:bg-primary/10 border border-primary/10 rounded-3xl relative overflow-hidden p-6 group">
+            <Card className="h-full border-none shadow-premium bg-primary/5 dark:bg-primary/10 border border-primary/10 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
                          <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">الأكثر مبيعاً</span>
@@ -240,7 +240,7 @@ export default function DashboardContent({
 
         {/* Average Order Value */}
         <motion.div variants={item} className="md:col-span-3 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-primary/5 dark:bg-primary/10 border border-primary/10 rounded-3xl relative overflow-hidden p-6 group">
+            <Card className="h-full border-none shadow-premium bg-primary/5 dark:bg-primary/10 border border-primary/10 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
                <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
                          <span className="text-[10px] font-black text-primary/60 uppercase tracking-[0.3em]">متوسط قيمة الطلب</span>
@@ -259,7 +259,7 @@ export default function DashboardContent({
 
         {/* Customers Stats */}
         <motion.div variants={item} className="md:col-span-3 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-6 group border border-zinc-100 dark:border-zinc-800/50">
+            <Card className="h-full border-none shadow-premium bg-white dark:bg-zinc-900 rounded-3xl relative overflow-hidden p-4 md:p-6 group border border-zinc-100 dark:border-zinc-800/50">
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
                         <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] opacity-50">الزبائن</span>
@@ -281,7 +281,7 @@ export default function DashboardContent({
 
         {/* Low Stock Alert */}
         <motion.div variants={item} className="md:col-span-3 md:row-span-1">
-            <Card className="h-full border-none shadow-premium bg-red-50/50 dark:bg-red-950/10 border-2 border-red-100/20 rounded-3xl relative overflow-hidden p-6 group">
+            <Card className="h-full border-none shadow-premium bg-red-50/50 dark:bg-red-950/10 border-2 border-red-100/20 rounded-3xl relative overflow-hidden p-4 md:p-6 group">
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div className="flex flex-row items-center justify-between">
                         <span className="text-[10px] font-black text-red-600 uppercase tracking-[0.3em]">تنبيه المخزون</span>
@@ -342,7 +342,7 @@ export default function DashboardContent({
                                     <div className="flex items-center gap-3">
                                         <p className="text-lg font-black truncate text-zinc-900 dark:text-zinc-100 uppercase group-hover:text-emerald-600 transition-colors tracking-tight">{order.product_name}</p>
                                         <div className={clsx(
-                                            "px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2",
+                                            "shrink-0 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2 whitespace-nowrap",
                                             order.status === 'pending' ? 'bg-amber-100 text-amber-700' : 
                                             order.status === 'delivered' ? 'bg-emerald-100 text-emerald-700' :
                                             order.status === 'cancelled' ? 'bg-red-100 text-red-700' :

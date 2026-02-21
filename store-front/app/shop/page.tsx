@@ -17,7 +17,7 @@ async function getProducts() {
   
   const { data, error } = await supabase
     .from('products')
-    .select('*, families(*), breeds(*)')
+    .select('id, name_en, name, slug, category, subcategory, price, stock, image_url, families(name_ar), breeds(name_ar)')
     .is('deleted_at', null)
     .order('price', { ascending: true })
 
@@ -26,7 +26,7 @@ async function getProducts() {
     return []
   }
 
-  return data as Product[]
+  return data as unknown as Product[]
 }
 
 export default async function ShopPage({

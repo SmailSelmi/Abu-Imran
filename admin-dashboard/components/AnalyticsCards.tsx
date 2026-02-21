@@ -17,7 +17,7 @@ export function AnalyticsCards() {
   useEffect(() => {
     const fetchStats = async () => {
         // 1. Orders Stats
-        const { data: orders } = await supabase.from('orders').select('*')
+        const { data: orders } = await supabase.from('orders').select('price, total_amount, status')
         
         let revenue = 0
         let active = 0

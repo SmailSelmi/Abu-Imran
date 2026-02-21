@@ -46,7 +46,7 @@ export default function AlgeriaMap({ onWilayaSelect, data = {}, dataLabel = 'Ord
               // Initial styling
               path.style.transition = 'fill 0.3s ease, stroke 0.3s ease'
               path.style.cursor = 'pointer'
-              path.style.stroke = '#333'
+              path.style.stroke = '#d1d5db' // gray-300
               path.style.strokeWidth = '1px'
               
               const updateStyle = () => {

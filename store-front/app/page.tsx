@@ -3,6 +3,13 @@ import PortfolioSection from "@/components/home/PortfolioSection";
 import HatchingServiceSection from "@/components/home/HatchingServiceSection";
 import { DeliveryZones, Testimonials } from "@/components/home/SocialProof";
 import { createClient } from "@/utils/supabase/server";
+import { Database } from "@/types/supabase";
+
+type LocalProductWithBreed = Database['public']['Tables']['products']['Row'] & {
+  breed: any
+}
+
+export const revalidate = 600
 
 export default async function Home() {
   const supabase = await createClient();
@@ -10,16 +17,18 @@ export default async function Home() {
   // Fetch Featured Breeds/Products for Portfolio
   const { data: featuredProducts } = await supabase
     .from('products')
-    .select('*, breed:breeds(*)')
+    .select('id, name_en, name, category, subcategory, price, image_url, slug, is_active, breed:breeds(name_ar)')
     .eq('is_active', true)
     .limit(3);
+
+  const parsedProducts = featuredProducts as unknown as LocalProductWithBreed[];
 
   return (
     <main className="min-h-screen bg-white dark:bg-black font-sans">
       <HeroSection />
       
       {/* Dynamic Portfolio Section */}
-      <PortfolioSection initialProducts={featuredProducts || []} />
+      <PortfolioSection initialProducts={parsedProducts || []} />
       
       <HatchingServiceSection />
       

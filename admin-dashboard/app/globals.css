@@ -1,51 +1,6 @@
 @import "tailwindcss";
 
-@theme {
-  --font-tajawal: var(--font-tajawal);
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2.5rem;
-
-  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
-  --shadow-premium-hover: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
-
-  /* 8pt Spacing Tokens */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-7: 1.75rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-  --spacing-16: 4rem;
-}
 
 :root {
   --background: 210 20% 98%;
@@ -92,25 +47,42 @@
   --ring: 142 70% 50%;
 }
 
-@layer base {
-  * {
-    @apply border-border focus-visible:ring-primary/40;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-tajawal), system-ui, sans-serif;
-  }
-  button, a {
-    @apply transition-all duration-200 active:scale-95;
-  }
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-tajawal), system-ui, sans-serif !important;
 }
 
-@utility glass-card {
-  @apply bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-sm;
+button, a {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+button:active, a:active {
+  transform: scale(0.95);
 }
 
-@utility premium-gradient {
-  @apply bg-gradient-to-br from-emerald-50/50 to-white dark:from-emerald-950/10 dark:to-zinc-950;
+.glass-card {
+  background-color: hsla(0, 0%, 100%, 0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid hsla(0, 0%, 100%, 0.2);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-card {
+  background-color: hsla(240, 5%, 4%, 0.7);
+  border-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.premium-gradient {
+  background-image: linear-gradient(to bottom right, hsla(160, 84%, 96%, 0.5), #fff);
+}
+
+.dark .premium-gradient {
+  background-image: linear-gradient(to bottom right, hsla(160, 84%, 4%, 0.1), #09090b);
 }
 
 /* Custom Scrollbar */
@@ -119,15 +91,24 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  background-color: hsl(var(--muted));
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
+  background-color: hsla(142, 76%, 36%, 0.2);
+  border-radius: 9999px;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(142, 76%, 36%, 0.4);
 }
 
 ::selection {
-  @apply bg-primary/20 text-primary;
+  background-color: hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
 }
 
 /* Enforce Tajawal on every element */

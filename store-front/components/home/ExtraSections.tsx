@@ -196,7 +196,7 @@ export function HowItWorks() {
                  whileInView={{ opacity: 1, y: 0 }}
                  className="mt-20 text-center"
               >
-                  <Link href="https://wa.me/213550123456" target="_blank" className="inline-block">
+                  <Link href="https://wa.me/213665243819" target="_blank" className="inline-block">
                       <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black text-xl px-12 h-20 rounded-2xl shadow-2xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-2 transition-all duration-300 group">
                           <Phone className="w-6 h-6 me-3 animate-bounce" />
                           {t.howToOrder.cta}

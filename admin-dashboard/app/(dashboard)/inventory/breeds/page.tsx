@@ -24,7 +24,7 @@ type Product = Database['public']['Tables']['products']['Row'] & {
 }
 
 export default function BreedsPage() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Partial<Product>[]>([])
   const [families, setFamilies] = useState<any[]>([])
   const [breeds, setBreeds] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -77,8 +77,8 @@ export default function BreedsPage() {
   }, [])
 
   const fetchMetadata = async () => {
-    const { data: fams } = await supabase.from('families').select('*').order('display_order')
-    const { data: brds } = await supabase.from('breeds').select('*').order('name_ar')
+    const { data: fams } = await supabase.from('families').select('id, name_en, name_ar').order('display_order')
+    const { data: brds } = await supabase.from('breeds').select('id, name_en, name_ar, family_id').order('name_ar')
     if (fams) setFamilies(fams)
     if (brds) setBreeds(brds)
   }
@@ -88,9 +88,9 @@ export default function BreedsPage() {
     const { data, error } = await supabase
       .from('products')
       .select(`
-        *,
-        families:family_id (*),
-        breeds:breed_id (*)
+        id, name_en, category, subcategory, family_id, breed_id, slug, image_url, description, price, stock, stock_breakdown, next_batch_date,
+        families:family_id (name_ar),
+        breeds:breed_id (name_ar)
       `)
       .neq('category', 'machine')
       .is('deleted_at', null) // Only active products
@@ -101,7 +101,7 @@ export default function BreedsPage() {
         console.error('Error fetching products:', JSON.stringify(error, null, 2))
         toast.error('Failed to load inventory: ' + error.message)
     } else {
-        setProducts(data || [])
+        setProducts((data as unknown as Partial<Product>[]) || [])
     }
     setLoading(false)
   }
@@ -242,16 +242,16 @@ export default function BreedsPage() {
               <CardContent className="pt-6">
                   <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       
-                      <div className="space-y-2 col-span-full border-b border-dashed pb-4 mb-2">
+                      <div className="space-y-2 col-span-full border-b border-dashed pb-4 mb-2 hidden">
                           <h3 className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground opacity-50">التصنيف البيولوجي</h3>
                       </div>
                       
-                      <div className="space-y-2">
+                      <div className="space-y-2 hidden">
                           <Label className="text-[11px] md:text-xs font-black uppercase tracking-widest text-muted-foreground/80">الاسم الداخلي</Label>
                           <Input required value={formData.name_en} onChange={handleNameChange} placeholder="مثال: بيض ساسو فضي" className="bg-muted/50 border-transparent focus:bg-background h-12 rounded-xl font-black" />
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-2 hidden">
                         <Label className="text-[11px] md:text-xs font-black uppercase tracking-widest text-muted-foreground/80">معرف الرابط (Slug)</Label>
                         <div className="flex gap-2">
                             <Input required value={formData.slug} onChange={e => setFormData({...formData, slug: e.target.value})} placeholder="مثال: sasso-silver-eggs" dir="ltr" className="bg-muted/50 border-transparent focus:bg-background h-12 rounded-xl font-mono text-xs" />
@@ -311,7 +311,7 @@ export default function BreedsPage() {
                             }}
                           >
                               <option value="">-- اختر السلالة --</option>
-                              {breeds.filter(b => b.family_id === formData.family_id).map(b => (
+                              {breeds.filter(b => String(b.family_id) === String(formData.family_id)).map(b => (
                                   <option key={b.id} value={b.id}>{b.name_ar}</option>
                               ))}
                           </select>
@@ -411,10 +411,10 @@ export default function BreedsPage() {
                                     size={32} 
                                 />
                            </div>
-                           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                           <div className="flex gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                                  <Button variant="ghost" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur shadow-sm rounded-xl" onClick={() => handleEdit(product)}><Edit className="h-4 w-4 text-blue-500" /></Button>
                                   <Button variant="ghost" size="icon" className="h-10 w-10 bg-background/50 backdrop-blur shadow-sm text-red-500 rounded-xl" onClick={() => {
-                                     setItemToDelete(product.id)
+                                     setItemToDelete(product.id || '')
                                      setConfirmOpen(true)
                                   }}><Trash2 className="h-4 w-4" /></Button>
                            </div>

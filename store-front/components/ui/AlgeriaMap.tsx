@@ -42,14 +42,14 @@ export default function AlgeriaMap({
               // Initial styling
               path.style.transition = "fill 0.3s ease, stroke 0.3s ease";
               path.style.cursor = "pointer";
-              path.style.stroke = "#333";
+              path.style.stroke = "#d1d5db"; // gray-300
               path.style.strokeWidth = "1px";
 
               const updateStyle = () => {
                 if (highlightedWilayas.includes(id)) {
                   path.style.fill = "#3b82f6"; // Blue-500
                 } else {
-                  path.style.fill = "#e4e4e7"; // Gray-200
+                  path.style.fill = "#f4f4f5"; // Gray-100
                 }
               };
 

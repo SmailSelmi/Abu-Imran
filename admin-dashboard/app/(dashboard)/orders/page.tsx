@@ -18,6 +18,8 @@ import { EditOrderDialog } from '@/components/orders/EditOrderDialog'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
 
+import useSWR from 'swr'
+
 const STATUS_LABELS: Record<string, string> = {
   shipped: 'تم الشحن',
   delivered: 'تم التوصيل',
@@ -25,11 +27,54 @@ const STATUS_LABELS: Record<string, string> = {
   pending: 'قيد الانتظار',
 }
 
+const supabase = createClient()
+
+const fetcher = async () => {
+    const { data, error } = await supabase
+      .from('orders')
+      .select(`
+        *,
+        customers (
+          *,
+          customer_loyalty (
+            level,
+            tag_ar
+          )
+        ),
+        order_items (
+          *,
+          products (
+            name,
+            breeds (
+                name_ar
+            )
+          )
+        ),
+        products (
+          name,
+          breeds (
+            name_ar
+          )
+        )
+      `)
+      .order('created_at', { ascending: false })
+    
+    if (error) {
+        console.error('Join fetch failed, falling back:', error)
+        const { data: simpleData } = await supabase.from('orders').select('*').order('created_at', { ascending: false })
+        return simpleData as unknown as OrderWithRelations[]
+    }
+    return data as unknown as OrderWithRelations[]
+}
+
 export default function OrdersPage() {
 
-  const [orders, setOrders] = useState<OrderWithRelations[]>([])
-  const [loading, setLoading] = useState(true)
-  const [filter, setFilter] = useState('pending')
+  const { data: orders = [], error, isLoading: loading, mutate: fetchOrders } = useSWR('admin_orders', fetcher, {
+      revalidateOnFocus: true,
+      dedupingInterval: 10000,
+  })
+
+  const [filter, setFilter] = useState('active')
   const [search, setSearch] = useState('')
   const [editingOrder, setEditingOrder] = useState<OrderWithRelations | null>(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -45,11 +90,14 @@ export default function OrdersPage() {
       variant?: "default" | "destructive"
   } | null>(null)
   
-  const supabase = createClient()
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   const filteredOrders = orders.filter(o => {
-      const matchesFilter = filter === 'all' ? true : o.status === filter
+      const matchesFilter = filter === 'all' 
+        ? true 
+        : filter === 'active'
+          ? ['pending', 'shipped'].includes(o.status || 'pending')
+          : ['delivered', 'cancelled'].includes(o.status || 'pending')
       const matchesSearch = 
         o.customer_name?.toLowerCase().includes(search.toLowerCase()) || 
         o.phone_number?.includes(search) ||
@@ -100,47 +148,6 @@ export default function OrdersPage() {
     return translateProduct(item.product_name);
   };
 
-  const fetchOrders = useCallback(async (isRefresh = false) => {
-    if (!isRefresh) setLoading(true)
-    const { data, error } = await supabase
-      .from('orders')
-      .select(`
-        *,
-        customers (
-          *,
-          customer_loyalty (
-            level,
-            tag_ar
-          )
-        ),
-        order_items (
-          *,
-          products (
-            name,
-            breeds (
-                name_ar
-            )
-          )
-        ),
-        products (
-          name,
-          breeds (
-            name_ar
-          )
-        )
-      `)
-      .order('created_at', { ascending: false })
-    
-    if (data) setOrders(data as unknown as OrderWithRelations[])
-    
-    if (error) {
-        console.error('Join fetch failed, falling back:', error)
-        const { data: simpleData } = await supabase.from('orders').select('*').order('created_at', { ascending: false })
-        if (simpleData) setOrders(simpleData as unknown as OrderWithRelations[])
-    }
-    if (!isRefresh) setLoading(false)
-  }, [supabase])
-
   const markBulkStatus = async (status: 'pending' | 'shipped' | 'delivered' | 'cancelled') => {
       const statusLabels: Record<string, string> = {
           shipped: 'تم الشحن',
@@ -159,9 +166,8 @@ export default function OrdersPage() {
                 .update({ status: status as string })
                 .in('id', selectedOrders)
 
-              if (error) {
-                toast.error('فشل تحديث الطلبيات')
-              } else {
+              if (error) toast.error('فشل تحديث الطلبيات')
+              else {
                   toast.success('تم تحديث الطلبيات بنجاح')
                   
                   if (status === 'delivered' || status === 'cancelled') {
@@ -248,7 +254,7 @@ export default function OrdersPage() {
                 }
               } catch (e) { console.error(e) }
           }
-          fetchOrders(true)
+          fetchOrders()
       })
       .subscribe((status) => {
           console.log('Order Realtime Status:', status);
@@ -267,7 +273,7 @@ export default function OrdersPage() {
         if (customerId && (newStatus === 'delivered' || newStatus === 'cancelled')) {
             await recalculateReliability(customerId)
         }
-        setOrders(prev => prev.map(o => o.id === id ? { ...o, status: newStatus } : o))
+        fetchOrders()
     }
   }
 
@@ -336,10 +342,8 @@ export default function OrdersPage() {
 
   const statusTranslations: Record<string, string> = {
     'all': 'الكل',
-    'pending': 'في الانتظار',
-    'shipped': 'تم الشحن',
-    'delivered': 'تم التوصيل',
-    'cancelled': 'ملغى'
+    'active': 'طلبات نشطة',
+    'archived': 'طلبات مؤرشفة'
   }
 
   if (loading) return <div className="h-[80vh] flex items-center justify-center"><ChickenLoader mode="dashboard" /></div>
@@ -373,7 +377,7 @@ export default function OrdersPage() {
                 />
              </div>
              <div className="flex gap-1 bg-muted/50 p-1 rounded-xl w-full md:w-auto overflow-x-auto border border-border/50">
-                 {['all', 'pending', 'shipped', 'delivered', 'cancelled'].map((f) => (
+                 {['active', 'archived', 'all'].map((f) => (
                      <button
                         key={f}
                         onClick={() => setFilter(f)}
@@ -505,7 +509,7 @@ export default function OrdersPage() {
                             </td>
                             <td className="p-4 align-middle">
                                 <Badge variant="outline" className={`capitalize rounded-full font-black px-3 py-1 ${getStatusColor(order.status)}`}>
-                                    {statusTranslations[order.status || 'pending'] || order.status}
+                                    {STATUS_LABELS[order.status || 'pending'] || order.status}
                                 </Badge>
                             </td>
                              <td className="p-4 align-middle text-xs text-muted-foreground">

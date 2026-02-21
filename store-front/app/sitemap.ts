@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .from('products')
     .select('slug, created_at')
     .eq('is_active', true)
+    .limit(100)
 
   const productRoutes = (products || []).map((product: any) => ({
     url: `${baseUrl}/shop/${product.slug}`,

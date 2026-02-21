@@ -12,7 +12,7 @@ type ProductWithBreed = Database['public']['Tables']['products']['Row'] & {
 }
 
 interface PortfolioSectionProps {
-    initialProducts?: ProductWithBreed[]
+    initialProducts?: any[]
 }
 
 const FALLBACK_BREEDS = [

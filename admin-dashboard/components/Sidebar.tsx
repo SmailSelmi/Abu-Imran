@@ -34,6 +34,7 @@ export function Sidebar({ className }: { className?: string }) {
     { name: t.sidebar.hatching, href: "/hatching", icon: Egg },
     { name: t.sidebar.inventory, href: "/inventory/breeds", icon: Package },
     { name: t.sidebar.customers, href: "/customers", icon: Users },
+    { name: "الإحصائيات", href: "/analytics", icon: LayoutDashboard },
     { name: t.sidebar.settings, href: "/settings", icon: Settings },
   ];
 
@@ -175,6 +176,7 @@ export function MobileSidebar() {
     { name: t.sidebar.orders, href: "/orders", icon: ShoppingCart },
     { name: t.sidebar.inventory, href: "/inventory/breeds", icon: Package },
     { name: t.sidebar.customers, href: "/customers", icon: Users },
+    { name: "الإحصائيات", href: "/analytics", icon: LayoutDashboard },
     { name: t.sidebar.settings, href: "/settings", icon: Settings },
   ];
 

@@ -41,7 +41,7 @@ export default function CustomerDetailsPage() {
     // Fetch Customer
     const { data: custData, error: custError } = await (supabase as any)
         .from('customers')
-        .select('*')
+        .select('id, full_name, phone, notes, tags, total_spent, total_orders, reliability_score, wilaya, commune')
         .eq('id', id)
         .single()
     
@@ -54,7 +54,7 @@ export default function CustomerDetailsPage() {
     // Fetch Orders - Using standardized total_amount
     const { data: ordData, error: ordError } = await (supabase as any)
         .from('orders')
-        .select('*')
+        .select('id, product_name, category, created_at, total_amount, quantity, status')
         .eq('customer_id', id)
         .order('created_at', { ascending: false })
 

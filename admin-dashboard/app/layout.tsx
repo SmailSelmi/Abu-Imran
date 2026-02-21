@@ -16,6 +16,27 @@ const tajawal = Tajawal({
 export const metadata: Metadata = {
   title: "أبو عمران | لوحة التحكم",
   description: "نظام إدارة متجر أبو عمران لتربية الدواجن ومعداتها",
+  applicationName: "أبو عمران أدمين",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "أبو عمران أدمين",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  manifest: "/manifest.json",
+  icons: {
+    apple: "/icons/icon-192.png",
+  }
+};
+
+export const viewport = {
+    themeColor: "#18181b", // zinc-950
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
 };
 
 export default function RootLayout({
@@ -34,7 +55,7 @@ export default function RootLayout({
                 <I18nProvider>
                     {children}
                     <RealtimeNotifications />
-                    <Toaster richColors position="bottom-right" />
+                    <Toaster richColors position="top-center" />
                 </I18nProvider>
             </ThemeProvider>
         </ErrorBoundary>

@@ -3,8 +3,9 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Bell, X, ShoppingCart, Egg, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 import { ar } from 'date-fns/locale'
+import Link from 'next/link'
 
 type NotifType = 'order' | 'hatching'
 
@@ -77,6 +78,11 @@ export function NotificationBell() {
       .channel('notif-orders')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'orders' }, (payload) => {
         const order = payload.new as any
+
+        // Play cashier sound
+        const audio = new Audio('/cashier.mp3')
+        audio.play().catch(e => console.error("Audio play blocked", e))
+
         const n: Notification = {
           id: order.id,
           customer_name: order.customer_name || 'زبون',
@@ -94,13 +100,18 @@ export function NotificationBell() {
     const hatchingChannel = supabase
       .channel('notif-hatching')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'hatching_bookings' }, (payload) => {
-        const b = payload.new as any
+        const booking = payload.new as any
+
+        // Play cashier sound
+        const audio = new Audio('/cashier.mp3')
+        audio.play().catch(e => console.error("Audio play blocked", e))
+
         const n: Notification = {
-          id: b.id,
+          id: booking.id,
           customer_name: 'زبون جديد',
-          total_amount: b.total_price || 0,
-          product_name: `حجز تفقيس — ${b.egg_count || '?'} بيضة`,
-          created_at: b.created_at || new Date().toISOString(),
+          total_amount: booking.total_price || 0,
+          product_name: `حجز تفقيس — ${booking.egg_count || '?'} بيضة`,
+          created_at: booking.created_at || new Date().toISOString(),
           read: false,
           type: 'hatching',
         }
@@ -170,8 +181,13 @@ export function NotificationBell() {
                 </div>
               ) : (
                 notifications.map((n) => (
-                  <div
+                  <Link
+                    href={n.type === 'order' ? `/orders?id=${n.id}` : `/hatching?id=${n.id}`}
                     key={`${n.type}-${n.id}`}
+                    onClick={() => {
+                        setNotifications(prev => prev.map(p => p.id === n.id ? { ...p, read: true } : p))
+                        setIsOpen(false)
+                    }}
                     className={`px-4 py-3 flex gap-3 items-start transition-colors ${!n.read ? 'bg-emerald-50/50 dark:bg-emerald-900/10' : 'hover:bg-muted/30'}`}
                   >
                     {/* Icon differs by type */}
@@ -182,7 +198,7 @@ export function NotificationBell() {
                       }
                     </div>
                     <div className="flex-1 min-w-0 space-y-0.5">
-                      <p className="text-sm font-bold truncate">{n.customer_name}</p>
+                      <p className={`text-sm truncate ${!n.read ? 'font-black' : 'font-bold'}`}>{n.customer_name}</p>
                       <p className="text-xs text-muted-foreground truncate">{n.product_name}</p>
                       <div className="flex items-center justify-between">
                         <span className={`text-xs font-black ${n.type === 'hatching' ? 'text-amber-600' : 'text-emerald-600'}`}>
@@ -190,12 +206,12 @@ export function NotificationBell() {
                         </span>
                         <span className="text-[10px] text-muted-foreground flex items-center gap-1 opacity-60">
                           <Clock className="w-3 h-3" />
-                          {n.created_at ? formatDistanceToNow(new Date(n.created_at), { addSuffix: true, locale: ar }) : ''}
+                          {n.created_at ? formatDistanceToNow(parseISO(n.created_at + 'Z'), { addSuffix: true, locale: ar }) : ''}
                         </span>
                       </div>
                     </div>
                     {!n.read && <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0" />}
-                  </div>
+                  </Link>
                 ))
               )}
             </div>

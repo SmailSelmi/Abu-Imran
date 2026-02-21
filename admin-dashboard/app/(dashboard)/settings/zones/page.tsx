@@ -40,8 +40,8 @@ export default function DeliveryZonesPage() {
 
   const fetchZones = React.useCallback(async () => {
     setLoading(true)
-    const { data, error } = await supabase.from('delivery_zones').select('*').order('name')
-    if (error) toast.error('Failed to load zones')
+    const { data, error } = await supabase.from('delivery_zones').select('id, name, base_fee, estimated_days, wilayas').order('name')
+    if (error) toast.error('فشل في تحميل المناطق')
     else setZones(data as unknown as DeliveryZone[] || [])
     setLoading(false)
   }, [supabase])

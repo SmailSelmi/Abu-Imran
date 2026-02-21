@@ -10,13 +10,15 @@ export interface CategoryInfo {
   basePrice: number;
 }
 
+export const SHARED_BREEDS = ["أسترالورب", "بليموث روك", "صاصو", "براهما", "ليغهورن", "بلدي"];
+
 export const CATEGORY_DATA: Record<string, CategoryInfo> = {
   eggs: {
     name: "بيض مخصب",
     name_ar: "بيض مخصب",
     icon: Egg,
     image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
-    variants: ["أسترالورب", "بليموث روك", "صاصو", "براهما", "ليغهورن", "بلدي"],
+    variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
     basePrice: 150
   },
@@ -25,7 +27,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
     name_ar: "كتاكيت وفلاليس",
     icon: Bird,
     image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
-    variants: ["أسترالورب", "بليموث روك", "صاصو", "براهما", "بلدي"],
+    variants: SHARED_BREEDS.filter(b => b !== "ليغهورن"), // Example subset
     variantLabel: "اختر السلالة",
     basePrice: 350
   },
