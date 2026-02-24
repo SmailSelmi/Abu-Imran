@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 import { Header } from "@/components/Header";
-import { BottomNav } from "@/components/BottomNav";
 import { Footer } from "@/components/Footer";
 import { SplashScreen } from "@/components/SplashScreen";
 import { Toaster } from "sonner";
@@ -71,8 +70,8 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/icon0.svg",
-    apple: "/icons/icon-192.png",
+    icon: "/AbuImranLogo.svg",
+    apple: "/AbuImranLogo.svg",
   },
 };
 
@@ -92,16 +91,16 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
-        className={`${tajawal.variable} font-sans antialiased bg-white dark:bg-zinc-950 min-h-screen flex flex-col`}
+        className={`${tajawal.variable} font-sans antialiased bg-white dark:bg-zinc-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <I18nProvider>
               <SplashScreen />
               <Header />
-              <main className="flex-1 pb-20 xl:pb-0">{children}</main>
+              <main className="flex-1">{children}</main>
               <Footer />
-              <BottomNav />
               <Toaster richColors position="top-center" />
             </I18nProvider>
           </ThemeProvider>

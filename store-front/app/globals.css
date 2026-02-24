@@ -4,33 +4,33 @@
 
 @theme {
   --font-tajawal: var(--font-tajawal), system-ui, sans-serif;
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
 :root {
-  --background: 160 20% 98%;
-  --foreground: 160 10% 3.9%;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
-  --card-foreground: 160 10% 15%;
+  --card-foreground: 240 10% 3.9%;
   --popover: 0 0% 100%;
-  --popover-foreground: 160 10% 15%;
+  --popover-foreground: 240 10% 3.9%;
   --primary: 158 80% 40%;
   --primary-foreground: 160 100% 98%;
-  --secondary: 160 10% 95%;
-  --secondary-foreground: 160 10% 10%;
-  --muted: 160 5% 92%;
-  --muted-foreground: 160 5% 45%;
-  --accent: 158 80% 40%;
-  --accent-foreground: 160 100% 98%;
-  --destructive: 0 84% 60%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  --border: 160 10% 90%;
-  --input: 160 10% 90%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
   --ring: 158 80% 40%;
-  --radius: 1.25rem;
+  --radius: 0.75rem;
 
   --font-tajawal: var(--font-tajawal);
   --color-border: hsl(var(--border));
@@ -57,30 +57,28 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --radius-xl: 0.75rem;
-  --radius-2xl: 0.75rem;
-  --radius-3xl: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 
-  /* 8pt Spacing Tokens */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-  --spacing-16: 4rem;
-  --spacing-20: 5rem;
-  --spacing-32: 8rem;
+  /* Google-Style Spacing */
+  --spacing-1: 0.5rem;
+  --spacing-2: 1rem;
+  --spacing-3: 1.5rem;
+  --spacing-4: 2rem;
+  --spacing-5: 2.5rem;
+  --spacing-6: 3rem;
+  --spacing-8: 4rem;
+  --spacing-10: 5rem;
+  --spacing-12: 6rem;
+  --spacing-16: 8rem;
 
   --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
-  /* Premium Shadows */
+  /* Google-Style Shadows (Subtle) */
   --shadow-premium:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 15px rgba(16, 185, 129, 0.15);
 }
 
 .dark {
@@ -130,8 +128,9 @@ h3,
 h4,
 h5,
 h6 {
-  letter-spacing: -0.05em;
-  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 button,

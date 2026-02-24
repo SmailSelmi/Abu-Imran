@@ -68,7 +68,7 @@ export function Sidebar({ className }: { className?: string }) {
         <Link href="/" className="flex items-center gap-4 group">
           <div className="w-16 h-16 p-1 rounded-xl flex items-center justify-center shrink-0 transition-all group-hover:scale-110 group-hover:rotate-6 relative">
             <Image
-              src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg"
+              src="/AbuImranLogo.svg"
               alt="Logo"
               fill
               className="object-contain"
@@ -156,7 +156,7 @@ export function Sidebar({ className }: { className?: string }) {
             <div className="absolute -top-4 -right-4 w-16 h-16 bg-emerald-500/5 rounded-full blur-2xl group-hover:scale-150 transition-all duration-700" />
             <div className="flex items-center gap-3 mb-4 relative z-10">
               <div className="w-10 h-10 rounded-full bg-white shadow-xl shadow-emerald-500/20 shrink-0 border-2 border-white ring-2 ring-emerald-500/5 relative overflow-hidden flex items-center justify-center p-1">
-                <Image src="/icon0.svg" alt="Admin Profile" className="object-contain" fill />
+                <Image src="/AbuImranLogo.svg" alt="Admin Profile" className="object-contain" fill />
               </div>
               <div className="overflow-hidden space-y-0.5">
                 <p className="text-xs font-black text-foreground truncate uppercase tracking-tighter">
@@ -250,7 +250,7 @@ export function MobileSidebar() {
           >
             <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-600 shadow-sm shrink-0 relative overflow-hidden p-1">
               <Image
-                src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg"
+                src="/AbuImranLogo.svg"
                 alt="Logo"
                 fill
                 className="object-contain"

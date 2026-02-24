@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import {
   Card,
@@ -78,11 +78,7 @@ export default function IncubatorsPage() {
     }));
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async (showLoader = true) => {
+  const fetchProducts = useCallback(async (showLoader = true) => {
     if (showLoader) setLoading(true);
     const { data, error } = await supabase
       .from("products")
@@ -100,7 +96,14 @@ export default function IncubatorsPage() {
       setProducts((data as unknown as Product[]) || []);
     }
     if (showLoader) setLoading(false);
-  };
+  }, [supabase]);
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchProducts();
+    };
+    init();
+  }, [fetchProducts]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();

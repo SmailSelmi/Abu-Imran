@@ -24,7 +24,7 @@ const LordIconInner = dynamic(
       iconRef: React.RefObject<HTMLElement | null>;
     }
 
-    return ({
+    const Inner = ({
       src,
       trigger,
       colors,
@@ -65,6 +65,9 @@ const LordIconInner = dynamic(
         />
       );
     };
+
+    Inner.displayName = "LordIconInner";
+    return Inner;
   },
   { ssr: false },
 );

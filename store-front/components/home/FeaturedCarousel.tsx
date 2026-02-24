@@ -19,7 +19,7 @@ export default function FeaturedCarousel() {
     },
     {
       id: "chicks",
-      name: "كتاكيت وفلاليس",
+      name: "كتاكيت",
       desc: "محصنة وبصحة ممتازة (جميع الأعمار)",
       icon: Bird,
       color: "from-emerald-400 to-emerald-600",

@@ -21,16 +21,16 @@ export default function Error({
           <AlertTriangle className="w-10 h-10 text-red-600 dark:text-red-400" />
         </div>
         <h2 className="text-3xl font-black tracking-tighter text-red-950 dark:text-red-50">
-          Something went wrong!
+          حدث خطأ ما!
         </h2>
-        <p className="text-red-800/70 dark:text-red-200/70 font-medium">
-          An unexpected error has occurred. We've been notified.
+        <p className="text-red-800/70 dark:text-red-200/70 font-bold leading-relaxed">
+          وقع خطأ غير متوقع. لقد تم إخطار فريقنا التقني وسنعمل على إصلاحه.
         </p>
         <Button
           onClick={() => reset()}
-          className="w-full h-12 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-md shadow-red-500/20"
+          className="w-full h-14 bg-red-600 hover:bg-red-700 text-white font-black text-lg rounded-xl shadow-lg shadow-red-500/20 transition-all active:scale-95"
         >
-          Try again
+          حاول مرة أخرى
         </Button>
       </div>
     </div>

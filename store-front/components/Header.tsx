@@ -45,12 +45,12 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed top-0 start-0 end-0 z-50 transition-all duration-500",
+          "fixed top-0 start-0 end-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl border border-border/20 mt-3 mx-4 md:mx-8 rounded-[2rem] py-2 shadow-md shadow-emerald-900/5 dark:shadow-black/20"
+            ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-border/50 py-2 shadow-sm"
             : isTransparent
-              ? "bg-transparent py-5"
-              : "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl shadow-sm shadow-emerald-900/5 dark:shadow-black/20 py-3",
+              ? "bg-transparent py-6"
+              : "bg-white dark:bg-zinc-950 border-b border-border/50 py-3",
         )}
       >
         <div className="container mx-auto px-5 flex items-center justify-between">
@@ -61,16 +61,16 @@ export function Header() {
           >
             <div
               className={cn(
-                "relative flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600/10 backdrop-blur-xl text-white shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 ring-2 ring-white/10 group-hover:ring-emerald-500/30 overflow-hidden p-1.5",
+                "relative flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600/5 text-white transition-all duration-300 group-hover:scale-105 overflow-hidden p-1",
               )}
             >
               <Image
-                src="/icon0.svg"
+                src="/AbuImranLogo.svg"
                 alt="أبو عمران"
                 fill
                 priority
                 sizes="44px"
-                className="object-contain transition-all duration-500 dark:brightness-0 dark:invert"
+                className="object-contain transition-all duration-500"
               />
             </div>
             <span
@@ -86,16 +86,13 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => {
-              const [isHovered, setIsHovered] = useState(false);
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
                   className={cn(
                     "text-sm font-bold tracking-tight transition-all flex items-center gap-2 px-3 py-2 rounded-xl relative group",
                     isActive
@@ -105,19 +102,6 @@ export function Header() {
                         : "text-muted-foreground hover:text-emerald-600 hover:bg-muted/50",
                   )}
                 >
-                  <Icon
-                    src={link.icon}
-                    parentHover={isHovered}
-                    size={18}
-                    colors={{
-                      primary: isActive
-                        ? "#059669"
-                        : isTransparent
-                          ? "#ffffff"
-                          : "#10b981",
-                      secondary: "#ffffff",
-                    }}
-                  />
                   {link.label}
                 </Link>
               );
@@ -134,7 +118,7 @@ export function Header() {
               )}
             />
 
-            <Link href="/shop" className="hidden md:flex">
+            <Link href="/#shop" className="hidden md:flex">
               <Button className="rounded-xl h-9 px-5 text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 transition-all duration-500 hover:scale-105 active:scale-95 group">
                 {t.common.orderNow}
                 <ArrowLeft className="me-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -145,7 +129,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               className={cn(
-                "xl:hidden rounded-xl h-10 w-10",
+                "lg:hidden rounded-xl h-10 w-10",
                 isTransparent
                   ? "text-white bg-white/10 hover:bg-white/20"
                   : "text-foreground bg-muted/50 hover:bg-muted",
@@ -166,7 +150,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md xl:hidden"
+              className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -174,13 +158,13 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 end-0 z-[61] w-full max-w-sm bg-background border-s border-border p-8 shadow-md xl:hidden flex flex-col pt-24"
+              className="fixed inset-y-0 start-0 z-[61] w-full max-w-sm bg-white dark:bg-zinc-950 border-e border-slate-200 dark:border-white/10 p-8 shadow-2xl lg:hidden flex flex-col pt-24"
             >
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="absolute top-6 end-6 rounded-full bg-muted/50 hover:bg-muted h-11 w-11"
+                className="absolute top-6 end-6 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 h-11 w-11 text-slate-900 dark:text-white"
               >
                 <X className="w-5 h-5" />
               </Button>
@@ -200,10 +184,9 @@ export function Header() {
                         "flex items-center gap-4 text-xl font-bold transition-all p-3 rounded-xl",
                         pathname === link.href
                           ? "bg-emerald-600/10 text-emerald-600"
-                          : "text-foreground hover:bg-muted",
+                          : "text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/5",
                       )}
                     >
-
                       {link.label}
                     </Link>
                   </motion.div>
@@ -211,7 +194,7 @@ export function Header() {
               </div>
 
               <div className="mt-auto space-y-4 pt-6 border-t border-border">
-                <Link href="/shop" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/#shop" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12 text-base shadow-md shadow-emerald-500/20">
                     {t.common.orderNow}
                   </Button>
@@ -253,7 +236,6 @@ function NavItem({
             : "text-muted-foreground hover:text-emerald-600 hover:bg-muted/50",
       )}
     >
-
       {link.label}
     </Link>
   );

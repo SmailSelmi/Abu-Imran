@@ -12,25 +12,19 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#10b981",
     icons: [
       {
-        src: "/icon0.svg",
+        src: "/AbuImranLogo.svg",
         sizes: "any",
         type: "image/svg+xml",
       },
       {
-        src: "/icons/icon-192.png",
+        src: "/AbuImranLogo.svg",
         sizes: "192x192",
-        type: "image/png",
+        type: "image/svg+xml",
       },
       {
-        src: "/icons/icon-512.png",
+        src: "/AbuImranLogo.svg",
         sizes: "512x512",
-        type: "image/png",
-      },
-      {
-        src: "/icons/icon-512-maskable.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable",
+        type: "image/svg+xml",
       },
     ],
   };

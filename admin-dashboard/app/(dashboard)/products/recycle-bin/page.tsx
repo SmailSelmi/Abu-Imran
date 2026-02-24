@@ -44,7 +44,10 @@ export default function RecycleBinPage() {
   };
 
   useEffect(() => {
-    fetchDeletedProducts();
+    const init = async () => {
+      await fetchDeletedProducts();
+    };
+    init();
   }, []);
 
   const handleRestore = async (id: string) => {

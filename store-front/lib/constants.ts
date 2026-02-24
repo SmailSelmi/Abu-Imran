@@ -10,13 +10,88 @@ export interface CategoryInfo {
   basePrice: number;
 }
 
+export const BREED_FAMILIES = [
+  {
+    id: "australorp",
+    name_ar: "أسترالورب",
+    name_en: "Australorp",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
+    breeds: ["أسترالورب محسن أسود", "أسترالورب محسن رمادي"],
+    slugs: ["australorp-black", "australorp-grey"],
+  },
+  {
+    id: "new-hampshire",
+    name_ar: "نيوهامبشير",
+    name_en: "New Hampshire",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
+    breeds: ["نيوهامبشير الطوق الأسود"],
+    slugs: ["new-hampshire-black-collar"],
+  },
+  {
+    id: "plymouth-rock",
+    name_ar: "بلايموث روك",
+    name_en: "Plymouth Rock",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
+    breeds: ["بليموث روك باري", "بليموث روك سيلفر"],
+    slugs: ["plymouth-rock-barred", "plymouth-rock-silver"],
+  },
+  {
+    id: "sussex-rhode-island",
+    name_ar: "سيساكس / رود آيلاند",
+    name_en: "Sussex & Rhode Island",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
+    breeds: ["سيساكس أرميني", "رود آيلاند أكاجو"],
+    slugs: ["sussex-armenian", "rhode-island-akaju"],
+  },
+  {
+    id: "sprite",
+    name_ar: "سبرايت أنيق",
+    name_en: "Sprite",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
+    breeds: ["سبرايت أنيق ذهبي", "سبرايت أنيق ليموني", "سبرايت أنيق فضي"],
+    slugs: ["sprite-gold", "sprite-lemon", "sprite-silver"],
+  },
+  {
+    id: "brahma",
+    name_ar: "براهما",
+    name_en: "Brahma",
+    image: "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
+    breeds: [
+      "براهما أرميني",
+      "براهما كولومبي",
+      "براهما نوار كوربو",
+      "براهما ميل فلور",
+      "براهما أزرق",
+      "براهما كايوتي",
+    ],
+    slugs: [
+      "brahma-armenian",
+      "brahma-columbian",
+      "brahma-noir-corbeau",
+      "brahma-mille-fleur",
+      "brahma-blue",
+      "brahma-coyote",
+    ],
+  },
+];
+
 export const SHARED_BREEDS = [
-  "أسترالورب",
-  "بليموث روك",
-  "صاصو",
-  "براهما",
-  "ليغهورن",
-  "بلدي",
+  "أسترالورب محسن أسود",
+  "أسترالورب محسن رمادي",
+  "نيوهامبشير الطوق الأسود",
+  "بليموث روك باري",
+  "بليموث روك سيلفر",
+  "سيساكس أرميني",
+  "رود آيلاند أكاجو",
+  "سبرايت أنيق ذهبي",
+  "سبرايت أنيق ليموني",
+  "سبرايت أنيق فضي",
+  "براهما أرميني",
+  "براهما كولومبي",
+  "براهما نوار كوربو",
+  "براهما ميل فلور",
+  "براهما أزرق",
+  "براهما كايوتي",
 ];
 
 export const CATEGORY_DATA: Record<string, CategoryInfo> = {
@@ -31,12 +106,12 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
     basePrice: 150,
   },
   chicks: {
-    name: "كتاكيت وفلاليس",
-    name_ar: "كتاكيت وفلاليس",
+    name: "كتاكيت",
+    name_ar: "كتاكيت",
     icon: Bird,
     image:
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
-    variants: SHARED_BREEDS.filter((b) => b !== "ليغهورن"), // Example subset
+    variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
     basePrice: 350,
   },
@@ -46,7 +121,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
     icon: Bird,
     image:
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
-    variants: ["أسترالورب", "بليموث روك", "صاصو", "براهما"],
+    variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
     basePrice: 2500,
   },
@@ -139,22 +214,22 @@ export const NAV_LINKS = (t: {
     icon: "https://cdn.lordicon.com/wmwqvixz.json",
   },
   {
-    href: "/shop?category=eggs",
+    href: "/?category=eggs#shop",
     label: t.common.hatchingEggs,
     icon: "https://cdn.lordicon.com/lpddubrl.json",
   },
   {
-    href: "/shop?category=chicks",
+    href: "/?category=chicks#shop",
     label: t.common.chicks,
     icon: "https://cdn.lordicon.com/yxyampkf.json",
   },
   {
-    href: "/shop?category=chickens",
+    href: "/?category=chickens#shop",
     label: t.common.adultChickens,
     icon: "https://cdn.lordicon.com/ggidpqrj.json",
   },
   {
-    href: "/shop?category=machine",
+    href: "/?category=machine#shop",
     label: t.common.equipment,
     icon: "https://cdn.lordicon.com/mfmkufkr.json",
   },

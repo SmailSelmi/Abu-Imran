@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n/I18nContext";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export function Footer() {
   const { t, isRTL, locale } = useI18n();
@@ -24,11 +25,85 @@ export function Footer() {
 
   return (
     <footer
-      className="w-full bg-zinc-950 text-white pt-24 pb-12 relative overflow-hidden"
+      className="w-full bg-white dark:bg-black text-slate-900 dark:text-white pt-16 pb-12 relative z-10"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      {/* Top Gradient Border */}
-      <div className="absolute top-0 start-0 w-full h-1 bg-gradient-to-r from-emerald-900 via-emerald-500 to-emerald-900 opacity-50" />
+      {/* Premium Animated Divider with Gap */}
+      <div className="absolute top-0 inset-x-0 h-px w-full flex items-center justify-center">
+        {/* Left Segment */}
+        <div className="relative flex-1 h-px">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/40 to-emerald-500/40 mr-[18px] md:mr-[22px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-blue-500/20 translate-x-1/4 mr-[18px] md:mr-[22px]" />
+        </div>
+        
+        {/* 2px Gap on each side of the egg (radius + 2px) */}
+        <div className="w-[36px] md:w-[44px] shrink-0 h-px bg-transparent" />
+        
+        {/* Right Segment */}
+        <div className="relative flex-1 h-px">
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-emerald-500/40 to-emerald-500/40 ml-[18px] md:ml-[22px]" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-500/20 to-blue-500/20 -translate-x-1/4 ml-[18px] md:ml-[22px]" />
+        </div>
+      </div>
+      
+      {/* Subtle Glow Effect */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-emerald-500/5 blur-[40px] pointer-events-none" />
+
+      {/* Decorative Center Element (Animated Egg - Pure SVG) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
+        <div className="relative flex items-center justify-center">
+          <svg
+            viewBox="0 0 24 24"
+            className="w-8 h-8 md:w-10 md:h-10"
+            style={{ 
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 1px rgba(16, 185, 129, 0.4))' 
+            }}
+          >
+            {/* Outline Egg */}
+            <path
+              d="M12 2C8 2 4 7 4 14C4 18.5 7.5 22 12 22C16.5 22 20 18.5 20 14C20 7 16 2 12 2Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              className="text-emerald-500/20"
+            />
+            
+            {/* Clipping Mask for the Filling Effect */}
+            <defs>
+              <clipPath id="eggClip">
+                <path d="M12 2C8 2 4 7 4 14C4 18.5 7.5 22 12 22C16.5 22 20 18.5 20 14C20 7 16 2 12 2Z" />
+              </clipPath>
+            </defs>
+
+            {/* The "Water" Filling Animation with Wave Effect */}
+            <g clipPath="url(#eggClip)">
+              <motion.path
+                animate={{
+                  d: [
+                    "M-5 20 Q 5 18, 12 20 T 29 20 L 29 30 L -5 30 Z",
+                    "M-5 20 Q 5 22, 12 20 T 29 20 L 29 30 L -5 30 Z",
+                    "M-5 20 Q 5 18, 12 20 T 29 20 L 29 30 L -5 30 Z"
+                  ],
+                  y: [4, -14, 4],
+                }}
+                transition={{
+                  d: { duration: 2, repeat: Infinity, ease: "linear" },
+                  y: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+                }}
+                fill="url(#eggGradient)"
+              />
+            </g>
+
+            {/* Gradient for the Liquid */}
+            <defs>
+              <linearGradient id="eggGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#10b981" />
+                <stop offset="100%" stopColor="#059669" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
 
       {/* Background Glow */}
       <div className="absolute bottom-0 start-0 w-[500px] h-[500px] bg-emerald-900/5 rounded-full blur-[100px] pointer-events-none" />
@@ -36,81 +111,80 @@ export function Footer() {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
           {/* Brand Column */}
-          <div className="space-y-8">
-            <Link className="flex items-center gap-4 group" href="/">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-xl text-white shadow-2xl transition-all group-hover:scale-110 group-hover:rotate-3 ring-1 ring-white/10 p-2 overflow-hidden relative">
+          <div className="space-y-6">
+            <Link className="flex items-center gap-3 group" href="/">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600/5 text-white transition-all group-hover:scale-105 overflow-hidden p-1.5 relative">
                 <Image
-                  src="/icon0.svg"
-                  alt="Abu Imran Logo"
+                  src="/AbuImranLogo.svg"
+                  alt="أبو عمران"
                   fill
-                  className="object-contain dark:brightness-0 dark:invert"
+                  className="object-contain"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-2xl tracking-tighter leading-none">
+                <span className="font-bold text-xl tracking-tight leading-none">
                   {t.common.brand}
                 </span>
-                <span className="text-emerald-500 font-black tracking-[0.3em] text-[10px] uppercase opacity-70 mt-1">
+                <span className="text-emerald-600 font-bold tracking-widest text-[9px] uppercase opacity-70 mt-1">
                   {t.common.premiumGenetics}
                 </span>
               </div>
             </Link>
-            <p className="text-zinc-400 leading-relaxed text-lg font-medium opacity-80">
+            <p className="text-muted-foreground leading-relaxed text-base">
               {t.footer.description}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map(({ icon: IconComp, name, href }, i) => (
                 <Link
                   key={i}
                   href={href}
                   aria-label={`Follow us on ${name}`}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all hover:-translate-y-1 shadow-lg ring-1 ring-white/10"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600/5 border border-emerald-500/10 hover:bg-emerald-600 hover:text-white transition-all shadow-sm"
                 >
-                  <IconComp className="h-5 w-5" />
+                  <IconComp className="h-4 w-4" />
                 </Link>
               ))}
             </div>
           </div>
-
+ 
           {/* Quick Links */}
-          <div className="space-y-8">
-            <h3 className="font-black text-xs uppercase tracking-[0.3em] text-emerald-500">
+          <div className="space-y-6">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
               {t.footer.shop}
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-4">
               {[
-                { label: t.footer.links.eggs, href: "/shop?category=eggs" },
-                { label: t.footer.links.chicks, href: "/shop?category=chicks" },
+                { label: t.footer.links.eggs, href: "/?category=eggs#shop" },
+                { label: t.footer.links.chicks, href: "/?category=chicks#shop" },
                 {
                   label: t.footer.links.adult,
-                  href: "/shop?category=chickens",
+                  href: "/?category=chickens#shop",
                 },
                 {
                   label: t.footer.links.machine,
-                  href: "/shop?category=machine",
+                  href: "/?category=machine#shop",
                 },
               ].map((link, i) => (
                 <li key={i}>
                   <Link
-                    className="text-zinc-400 hover:text-white transition-all flex items-center gap-4 group font-black text-sm tracking-tight"
+                    className="text-muted-foreground hover:text-emerald-600 transition-all flex items-center gap-3 font-semibold text-sm"
                     href={link.href}
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600/30 group-hover:bg-emerald-500 group-hover:scale-150 transition-all shrink-0"></span>
+                    <span className="h-1 w-1 rounded-full bg-emerald-600/20 group-hover:bg-emerald-500 transition-all shrink-0"></span>
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
+ 
           {/* Support */}
-          <div className="space-y-8">
-            <h3 className="font-black text-xs uppercase tracking-[0.3em] text-emerald-500">
+          <div className="space-y-6">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
               {t.footer.support}
             </h3>
             <ul className="space-y-5">
               {[
-                { label: t.footer.links.contactUs, href: "/contact" },
                 { label: t.footer.links.shipping, href: "/shipping" },
                 { label: t.footer.links.return, href: "/returns" },
                 { label: t.footer.links.faq, href: "/faq" },
@@ -118,7 +192,7 @@ export function Footer() {
                 <li key={i}>
                   <Link
                     className={cn(
-                      "text-zinc-400 hover:text-white transition-all inline-block font-black text-sm tracking-tight",
+                      "text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-white transition-all inline-block font-black text-sm tracking-tight",
                       isRTL ? "hover:-translate-x-1" : "hover:translate-x-1",
                     )}
                     href={link.href}
@@ -131,37 +205,45 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8">
-            <h3 className="font-black text-xs uppercase tracking-[0.3em] text-emerald-500">
-              {t.footer.contact}
+          <div className="space-y-6">
+            <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
+              تواصل مباشر
             </h3>
-            <ul className="space-y-6">
-              <li className="flex items-start gap-5">
-                <div className="p-3.5 bg-emerald-600/10 rounded-xl text-emerald-500 ring-1 ring-emerald-500/20">
-                  <MapPin className="h-6 w-6 shrink-0" />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] uppercase font-black tracking-widest text-zinc-500">
-                    {t.common.location}
-                  </span>
-                  <span className="font-black text-sm text-zinc-300">
-                    {t.footer.delivery58}
-                  </span>
-                </div>
+            <ul className="space-y-5">
+              <li>
+                <a
+                  href="https://maps.app.goo.gl/RGFgiP21gvVkJB9n7?g_st=aw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 group/address"
+                >
+                  <div className="p-3 bg-emerald-600/5 rounded-lg text-emerald-600 border border-emerald-500/10 group-hover/address:bg-emerald-600 group-hover/address:text-white transition-all duration-300">
+                    <MapPin className="h-5 w-5 shrink-0" />
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground group-hover/address:text-emerald-600 transition-colors">
+                      {t.common.location}
+                    </span>
+                    <span className="font-semibold text-sm text-foreground group-hover/address:text-emerald-600 transition-colors">
+                      الجزائر، بلدية الزيتونة، ولاية الطارف
+                    </span>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-5">
-                <div className="p-3.5 bg-emerald-600/10 rounded-xl text-emerald-500 ring-1 ring-emerald-500/20">
-                  <Phone className="h-6 w-6 shrink-0" />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] uppercase font-black tracking-widest text-zinc-500">
-                    {t.common.contactMethod}
-                  </span>
+              <li>
+                <div className="space-y-4">
                   <a
-                    href="https://wa.me/213665243819"
-                    className="font-black text-xl text-emerald-500 tracking-tighter tabular-nums hover:text-emerald-400 transition-colors"
+                    href="tel:+213665243819"
+                    className="flex items-center gap-4 group/phone"
                   >
-                    +213 665 24 38 19
+                    <div className="w-10 h-10 rounded-xl bg-emerald-600/10 flex items-center justify-center text-emerald-600 group-hover/phone:bg-emerald-600 group-hover/phone:text-white transition-all duration-300">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <span className="font-bold text-lg text-emerald-600 tracking-tight transition-colors" dir="ltr">
+                        +213 665 24 38 19
+                      </span>
+                    </div>
                   </a>
                 </div>
               </li>
@@ -169,11 +251,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-12 mt-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-xs text-zinc-500 text-center md:text-start font-black tracking-tight opacity-50">
+        <div className="border-t border-slate-200 dark:border-white/5 pt-12 mt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-xs text-slate-500 dark:text-zinc-500 text-center md:text-start font-black tracking-tight opacity-50">
             © 2026 {t.common.brand}. {t.footer.rights}
           </p>
-          <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+          <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-zinc-500">
             <Link
               href="/privacy"
               className="hover:text-emerald-500 transition-colors opacity-70 hover:opacity-100"

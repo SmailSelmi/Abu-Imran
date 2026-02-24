@@ -13,15 +13,14 @@ export default function NotFound() {
           404
         </h2>
         <p className="text-xl text-muted-foreground font-bold mb-8">
-          Page not found.
+          الصفحة غير موجودة
         </p>
-        <p className="text-muted-foreground mb-10 leading-relaxed max-w-sm mx-auto">
-          The page you are looking for doesn't exist or has been moved. Let's
-          get you back on track.
+        <p className="text-muted-foreground mb-10 leading-relaxed max-w-sm mx-auto font-medium">
+          الصفحة التي تبحث عنها غير موجودة أو تم نقلها. دعنا نعيدك إلى المسار الصحيح.
         </p>
         <Link href="/">
           <Button className="w-full h-14 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-lg rounded-xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02]">
-            Return to Farm Home
+            العودة للرئيسية
           </Button>
         </Link>
       </div>

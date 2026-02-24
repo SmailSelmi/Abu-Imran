@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import ShopClient from "./ShopClient";
 import { Database } from "@/types/supabase";
+import { redirect } from "next/navigation";
 
 export const revalidate = 3600; // revalidate at most every hour
 
@@ -17,7 +18,7 @@ async function getProducts(category?: string) {
   let query = supabase
     .from("products")
     .select(
-      "id, name_en, name, slug, category, subcategory, price, stock, image_url, families(name_ar), breeds(name_ar)",
+      "id, name_en, name, slug, category, subcategory, price, stock, image_url",
     )
     .is("deleted_at", null)
     .order("price", { ascending: true });
@@ -29,7 +30,7 @@ async function getProducts(category?: string) {
   const { data, error } = await query;
 
   if (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching products:", JSON.stringify(error, null, 2));
     return [];
   }
 
@@ -42,17 +43,8 @@ export default async function ShopPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category } = await searchParams;
-  const products = await getProducts(category);
-
-  return (
-    <section className="min-h-screen bg-background pt-32 pb-20">
-      <div className="container px-4 mx-auto">
-        <Suspense fallback={<ShopSkeleton />}>
-          <ShopClient initialProducts={products} initialCategory={category} />
-        </Suspense>
-      </div>
-    </section>
-  );
+  const queryString = category ? `?category=${category}` : "";
+  redirect(`/${queryString}#shop`);
 }
 
 function ShopSkeleton() {

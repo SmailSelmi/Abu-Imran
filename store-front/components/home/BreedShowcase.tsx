@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Egg, Bird, ChefHat, ArrowRight, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Icon } from "@/components/ui/Icon";
 import { motion } from "framer-motion";
 import { Database } from "@/types/supabase";
 
@@ -25,6 +24,101 @@ interface BreedGroup {
   price_adult?: number;
   id_ref: string;
   slug_ref?: string;
+}
+
+function BreedCard({ breed, idx }: { breed: BreedGroup; idx: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: idx * 0.1 }}
+      viewport={{ once: true }}
+      className="group relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="bg-zinc-50/50 dark:bg-zinc-900/50 rounded-xl overflow-hidden transition-all duration-500 flex flex-col h-full hover:shadow-xl hover:shadow-emerald-500/5 group-hover:-translate-y-1">
+        <div className="relative h-56 overflow-hidden">
+          <Image
+            src={breed.image || "/images/chicken.svg"}
+            alt={breed.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40" />
+
+          <div className="absolute top-4 start-4">
+            <Badge className="bg-white/10 backdrop-blur-md text-white border-white/20 py-1 px-3 rounded-lg text-[9px] font-black uppercase tracking-widest">
+              {breed.sub}
+            </Badge>
+          </div>
+        </div>
+
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="mb-6">
+            <h3 className="text-xl font-black mb-1 group-hover:text-emerald-600 transition-colors">
+              {breed.name}
+            </h3>
+            <p
+              className="text-sm font-arabic text-muted-foreground opacity-80"
+              dir="rtl"
+            >
+              {breed.name_ar}
+            </p>
+          </div>
+
+          <div className="space-y-3 mb-8 pt-4 border-t border-dashed border-emerald-500/10">
+            {breed.price_egg && (
+              <div className="flex justify-between items-center">
+                <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                  <Egg className="w-3.5 h-3.5 text-amber-500" />
+                  بيض تفقيس
+                </span>
+                <span className="text-xs font-black text-foreground">
+                  {breed.price_egg.toLocaleString()} DA
+                </span>
+              </div>
+            )}
+            {breed.price_chick && (
+              <div className="flex justify-between items-center">
+                <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                  <Bird className="w-3.5 h-3.5 text-emerald-500" />
+                  كتاكيت
+                </span>
+                <span className="text-xs font-black text-foreground">
+                  {breed.price_chick.toLocaleString()} DA
+                </span>
+              </div>
+            )}
+            {breed.price_adult && (
+              <div className="flex justify-between items-center">
+                <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                  <ChefHat className="w-3.5 h-3.5 text-blue-500" />
+                  أزواج بالغة
+                </span>
+                <span className="text-xs font-black text-foreground">
+                  {breed.price_adult.toLocaleString()} DA
+                </span>
+              </div>
+            )}
+          </div>
+
+          <Link
+            href={`/shop/${breed.slug_ref || breed.id_ref}`}
+            className="mt-auto"
+          >
+            <Button className="w-full h-12 rounded-xl bg-foreground text-background hover:bg-emerald-600 hover:text-white transition-all duration-300 font-bold shadow-sm">
+              <ShoppingBag className="w-4 h-4 me-2" />
+              اطلب الآن
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 export default function BreedShowcase() {
@@ -126,100 +220,9 @@ export default function BreedShowcase() {
                   className="h-96 rounded-xl bg-muted animate-pulse border border-border/50"
                 />
               ))
-            : breeds.map((breed, idx) => {
-                const [isHovered, setIsHovered] = useState(false);
-                return (
-                  <motion.div
-                    key={breed.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    viewport={{ once: true }}
-                    className="group relative"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    <div className="bg-card rounded-xl overflow-hidden border border-border hover:border-emerald-500/30 transition-all duration-500 flex flex-col h-full hover:shadow-md hover:shadow-emerald-500/5">
-                      <div className="relative h-56 overflow-hidden">
-                        <Image
-                          src={breed.image || "/images/chicken.svg"}
-                          alt={breed.name}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                          unoptimized
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40" />
-
-                        <div className="absolute top-4 start-4">
-                          <Badge className="bg-white/10 backdrop-blur-md text-white border-white/20 py-1 px-3 rounded-lg text-[9px] font-black uppercase tracking-widest">
-                            {breed.sub}
-                          </Badge>
-                        </div>
-                      </div>
-
-                      <div className="p-6 flex-1 flex flex-col">
-                        <div className="mb-6">
-                          <h3 className="text-xl font-black mb-1 group-hover:text-emerald-600 transition-colors">
-                            {breed.name}
-                          </h3>
-                          <p
-                            className="text-sm font-arabic text-muted-foreground opacity-80"
-                            dir="rtl"
-                          >
-                            {breed.name_ar}
-                          </p>
-                        </div>
-
-                        <div className="space-y-3 mb-8 pt-4 border-t border-dashed border-border">
-                          {breed.price_egg && (
-                            <div className="flex justify-between items-center">
-                              <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-                                <Egg className="w-3.5 h-3.5 text-amber-500" />
-                                بيض تفقيس
-                              </span>
-                              <span className="text-xs font-black text-foreground">
-                                {breed.price_egg.toLocaleString()} DA
-                              </span>
-                            </div>
-                          )}
-                          {breed.price_chick && (
-                            <div className="flex justify-between items-center">
-                              <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-                                <Bird className="w-3.5 h-3.5 text-emerald-500" />
-                                كتاكيت
-                              </span>
-                              <span className="text-xs font-black text-foreground">
-                                {breed.price_chick.toLocaleString()} DA
-                              </span>
-                            </div>
-                          )}
-                          {breed.price_adult && (
-                            <div className="flex justify-between items-center">
-                              <span className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-                                <ChefHat className="w-3.5 h-3.5 text-blue-500" />
-                                أزواج بالغة
-                              </span>
-                              <span className="text-xs font-black text-foreground">
-                                {breed.price_adult.toLocaleString()} DA
-                              </span>
-                            </div>
-                          )}
-                        </div>
-
-                        <Link
-                          href={`/shop/${breed.slug_ref || breed.id_ref}`}
-                          className="mt-auto"
-                        >
-                          <Button className="w-full h-12 rounded-xl bg-foreground text-background hover:bg-emerald-600 hover:text-white transition-all duration-300 font-bold shadow-sm">
-                            <ShoppingBag className="w-4 h-4 me-2" />
-                            اطلب الآن
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            : breeds.map((breed, idx) => (
+                <BreedCard key={breed.name} breed={breed} idx={idx} />
+              ))}
         </div>
       </div>
     </section>

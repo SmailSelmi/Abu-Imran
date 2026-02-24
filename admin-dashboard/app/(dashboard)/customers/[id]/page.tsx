@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -7,7 +7,6 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,11 +20,8 @@ import {
   Save,
   ShieldCheck,
   ShieldAlert,
-  Package,
   Clock,
   MessageCircle,
-  Tag,
-  Plus,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -50,11 +46,7 @@ export default function CustomerDetailsPage() {
   const [tags, setTags] = useState<string[]>([]);
   const [newTag, setNewTag] = useState("");
 
-  useEffect(() => {
-    if (id) fetchCustomerDetails();
-  }, [id]);
-
-  const fetchCustomerDetails = async () => {
+  const fetchCustomerDetails = useCallback(async () => {
     setLoading(true);
 
     // Fetch Customer
@@ -88,7 +80,14 @@ export default function CustomerDetailsPage() {
     setOrders((ordData || []) as OrderWithRelations[]);
 
     setLoading(false);
-  };
+  }, [id, supabase, router]);
+
+  useEffect(() => {
+    const init = async () => {
+      if (id) await fetchCustomerDetails();
+    };
+    init();
+  }, [id, fetchCustomerDetails]);
 
   const handleSave = async () => {
     const { error } = await (supabase as any)

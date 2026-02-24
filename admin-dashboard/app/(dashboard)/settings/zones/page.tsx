@@ -53,7 +53,10 @@ export default function DeliveryZonesPage() {
   }, [supabase]);
 
   useEffect(() => {
-    fetchZones();
+    const init = async () => {
+      await fetchZones();
+    };
+    init();
   }, [fetchZones]);
 
   const handleSave = async (e: React.FormEvent) => {

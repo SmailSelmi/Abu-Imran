@@ -77,13 +77,13 @@ export default async function Page({ params }: Props) {
     );
   }
 
-  // 2. Fetch all variants in the same subcategory
+  // 2. Fetch all variants for the same breed (e.g., eggs, chicks, adult)
   const { data: variants } = await supabase
     .from("products")
     .select(
-      "id, name_en, name, slug, category, subcategory, price, stock, image_url",
+      "id, name_en, name, slug, category, subcategory, price, stock, image_url, breed_id",
     )
-    .eq("subcategory", product.subcategory || "")
+    .eq("breed_id", product.breed_id || "")
     .is("deleted_at", null)
     .limit(10);
 

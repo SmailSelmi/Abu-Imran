@@ -40,7 +40,7 @@ export function CategoryCards() {
     },
     {
       id: "chicks",
-      name: "كتاكيت وفلاليس",
+      name: "كتاكيت",
       desc: "محصنة وبصحة ممتازة (جميع الأعمار)",
       icon: Bird,
       color: "orange",

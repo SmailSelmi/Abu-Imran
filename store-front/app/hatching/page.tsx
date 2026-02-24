@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Calendar,
   Egg,
@@ -168,7 +168,7 @@ function HatchingPageContent() {
                 </>
               ) : (
                 <>
-                  We've reserved space for{" "}
+                  We&apos;ve reserved space for{" "}
                   <span className="text-foreground font-black">
                     {eggCount} eggs
                   </span>
@@ -298,8 +298,8 @@ function HatchingPageContent() {
         </div>
 
         {/* Booking Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 pt-12">
-          <div className="lg:col-span-1 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 pt-12 items-start">
+          <div className="lg:col-span-1 space-y-6 order-2 lg:order-1">
             <div className="bg-emerald-600 text-white p-10 rounded-xl shadow-md shadow-emerald-600/20 space-y-10 relative overflow-hidden group">
               <div className="absolute -top-12 -end-12 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-1000" />
               <h3 className="text-3xl font-black tracking-tighter relative z-10">
@@ -341,7 +341,7 @@ function HatchingPageContent() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-1 lg:order-2">
             <div className="bg-card border border-border/50 rounded-xl p-8 md:p-16 shadow-md relative overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.02)]">
               <div className="absolute top-0 start-0 w-48 h-48 bg-emerald-500/5 rounded-br-full -z-10" />
               <h2 className="text-4xl font-black tracking-tighter mb-12 flex items-center gap-5">
@@ -354,13 +354,13 @@ function HatchingPageContent() {
               <form onSubmit={handleBooking} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.selectBreed}
                     </Label>
                     <select
                       value={selectedBreed}
                       onChange={(e) => setSelectedBreed(e.target.value)}
-                      className="w-full h-16 bg-muted/40 border-2 border-transparent rounded-xl px-6 font-black transition-all focus:border-emerald-500/30 focus:bg-background focus:ring-0 appearance-none"
+                      className="w-full h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl px-6 font-black transition-all focus:border-emerald-500 focus:ring-0 appearance-none shadow-sm"
                     >
                       <option value="">{t.hatching.customBreed}</option>
                       {breeds.map((b) => (
@@ -372,7 +372,7 @@ function HatchingPageContent() {
                   </div>
 
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.eggCount}
                     </Label>
                     <div className="flex gap-4 items-center">
@@ -383,7 +383,7 @@ function HatchingPageContent() {
                         max={config.max_capacity}
                         value={eggCount}
                         onChange={(e) => setEggCount(Number(e.target.value))}
-                        className="h-16 bg-muted/40 border-2 border-transparent rounded-xl px-6 font-black text-xl focus:border-emerald-500/20 focus:bg-background transition-all"
+                        className="h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl px-6 font-black text-xl focus:border-emerald-500 focus:bg-background transition-all shadow-sm"
                       />
                       <div className="text-[10px] font-black text-muted-foreground uppercase tracking-widest whitespace-nowrap opacity-60">
                         / {config.max_capacity} {t.hatching.max}
@@ -394,7 +394,7 @@ function HatchingPageContent() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.dropDate}
                     </Label>
                     <div className="relative">
@@ -403,28 +403,28 @@ function HatchingPageContent() {
                         required
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="h-16 bg-muted/40 border-2 border-transparent rounded-xl pe-12 font-black transition-all focus:border-emerald-500/20 focus:bg-background"
+                        className="h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl pe-12 font-black transition-all focus:border-emerald-500 focus:bg-background shadow-sm"
                       />
                       <Calendar className="absolute end-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500 opacity-60" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.fullName}
                     </Label>
                     <Input
                       name="name"
                       required
                       placeholder="..."
-                      className="h-16 bg-muted/40 border-2 border-transparent rounded-xl px-6 font-black focus:border-emerald-500/20 focus:bg-background transition-all"
+                      className="h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl px-6 font-black focus:border-emerald-500 focus:bg-background transition-all shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.phone}
                     </Label>
                     <Input
@@ -432,18 +432,18 @@ function HatchingPageContent() {
                       required
                       type="tel"
                       placeholder="05 / 06 / 07 ..."
-                      className="h-16 bg-muted/40 border-2 border-transparent rounded-xl px-6 font-black focus:border-emerald-500/20 focus:bg-background transition-all"
+                      className="h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl px-6 font-black focus:border-emerald-500 focus:bg-background transition-all shadow-sm"
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
+                    <Label className="text-xs font-black uppercase tracking-[0.2em] text-muted-foreground ms-1">
                       {t.hatching.wilaya}
                     </Label>
                     <Input
                       name="wilaya"
                       required
                       placeholder="..."
-                      className="h-16 bg-muted/40 border-2 border-transparent rounded-xl px-6 font-black focus:border-emerald-500/20 focus:bg-background transition-all"
+                      className="h-16 bg-white dark:bg-zinc-900 border-2 border-border/50 rounded-xl px-6 font-black focus:border-emerald-500 focus:bg-background transition-all shadow-sm"
                     />
                   </div>
                 </div>

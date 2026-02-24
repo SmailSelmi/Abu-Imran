@@ -75,7 +75,10 @@ export default function HatchingPage() {
   }, [supabase]);
 
   useEffect(() => {
-    fetchBookings();
+    const init = async () => {
+      await fetchBookings();
+    };
+    init();
 
     const channel = supabase
       .channel("hatching-realtime")

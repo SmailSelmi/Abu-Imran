@@ -57,10 +57,10 @@ export default function LoginPage() {
         <div className="text-center mb-10 space-y-3">
           <div className="w-24 h-24 flex items-center justify-center mx-auto shadow-2xl relative rotate-3 hover:rotate-0 transition-transform duration-500">
             <Image
-              src="https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771716272/AbuImranLogo_1_aejo3r.svg"
+              src="/AbuImranLogo.svg"
               alt="Logo"
               fill
-              className="object-contain brightness-0 invert"
+              className="object-contain"
             />
           </div>
           <div className="space-y-1">

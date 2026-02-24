@@ -22,9 +22,9 @@ export default function Loading() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="mt-12 text-emerald-600 font-black tracking-[0.2em] text-xs uppercase"
+        className="mt-12 text-emerald-600 font-black text-xl italic"
       >
-        L O A D I N G
+        لدجاج الزينة
       </motion.p>
     </div>
   );

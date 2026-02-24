@@ -14,6 +14,8 @@ type Order = Database["public"]["Tables"]["orders"]["Row"];
 type Product = Database["public"]["Tables"]["products"]["Row"];
 
 export default async function DashboardPage() {
+  // eslint-disable-next-line react-hooks/purity
+  const now = Date.now();
   const supabase = await createClient();
 
   const [ordersRes, productsRes, customersRes] = await Promise.all([
@@ -202,7 +204,7 @@ export default async function DashboardPage() {
     (o) =>
       o.status === "pending" &&
       o.created_at &&
-      new Date(o.created_at).getTime() < Date.now() - 86400000,
+      new Date(o.created_at).getTime() < now - 86400000,
   ).length;
 
   if (pendingLong > 0) {

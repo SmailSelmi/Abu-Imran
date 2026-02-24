@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Card,
   CardContent,
@@ -130,36 +130,39 @@ export const PerformanceMetrics = ({
   const [customTo, setCustomTo] = useState("");
   const [showCustom, setShowCustom] = useState(false);
 
-  const filterData = (data: RevenueDataPoint[]): RevenueDataPoint[] => {
-    if (!data) return data;
-    if (timeRange === "all") return data;
-    if (timeRange === "custom") {
-      if (!customFrom && !customTo) return data;
-      const from = customFrom ? new Date(customFrom) : new Date(0);
-      const to = customTo ? new Date(customTo + "T23:59:59") : new Date();
+  const filterData = React.useCallback(
+    (data: RevenueDataPoint[]): RevenueDataPoint[] => {
+      if (!data) return data;
+      if (timeRange === "all") return data;
+      if (timeRange === "custom") {
+        if (!customFrom && !customTo) return data;
+        const from = customFrom ? new Date(customFrom) : new Date(0);
+        const to = customTo ? new Date(customTo + "T23:59:59") : new Date();
+        return data.filter((d) => {
+          const date = d.date ? parseISO(d.date) : null;
+          if (!date) return true;
+          return isWithinInterval(date, { start: from, end: to });
+        });
+      }
+      const rangeStart = getRangeStart(timeRange);
+      if (!rangeStart) return data;
+      const today = new Date();
       return data.filter((d) => {
         const date = d.date ? parseISO(d.date) : null;
         if (!date) return true;
-        return isWithinInterval(date, { start: from, end: to });
+        return isWithinInterval(date, { start: rangeStart, end: today });
       });
-    }
-    const rangeStart = getRangeStart(timeRange);
-    if (!rangeStart) return data;
-    const today = new Date();
-    return data.filter((d) => {
-      const date = d.date ? parseISO(d.date) : null;
-      if (!date) return true;
-      return isWithinInterval(date, { start: rangeStart, end: today });
-    });
-  };
+    },
+    [timeRange, customFrom, customTo],
+  );
 
   const filteredRevenue = useMemo(
     () => filterData(revenueData),
-    [revenueData, timeRange, customFrom, customTo],
+    [revenueData, filterData],
   );
   const filteredTrends = useMemo(
     () => filterData(orderTrends),
-    [orderTrends, timeRange, customFrom, customTo],
+    [orderTrends, filterData],
   );
 
   const tooltipStyle = {

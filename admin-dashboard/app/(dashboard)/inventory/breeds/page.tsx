@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import {
   Card,
@@ -91,12 +91,7 @@ export default function BreedsPage() {
     }));
   };
 
-  useEffect(() => {
-    fetchProducts();
-    fetchMetadata();
-  }, []);
-
-  const fetchMetadata = async () => {
+  const fetchMetadata = useCallback(async () => {
     const { data: fams } = await supabase
       .from("families")
       .select("id, name_en, name_ar")
@@ -107,9 +102,9 @@ export default function BreedsPage() {
       .order("name_ar");
     if (fams) setFamilies(fams);
     if (brds) setBreeds(brds);
-  };
+  }, [supabase]);
 
-  const fetchProducts = async (showLoader = true) => {
+  const fetchProducts = useCallback(async (showLoader = true) => {
     if (showLoader) setLoading(true);
     const { data, error } = await supabase
       .from("products")
@@ -131,7 +126,14 @@ export default function BreedsPage() {
       setProducts((data as unknown as Partial<Product>[]) || []);
     }
     if (showLoader) setLoading(false);
-  };
+  }, [supabase]);
+
+  useEffect(() => {
+    const init = async () => {
+      await Promise.all([fetchProducts(), fetchMetadata()]);
+    };
+    init();
+  }, [fetchProducts, fetchMetadata]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();

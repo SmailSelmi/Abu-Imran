@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import type { Customer } from "@/types/orders";
 import { Search, MapPin, Phone, MessageSquare } from "lucide-react";
@@ -28,11 +28,7 @@ export default function CustomersPage() {
   );
   const supabase = createClient();
 
-  useEffect(() => {
-    fetchCustomers();
-  }, []);
-
-  const fetchCustomers = async () => {
+  const fetchCustomers = useCallback(async () => {
     setLoading(true);
     const { data, error } = await supabase
       .from("customers")
@@ -47,7 +43,14 @@ export default function CustomersPage() {
       setCustomers((data as unknown as Partial<Customer>[]) || []);
     }
     setLoading(false);
-  };
+  }, [supabase]);
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchCustomers();
+    };
+    init();
+  }, [fetchCustomers]);
 
   const getCustomerTier = (spent: number = 0) => {
     if (spent >= 500000)
@@ -277,11 +280,9 @@ export default function CustomersPage() {
                       )}
                     </div>
 
-                    {customer.notes && (
                       <div className="bg-orange-50 dark:bg-orange-500/5 p-4 rounded-xl text-[12px] text-orange-800 dark:text-orange-200 font-bold border border-orange-100 dark:border-orange-500/10 line-clamp-2 italic leading-relaxed">
-                        "{customer.notes}"
+                        &quot;{customer.notes}&quot;
                       </div>
-                    )}
 
                     <div className="flex items-center justify-between pt-2">
                       <div className="h-2 flex-1 bg-muted rounded-full overflow-hidden me-4">

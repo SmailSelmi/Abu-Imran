@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { Database } from "@/types/supabase";
 import { cn } from "@/lib/utils";
@@ -54,7 +54,7 @@ export default function ProductsPage() {
   });
 
   // Fetch Products
-  const fetchProducts = async (showLoader = true) => {
+  const fetchProducts = useCallback(async (showLoader = true) => {
     if (showLoader) setLoading(true);
     const { data, error } = await (supabase as any)
       .from("products")
@@ -67,11 +67,14 @@ export default function ProductsPage() {
     if (data) setProducts(data);
     if (error) console.error("Error fetching products:", error);
     if (showLoader) setLoading(false);
-  };
+  }, [supabase]);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    const init = async () => {
+      await fetchProducts();
+    };
+    init();
+  }, [fetchProducts]);
 
   // Handle Add/Edit Product
   const handleSaveProduct = async (e: React.FormEvent) => {
@@ -82,7 +85,7 @@ export default function ProductsPage() {
         .toLowerCase()
         .replace(/[^a-z0-9\u0600-\u06FF]+/g, "-")
         .replace(/(^-|-$)+/g, "") ||
-      `product-${Date.now()}`;
+      `product-${new Date().getTime()}`;
 
     const payload: ProductInsert = {
       name: newProduct.name_ar,

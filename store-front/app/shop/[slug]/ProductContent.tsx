@@ -57,8 +57,8 @@ export default function ProductContent({
     <div className="min-h-screen bg-background font-sans pb-32 pt-24">
       <div className="container px-4 mx-auto max-w-7xl">
         <Link
-          href="/shop"
-          className="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-emerald-600 mb-12 transition-all group"
+          href="/#shop"
+          className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-emerald-600 mb-12 transition-all group"
         >
           <ChevronLeft className="w-4 h-4 me-2 group-hover:-translate-x-1 transition-transform" />
           العودة للمتجر
@@ -69,7 +69,7 @@ export default function ProductContent({
           <div className="space-y-8 sticky top-32">
             <motion.div
               layoutId={`image-${slug}`}
-              className="relative aspect-[4/4] bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-border/40 shadow-sm"
+              className="relative aspect-square bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-border/50 shadow-sm"
             >
               {selectedVariant?.image_url ? (
                 <Image
@@ -84,41 +84,53 @@ export default function ProductContent({
                   No Image Available
                 </div>
               )}
-              <div className="absolute inset-0 bg-black/5 opacity-60" />
+              <div className="absolute inset-0 bg-black/5" />
 
               {selectedVariant?.stock === 0 && (
                 <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-md">
-                  <span className="bg-red-600 text-white px-8 py-3 rounded-xl font-black uppercase tracking-[0.2em] text-xl -rotate-2 border-2 border-white/20 shadow-sm">
+                  <span className="bg-red-600 text-white px-6 py-2 rounded-lg font-bold uppercase tracking-widest text-lg border border-white/20 shadow-sm">
                     نفدت الكمية
                   </span>
                 </div>
               )}
 
               <div className="absolute bottom-6 left-6">
-                <Badge className="bg-emerald-600 text-white border-transparent px-4 py-1 rounded-full font-black uppercase tracking-widest text-[10px] shadow-lg">
-                  <Sparkles className="w-3 h-3 me-2" /> Premium Grade
+                <Badge className="bg-emerald-600 text-white border-transparent px-3 py-1 rounded-lg font-bold uppercase tracking-widest text-[9px] shadow-md">
+                  Premium Grade
                 </Badge>
               </div>
             </motion.div>
 
             {!isMachine && variants.length > 1 && (
-              <div className="grid grid-cols-4 gap-4">
-                {variants.map((v) => (
-                  <button
-                    key={v.id}
-                    onClick={() => setSelectedVariant(v)}
-                    className={`relative aspect-square rounded-xl overflow-hidden border transition-all duration-500 ${selectedVariant?.id === v.id ? "border-emerald-500 shadow-sm scale-105" : "border-border/40 opacity-40 hover:opacity-100 grayscale hover:grayscale-0"}`}
-                  >
-                    {v.image_url && (
-                      <Image
-                        src={v.image_url}
-                        alt={v.name_en}
-                        fill
-                        className="object-cover"
-                      />
-                    )}
-                  </button>
-                ))}
+              <div className="space-y-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground opacity-60">خيارات متوفرة لهذه السلالة</p>
+                <div className="grid grid-cols-4 gap-4">
+                  {variants
+                    .sort((a, b) => {
+                       const order = { eggs: 1, chicks: 2, chickens: 3, machine: 4 };
+                       return (order[a.category as keyof typeof order] || 99) - (order[b.category as keyof typeof order] || 99);
+                    })
+                    .map((v) => (
+                      <button
+                        key={v.id}
+                        onClick={() => setSelectedVariant(v)}
+                        className={`relative aspect-square rounded-xl overflow-hidden border transition-all duration-500 group/var ${selectedVariant?.id === v.id ? "border-emerald-500 ring-2 ring-emerald-500/20 shadow-sm scale-110 z-10" : "border-border/40 opacity-50 hover:opacity-100 hover:border-emerald-500/30"}`}
+                      >
+                        {v.image_url && (
+                          <Image
+                            src={v.image_url}
+                            alt={v.name_en}
+                            fill
+                            className="object-cover"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-black/20 group-hover/var:bg-transparent transition-colors" />
+                        <div className="absolute inset-x-0 bottom-0 py-1 bg-black/60 backdrop-blur-sm text-[8px] font-bold text-white text-center">
+                          {v.category === "eggs" ? "بيض" : v.category === "chicks" ? "كتكوت" : "دجاج"}
+                        </div>
+                      </button>
+                    ))}
+                </div>
               </div>
             )}
           </div>
@@ -145,22 +157,21 @@ export default function ProductContent({
                   )}
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-black text-foreground leading-[0.9] tracking-tighter">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-tight">
                 {selectedVariant?.name || selectedVariant?.name_en}
               </h1>
 
-              <div className="flex items-baseline gap-3 pt-2">
-                <span className="text-5xl font-black text-emerald-600 tracking-tighter tabular-nums italic">
+              <div className="flex items-baseline gap-2 pt-2">
+                <span className="text-4xl font-bold text-emerald-600 tracking-tight tabular-nums">
                   {(selectedVariant?.price || 0).toLocaleString()}
                 </span>
-                <span className="text-lg text-muted-foreground font-black opacity-40">
+                <span className="text-base text-muted-foreground font-bold opacity-50">
                   DA
                 </span>
               </div>
 
-              <p className="text-lg text-muted-foreground font-medium italic opacity-70 leading-relaxed max-w-xl">
-                منتج مختار بعناية من مزرعة أبو عمران — جودة مضمونة وسلالات
-                موثقة.
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+                منتج مختار بعناية من مزرعة أبو عمران — جودة مضمونة وسلالات موثقة.
               </p>
             </div>
 
@@ -169,16 +180,20 @@ export default function ProductContent({
               <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                 <Scale className="w-5 h-5 text-emerald-600 opacity-60" />
                 <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                  جودة ممتازة
+                  نوع المنتج
                 </h5>
-                <p className="text-sm font-bold italic">الدرجة الأولى</p>
+                <p className="text-sm font-bold italic">
+                  {selectedVariant?.category === "eggs" ? "بيض مخصب" : 
+                   selectedVariant?.category === "chicks" ? "كتاكيت" : 
+                   selectedVariant?.category === "chickens" ? "دجاج بالغ" : "عتاد"}
+                </p>
               </div>
               <div className="p-6 rounded-xl border border-dashed border-border/60 bg-muted/5 space-y-2">
                 <Layers className="w-5 h-5 text-emerald-600 opacity-60" />
                 <h5 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                  نوع السلالة
+                  السلالة
                 </h5>
-                <p className="text-sm font-bold italic">نسب أصيل</p>
+                <p className="text-sm font-bold italic">{selectedVariant?.name || "سلالة أصلية"}</p>
               </div>
               {isMachine && (
                 <>
@@ -202,28 +217,28 @@ export default function ProductContent({
 
             {/* Direct Order Component */}
             <div className="relative group/order">
-              <div className="relative bg-white dark:bg-zinc-950 border border-border/40 rounded-xl p-8 md:p-12 shadow-sm overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <ShoppingBag className="w-24 h-24" />
+              <div className="relative bg-white dark:bg-zinc-950 border border-border/50 rounded-2xl p-8 md:p-10 shadow-sm overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5">
+                  <ShoppingBag className="w-20 h-20" />
                 </div>
-                <div className="space-y-10">
+                <div className="space-y-8">
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-black tracking-tight italic flex items-center gap-3">
-                      <span className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs shadow-lg rotate-3 group-hover/order:rotate-0 transition-transform">
+                    <h3 className="text-xl font-bold tracking-tight flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs shadow-md">
                         1X
                       </span>
                       طلب مباشر
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex items-center gap-4 p-4 rounded-xl border border-dashed border-border/80 bg-muted/20">
-                        <div className="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center shadow-lg">
+                      <div className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-muted/10">
+                        <div className="w-10 h-10 bg-emerald-600/10 text-emerald-600 rounded-lg flex items-center justify-center">
                           <Truck className="w-5 h-5" />
                         </div>
                         <div className="space-y-0.5">
-                          <p className="text-[10px] font-black uppercase tracking-widest">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                             توصيل للباب
                           </p>
-                          <p className="text-xs font-bold italic opacity-60">
+                          <p className="text-xs font-semibold">
                             58 ولاية
                           </p>
                         </div>
@@ -280,12 +295,12 @@ export default function ProductContent({
                       type="button"
                       size="lg"
                       onClick={handleOrderNow}
-                      className="w-full h-20 rounded-xl shadow-sm hover:shadow hover:-translate-y-1 transition-all duration-500 font-black text-2xl bg-emerald-600 hover:bg-emerald-700 text-white overflow-hidden group/btn"
+                      className="w-full h-16 rounded-xl shadow-sm hover:shadow-md transition-all font-bold text-xl bg-emerald-600 hover:bg-emerald-700 text-white group/btn"
                       disabled={(selectedVariant?.stock || 0) < 1}
                     >
-                      <span className="flex items-center justify-between w-full px-4">
+                      <span className="flex items-center justify-between w-full px-2">
                         <span>تأكيد الطلب</span>
-                        <span className="bg-white/20 px-4 py-2 rounded-xl text-sm font-black italic shadow-inner group-hover/btn:scale-110 transition-transform">
+                        <span className="bg-white/10 px-3 py-1.5 rounded-lg text-sm font-bold shadow-inner">
                           {(selectedVariant?.price || 0) * quantity} دج
                         </span>
                       </span>

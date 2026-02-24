@@ -35,50 +35,91 @@ export default function HeroSection() {
         <div className="flex flex-col items-center max-w-5xl mx-auto">
 
 
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 1.2, ease: "circOut" }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-balance mb-4 sm:mb-6"
-          >
-            {t.hero.titleMain}{" "}
-            <span className="text-primary italic drop-shadow-[0_0_40px_rgba(16,185,129,0.5)]">
-              {t.hero.titleRare}
-            </span>
-            <br className="hidden md:block" />
-            <span className="text-white drop-shadow-xl">
-              {t.hero.titleWorld}
-            </span>
-          </motion.h1>
+          {/* Main Heading with Elite Hierarchy */}
+          <div className="space-y-2 mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="flex justify-center"
+            >
+              <span className="text-emerald-500 font-bold text-sm tracking-[0.4em] uppercase opacity-70 mb-4 inline-block">
+                {t.hero.title}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 1 }}
+              className="text-5xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] select-none text-balance"
+            >
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="block text-white"
+              >
+                {t.hero.titleMain}
+              </motion.span>
+              
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="relative inline-block text-emerald-500 italic py-1 mt-1"
+              >
+                <span className="relative z-10 drop-shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                  {t.hero.titleRare}
+                </span>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 1.2, duration: 1 }}
+                  className="absolute bottom-2 inset-x-0 h-2 bg-emerald-500/10 -rotate-1 origin-left rounded-sm"
+                />
+              </motion.span>
+
+              <br className="hidden md:block" />
+              
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/60 mt-2 font-extrabold tracking-tight"
+              >
+                {t.hero.titleWorld}
+              </motion.span>
+            </motion.h1>
+          </div>
 
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 1 }}
-            className="text-base md:text-xl text-white/70 max-w-3xl leading-relaxed font-bold italic text-balance mb-10"
+            className="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-10 mx-auto"
           >
             {t.hero.description}
           </motion.p>
-
-          {/* CTAs — hidden on mobile (bottom nav has the CTA), visible on xl+ */}
+ 
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: "circOut" }}
-            className="hidden xl:flex flex-row gap-4 justify-center items-center"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="hidden xl:flex flex-row gap-6 justify-center items-center"
           >
             <Link href="/hatching">
-              <Button className="h-12 px-8 text-base font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full transition-all shadow-xl shadow-primary/30 hover:-translate-y-1 active:scale-95 group">
+              <Button className="h-14 px-10 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:scale-95 group">
                 {t.hero.bookIncubator}
-                <ArrowUpRight className="me-2 w-5 h-5 transition-transform group-hover:rotate-45" />
+                <ArrowUpRight className="ml-2 w-6 h-6 transition-transform group-hover:rotate-45" />
               </Button>
             </Link>
             <Link href="https://wa.me/213665243819" target="_blank">
               <Button
                 variant="outline"
-                className="h-12 px-8 text-base font-bold border-2 border-white/30 glass-card text-white hover:bg-white hover:text-black rounded-full transition-all hover:-translate-y-1 active:scale-95 shadow-lg"
+                className="h-14 px-10 text-lg font-bold border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-black rounded-xl transition-all hover:-translate-y-0.5 active:scale-95 shadow-sm"
               >
                 {t.common.contactUs}
               </Button>
