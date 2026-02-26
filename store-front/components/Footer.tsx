@@ -217,7 +217,7 @@ export function Footer() {
                       {t.common.location}
                     </span>
                     <span className="font-semibold text-sm text-foreground group-hover/address:text-emerald-600 transition-colors">
-                      الجزائر، بلدية الزيتونة، ولاية الطارف
+                      الجزائر ،الطارف ،الزيتونة.
                     </span>
                   </div>
                 </a>

@@ -54,7 +54,7 @@ SELECT
   name_ar,
   name_en,
   slug || '-eggs' as slug,
-  150 as price,
+  100 as price,
   true as is_active,
   'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg' as image_url
 FROM public.breeds
@@ -71,7 +71,7 @@ SELECT
   name_ar,
   name_en,
   slug || '-chicks' as slug,
-  350 as price,
+  200 as price,
   true as is_active,
   'https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp' as image_url
 FROM public.breeds
