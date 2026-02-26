@@ -84,42 +84,6 @@ export default function HatchingServiceSection() {
           </div>
 
           <div className="pt-10 flex flex-col items-center gap-8">
-            <div className="flex -space-x-4 rtl:space-x-reverse items-center">
-              {[
-                "/images/breeders/breeder_1.png",
-                "/images/breeders/breeder_2.png",
-                "/images/breeders/breeder_3.png",
-                "/images/breeders/breeder_4.png",
-                "/images/breeders/breeder_5.png",
-              ].map((url, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: isRTL ? 10 : -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="w-14 h-14 rounded-full border-4 border-white dark:border-zinc-950 bg-zinc-200 overflow-hidden relative shadow-sm grayscale hover:grayscale-0 transition-all duration-500"
-                >
-                  <Image
-                    src={url}
-                    alt={`Breeder ${i + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 }}
-                className="w-14 h-14 rounded-full border-4 border-white dark:border-zinc-950 bg-emerald-700 flex items-center justify-center text-white text-xs font-black shadow-sm relative z-10"
-              >
-                +500
-              </motion.div>
-            </div>
-            <p className="text-lg md:text-xl font-black text-emerald-950 dark:text-emerald-500 underline decoration-emerald-500/30 decoration-4 underline-offset-8 italic">
-              {t.hatching.breederTrust}
-            </p>
-            
             <Button
               onClick={() => router.push('/hatching')}
               className="h-16 px-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xl shadow-lg shadow-emerald-600/20 transition-all hover:scale-105"

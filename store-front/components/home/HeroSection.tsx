@@ -118,12 +118,16 @@ export default function HeroSection() {
           >
             <a 
               href="tel:07718461926" 
-              className="h-14 px-8 inline-flex items-center gap-3 text-lg font-bold border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md text-emerald-400 rounded-xl transition-all hover:bg-emerald-500/20 active:scale-95 shadow-lg shadow-emerald-950/20 group"
+              className="h-14 px-8 inline-flex items-center gap-4 text-lg font-bold border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md text-emerald-400 rounded-xl transition-all hover:bg-emerald-500/20 active:scale-95 shadow-lg shadow-emerald-950/20 group"
             >
-              <div className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              <div className="flex items-center gap-3">
+                <div className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </div>
+                <span className="text-sm opacity-80 font-medium">إتصل الآن</span>
               </div>
+              <div className="w-px h-6 bg-emerald-500/20" />
               <span className="tracking-widest font-black">07718461926</span>
             </a>
           </motion.div>
@@ -138,14 +142,6 @@ export default function HeroSection() {
               <Button className="h-14 px-10 text-lg font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-all shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5 active:scale-95 group">
                 {t.common.orderNow}
                 <ArrowUpLeft className="ms-2 w-5 h-5 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1" />
-              </Button>
-            </Link>
-            <Link href="/hatching">
-              <Button
-                variant="outline"
-                className="h-14 px-10 text-lg font-bold border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-black rounded-xl transition-all hover:-translate-y-0.5 active:scale-95 shadow-sm"
-              >
-                {t.common.hatchingService}
               </Button>
             </Link>
           </motion.div>
