@@ -117,7 +117,7 @@ export default function HeroSection() {
             className="mb-8"
           >
             <a 
-              href="tel:07718461926" 
+              href="tel:+213665243819" 
               className="h-14 px-8 inline-flex items-center gap-4 text-lg font-bold border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md text-emerald-400 rounded-xl transition-all hover:bg-emerald-500/20 active:scale-95 shadow-lg shadow-emerald-950/20 group"
             >
               <div className="flex items-center gap-3">
@@ -125,10 +125,10 @@ export default function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </div>
-                <span className="text-sm opacity-80 font-medium">إتصل الآن</span>
+                <span className="text-sm opacity-80 font-medium whitespace-nowrap">إتصل</span>
               </div>
               <div className="w-px h-6 bg-emerald-500/20" />
-              <span className="tracking-widest font-black">07718461926</span>
+              <span className="tracking-widest font-black whitespace-nowrap">0665 24 38 19</span>
             </a>
           </motion.div>
  
