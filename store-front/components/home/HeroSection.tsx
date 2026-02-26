@@ -128,7 +128,7 @@ export default function HeroSection() {
                 <span className="text-sm opacity-80 font-medium whitespace-nowrap">إتصل</span>
               </div>
               <div className="w-px h-6 bg-emerald-500/20" />
-              <span className="tracking-widest font-black whitespace-nowrap">0665 24 38 19</span>
+              <span className="tracking-widest font-black whitespace-nowrap" dir="ltr">0665 24 38 19</span>
             </a>
           </motion.div>
  
