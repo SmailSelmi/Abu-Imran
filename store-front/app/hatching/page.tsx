@@ -291,7 +291,7 @@ function HatchingPageContent() {
                       <div className="flex justify-between items-center pt-2 border-t border-emerald-500/10">
                         <span className="font-black text-emerald-600">التكلفة المقدرة:</span>
                         <div className="flex items-baseline gap-1">
-                          <span className="font-black text-xl italic text-amber-500">{((selectedBreed === "mixed" ? 100 : 150) * Math.floor(eggCount)).toLocaleString("ar-DZ")}</span>
+                          <span className="font-black text-xl italic text-amber-500">{totalPrice.toLocaleString("ar-DZ")}</span>
                           <span className="text-[10px] font-black">د.ج</span>
                         </div>
                       </div>
