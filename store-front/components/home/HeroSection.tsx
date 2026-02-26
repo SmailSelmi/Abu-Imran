@@ -108,26 +108,23 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ 
               opacity: 1, 
-              scale: [1, 1.05, 1],
-              boxShadow: [
-                "0 0 0px rgba(16,185,129,0)",
-                "0 0 20px rgba(16,185,129,0.3)",
-                "0 0 0px rgba(16,185,129,0)"
-              ]
+              scale: [1, 1.03, 1],
             }}
             transition={{ 
               opacity: { delay: 0.5, duration: 0.8 },
-              scale: { repeat: Infinity, duration: 3, ease: "easeInOut" },
-              boxShadow: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+              scale: { repeat: Infinity, duration: 4, ease: "easeInOut" },
             }}
-            className="mb-10"
+            className="mb-8"
           >
-            <a href="tel:07718461926" className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-emerald-500/10 backdrop-blur-xl border border-emerald-500/30 text-emerald-400 font-black text-xl hover:bg-emerald-500/20 transition-colors shadow-[0_0_15px_rgba(16,185,129,0.1)] group">
-              <span className="relative flex h-3 w-3">
+            <a 
+              href="tel:07718461926" 
+              className="h-14 px-8 inline-flex items-center gap-3 text-lg font-bold border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md text-emerald-400 rounded-xl transition-all hover:bg-emerald-500/20 active:scale-95 shadow-lg shadow-emerald-950/20 group"
+            >
+              <div className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-              </span>
-              07718461926
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </div>
+              <span className="tracking-widest font-black">07718461926</span>
             </a>
           </motion.div>
  
