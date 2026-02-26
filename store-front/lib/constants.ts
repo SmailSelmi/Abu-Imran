@@ -8,6 +8,8 @@ export interface CategoryInfo {
   variants: string[];
   variantLabel: string;
   basePrice: number;
+  variantPrices?: Record<string, number>;
+  priceRange: string;
 }
 
 export const BREED_FAMILIES = [
@@ -109,7 +111,26 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 1500,
+    basePrice: 100,
+    priceRange: "100 DA - 1500 DA",
+    variantPrices: {
+      "أسترالورب محسن أسود": 100,
+      "أسترالورب محسن رمادي": 100,
+      "نيوهامبشير الطوق الأسود": 100,
+      "بليموث روك باري": 500,
+      "بليموث روك سيلفر": 500,
+      "سيساكس أرميني": 500,
+      "رود آيلاند أكاجو": 500,
+      "سبرايت أنيق ذهبي": 1500,
+      "سبرايت أنيق ليموني": 1500,
+      "سبرايت أنيق فضي": 1500,
+      "براهما أرميني": 1500,
+      "براهما كولومبي": 1500,
+      "براهما نوار كوربو": 1500,
+      "براهما ميل فلور": 1500,
+      "براهما أزرق": 1500,
+      "براهما كايوتي": 1500,
+    }
   },
   chicks: {
     name: "كتاكيت",
@@ -119,7 +140,26 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 2000,
+    basePrice: 200,
+    priceRange: "200 DA - 2000 DA",
+    variantPrices: {
+      "أسترالورب محسن أسود": 200,
+      "أسترالورب محسن رمادي": 200,
+      "نيوهامبشير الطوق الأسود": 200,
+      "بليموث روك باري": 800,
+      "بليموث روك سيلفر": 800,
+      "سيساكس أرميني": 800,
+      "رود آيلاند أكاجو": 800,
+      "سبرايت أنيق ذهبي": 2000,
+      "سبرايت أنيق ليموني": 2000,
+      "سبرايت أنيق فضي": 2000,
+      "براهما أرميني": 2000,
+      "براهما كولومبي": 2000,
+      "براهما نوار كوربو": 2000,
+      "براهما ميل فلور": 2000,
+      "براهما أزرق": 2000,
+      "براهما كايوتي": 2000,
+    }
   },
   chickens: {
     name: "دجاج بالغ",
@@ -129,7 +169,26 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 12000,
+    basePrice: 2500,
+    priceRange: "2500 DA - 12000 DA",
+    variantPrices: {
+      "أسترالورب محسن أسود": 2500,
+      "أسترالورب محسن رمادي": 2500,
+      "نيوهامبشير الطوق الأسود": 2500,
+      "بليموث روك باري": 6000,
+      "بليموث روك سيلفر": 6000,
+      "سيساكس أرميني": 6000,
+      "رود آيلاند أكاجو": 6000,
+      "سبرايت أنيق ذهبي": 12000,
+      "سبرايت أنيق ليموني": 12000,
+      "سبرايت أنيق فضي": 12000,
+      "براهما أرميني": 12000,
+      "براهما كولومبي": 12000,
+      "براهما نوار كوربو": 12000,
+      "براهما ميل فلور": 12000,
+      "براهما أزرق": 12000,
+      "براهما كايوتي": 12000,
+    }
   },
   machine: {
     name: "فقاسات يدوية",
@@ -137,9 +196,16 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
     icon: Drill,
     image:
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg",
-    variants: ["56 بيضة", "96 بيضة", "120 بيضة", "240 بيضة", "500 بيضة"],
+    variants: ["176 بيضة", "264 بيضة", "352 بيضة", "528 بيضة"],
     variantLabel: "اختر السعة",
-    basePrice: 65000,
+    basePrice: 35000,
+    priceRange: "35,000 DA - 65,000 DA",
+    variantPrices: {
+      "176 بيضة": 35000,
+      "264 بيضة": 45000,
+      "352 بيضة": 55000,
+      "528 بيضة": 65000,
+    },
   },
 };
 

@@ -225,7 +225,7 @@ export function Footer() {
               <li>
                 <div className="space-y-4">
                   <a
-                    href="tel:+213665243819"
+                    href="tel:0665243819"
                     className="flex items-center gap-4 group/phone"
                   >
                     <div className="w-10 h-10 rounded-xl bg-emerald-600/10 flex items-center justify-center text-emerald-600 group-hover/phone:bg-emerald-600 group-hover/phone:text-white transition-all duration-300">
@@ -233,7 +233,7 @@ export function Footer() {
                     </div>
                     <div className="flex flex-col items-start">
                       <span className="font-bold text-lg text-emerald-600 tracking-tight transition-colors" dir="ltr">
-                        +213 665 24 38 19
+                        0665 24 38 19
                       </span>
                     </div>
                   </a>

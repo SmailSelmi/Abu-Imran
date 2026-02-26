@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { I18nProvider } from "@/lib/i18n/I18nContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { DeliveryBanner } from "@/components/ui/delivery-banner";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -99,8 +100,9 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <I18nProvider>
               <SplashScreen />
+              <DeliveryBanner />
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 pt-24 md:pt-28">{children}</main>
               <ConditionalFooter>
                 <Footer />
               </ConditionalFooter>

@@ -46,7 +46,7 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed top-0 start-0 end-0 z-50 transition-all duration-300 overflow-hidden",
+          "fixed top-10 start-0 end-0 z-50 transition-all duration-300 overflow-hidden",
           isScrolled
             ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-border/50 py-2 shadow-sm"
             : isTransparent

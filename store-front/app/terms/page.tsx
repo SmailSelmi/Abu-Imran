@@ -77,10 +77,11 @@ export default function TermsPage() {
             <p>
               للاستفسار أو الشكاوى:{" "}
               <a
-                href="https://wa.me/213665243819"
+                href="tel:0665243819"
                 className="text-emerald-600 font-black hover:underline"
+                dir="ltr"
               >
-                +213 665 24 38 19
+                0665 24 38 19
               </a>
             </p>
           </section>

@@ -21,6 +21,7 @@ import {
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { createClient } from "@/utils/supabase/client";
+import { CATEGORY_DATA } from "@/lib/constants";
 import { Database } from "@/types/supabase";
 import { OrderDialog } from "@/components/OrderDialog";
 
@@ -54,7 +55,7 @@ export default function ProductContent({
   const isMachine = variants[0]?.category === "machine";
 
   return (
-    <div className="min-h-screen bg-background font-sans pb-32 pt-24">
+    <div className="min-h-screen bg-background font-sans pb-32">
       <div className="container px-4 mx-auto max-w-7xl">
         <Link
           href="/#shop"
@@ -162,12 +163,9 @@ export default function ProductContent({
               </h1>
 
               <div className="flex items-baseline gap-2 pt-2">
-                <span className="text-4xl font-bold text-emerald-600 tracking-tight tabular-nums">
-                  {(selectedVariant?.price || 0).toLocaleString()}
-                </span>
-                <span className="text-base text-muted-foreground font-bold opacity-50">
-                  DA
-                </span>
+                <div className="text-2xl md:text-3xl font-bold text-emerald-600 tracking-tight italic" dir="ltr">
+                  {CATEGORY_DATA[selectedVariant?.category || 'eggs'].priceRange}
+                </div>
               </div>
 
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
@@ -298,12 +296,7 @@ export default function ProductContent({
                       className="w-full h-16 rounded-xl shadow-sm hover:shadow-md transition-all font-bold text-xl bg-emerald-600 hover:bg-emerald-700 text-white group/btn"
                       disabled={(selectedVariant?.stock || 0) < 1}
                     >
-                      <span className="flex items-center justify-between w-full px-2">
-                        <span>تأكيد الطلب</span>
-                        <span className="bg-white/10 px-3 py-1.5 rounded-lg text-sm font-bold shadow-inner">
-                          {(selectedVariant?.price || 0) * quantity} دج
-                        </span>
-                      </span>
+                      تأكيد الطلب
                     </Button>
 
                     <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground opacity-40 flex items-center justify-center gap-2">

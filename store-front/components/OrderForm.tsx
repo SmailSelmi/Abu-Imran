@@ -172,8 +172,7 @@ export function OrderForm({
       p_product_variant: values.variant,
       p_category: activeCategory,
       p_quantity: values.quantity,
-      p_total_amount:
-        (initialProduct?.price || config.basePrice) * values.quantity,
+      p_total_amount: 0,
       p_product_id: initialProduct?.id || undefined,
     };
 
@@ -202,7 +201,6 @@ export function OrderForm({
 🐣 *المنتج:* ${productName}
 ✨ *النوع:* ${values.variant}
 🔢 *الكمية:* ${values.quantity}
-💰 *المجموع:* ${(initialProduct?.price || config.basePrice) * values.quantity} د.ج
         `.trim();
         
         sendTelegramNotification(telegramMessage).catch(console.error);
@@ -277,21 +275,13 @@ export function OrderForm({
                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
                           <config.icon className="w-6 h-6 text-emerald-600" />
                         </div>
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 text-center">
                           <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600/60 leading-none mb-1">المنتج المُختار:</p>
-                          <p className="font-black text-lg truncate leading-none">{config.name_ar}</p>
+                          <p className="font-black text-lg truncate leading-none">{config.name_ar} - {quantity} وحدة</p>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center text-sm font-bold">
-                        <span className="text-muted-foreground">الكمية:</span>
-                        <span className="font-black text-lg">{quantity}</span>
-                      </div>
-                      <div className="flex justify-between items-center pt-2 border-t border-emerald-500/10">
-                        <span className="font-black text-emerald-600">المجموع النهائي:</span>
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-black text-xl italic text-amber-500">{(config.basePrice * quantity).toLocaleString("ar-DZ")}</span>
-                          <span className="text-[10px] font-black">د.ج</span>
-                        </div>
+                      <div className="text-center text-xs font-bold text-emerald-600/80 bg-emerald-500/5 py-2 rounded-lg border border-emerald-500/10 italic" dir="ltr">
+                        {config.priceRange}
                       </div>
                     </div>
                   )}
@@ -308,13 +298,11 @@ export function OrderForm({
                 {sheetStatus === "success" ? (
                    <Button
                    onClick={() => {
-                     setShowStatusSheet(false);
-                     setSuccess(false);
-                     reset();
+                     window.location.href = "/";
                    }}
                    className="w-full h-16 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xl shadow-xl shadow-emerald-600/20"
                  >
-                   حسناً، فهمت
+                   العودة للرئيسية
                  </Button>
                 ) : (
                   <Button
@@ -398,23 +386,11 @@ export function OrderForm({
 
           {/* Price on mobile moves to the end of the flex row */}
           <div className="text-end md:text-start md:pt-6 md:border-t md:border-white/10 md:mt-auto">
-            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white leading-none mb-1">
-              المجموع
+            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-white/70 leading-none mb-1">
+              نطاق السعر
             </p>
-            <div className="text-xl md:text-4xl font-black tracking-tighter text-amber-400 leading-none italic flex items-baseline justify-end md:justify-start gap-1">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={quantity}
-                  initial={{ opacity: 0, scale: 0.95, y: 5 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="inline-block"
-                >
-                  {(config.basePrice * quantity).toLocaleString("ar-DZ")}
-                </motion.span>
-              </AnimatePresence>
-              <span className="text-[10px] md:text-base font-black not-italic opacity-80">د.ج</span>
+            <div className="text-lg md:text-xl font-black tracking-tight text-white leading-tight opacity-90" dir="ltr">
+              {config.priceRange}
             </div>
           </div>
         </div>

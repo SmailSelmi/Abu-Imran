@@ -112,6 +112,9 @@ export default function ShopClient({
                         <p className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-none">
                           {cat.name_ar}
                         </p>
+                        <p className="text-[10px] md:text-xs font-black text-emerald-400 italic" dir="ltr">
+                          {CATEGORY_DATA[cat.id].priceRange}
+                        </p>
                       </div>
 
                       <div className="flex items-center gap-2 text-[10px] font-bold uppercase text-emerald-400 tracking-widest pt-1">

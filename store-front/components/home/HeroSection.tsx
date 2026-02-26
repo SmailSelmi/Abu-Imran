@@ -33,8 +33,6 @@ export default function HeroSection() {
 
       <div className="container relative z-10 px-4 text-center" dir="rtl">
         <div className="flex flex-col items-center max-w-5xl mx-auto">
-
-
           {/* Main Heading with Elite Hierarchy */}
           <div className="space-y-2 mb-10">
             <motion.div
