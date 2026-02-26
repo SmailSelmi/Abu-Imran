@@ -38,4 +38,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 eggs price from 100 da to 1500 da
 chicks price from 200 da to 2000 da
 chicken price from 2500 da to 12000 da
-incubator 176 eggs to 528 eggs > price from 65000 da
+incubator 176 eggs to 528 eggs > price up to 65000 

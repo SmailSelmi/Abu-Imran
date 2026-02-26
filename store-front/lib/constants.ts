@@ -109,7 +109,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771339479/03-fertilized-eggs_kbgqer.jpg",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 150,
+    basePrice: 1500,
   },
   chicks: {
     name: "كتاكيت",
@@ -119,7 +119,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619701/Australorp_Chicks_n30igr.webp",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 350,
+    basePrice: 2000,
   },
   chickens: {
     name: "دجاج بالغ",
@@ -129,7 +129,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771619857/Plymouth-Rock-Barry-chiken-silver-abu-imran_gofobu.jpg",
     variants: SHARED_BREEDS,
     variantLabel: "اختر السلالة",
-    basePrice: 2500,
+    basePrice: 12000,
   },
   machine: {
     name: "فقاسات يدوية",
@@ -139,7 +139,7 @@ export const CATEGORY_DATA: Record<string, CategoryInfo> = {
       "https://res.cloudinary.com/dyi0jxi3g/image/upload/v1771620999/633635719_122133448574999263_4497762700132453201_n_qizqv4.jpg",
     variants: ["56 بيضة", "96 بيضة", "120 بيضة", "240 بيضة", "500 بيضة"],
     variantLabel: "اختر السعة",
-    basePrice: 12000,
+    basePrice: 65000,
   },
 };
 
