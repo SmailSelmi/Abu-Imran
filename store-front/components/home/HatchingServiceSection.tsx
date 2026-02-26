@@ -18,7 +18,7 @@ export default function HatchingServiceSection() {
 
   return (
     <section
-      className="py-16 md:py-32 bg-white dark:bg-zinc-900 relative overflow-hidden"
+      className="py-12 md:py-32 bg-white dark:bg-zinc-900 relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div

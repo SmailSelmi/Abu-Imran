@@ -82,7 +82,7 @@ export default async function Home({
         <HeroSection />
 
         {/* Interactive Shop Section */}
-        <section id="shop" className="py-24 bg-background">
+        <section id="shop" className="py-16 md:py-24 bg-background">
           <div className="container px-4 mx-auto">
             <Suspense fallback={<ShopSkeleton />}>
               <ShopClient initialProducts={products} initialCategory={category} />

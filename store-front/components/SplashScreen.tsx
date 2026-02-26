@@ -7,24 +7,14 @@ import Image from "next/image";
 
 export function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Progress bar animation
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 100;
-        return prev + 1;
-      });
-    }, 20); // Reach 100 in about 2 seconds
-
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 2500); // Slightly longer for the exit animation to feel natural
 
     return () => {
       clearTimeout(timer);
-      clearInterval(interval);
     };
   }, []);
 
@@ -113,30 +103,6 @@ export function SplashScreen() {
             >
               لدجاج الزينة
             </motion.p>
-          </div>
-
-          {/* Sophisticated Progress Bar */}
-          <div className="absolute bottom-20 w-48 md:w-64">
-            <div className="h-1 w-full bg-emerald-500/10 rounded-full overflow-hidden backdrop-blur-sm">
-              <motion.div
-                className="h-full bg-emerald-500"
-                initial={{ width: "0%" }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.1 }}
-              />
-            </div>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              className="mt-4 flex justify-between items-center px-1"
-            >
-              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-900 dark:text-emerald-500">
-                Loading
-              </span>
-              <span className="text-[10px] font-black text-emerald-900 dark:text-emerald-500">
-                {progress}%
-              </span>
-            </motion.div>
           </div>
         </motion.div>
       )}

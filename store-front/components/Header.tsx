@@ -37,7 +37,8 @@ export function Header() {
 
   const navLinks = NAV_LINKS(t);
   const isHomePage = pathname === "/";
-  const isTransparent = isHomePage && !isScrolled;
+  // Force solid background if mobile menu is open
+  const isTransparent = isHomePage && !isScrolled && !isMobileMenuOpen;
 
   return (
     <>
@@ -45,7 +46,7 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed top-0 start-0 end-0 z-50 transition-all duration-300",
+          "fixed top-0 start-0 end-0 z-50 transition-all duration-300 overflow-hidden",
           isScrolled
             ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-border/50 py-2 shadow-sm"
             : isTransparent
@@ -53,7 +54,7 @@ export function Header() {
               : "bg-white dark:bg-zinc-950 border-b border-border/50 py-3",
         )}
       >
-        <div className="container mx-auto px-5 flex items-center justify-between">
+        <div className="w-full max-w-7xl mx-auto px-4 flex items-center justify-between overflow-hidden">
           <Link
             className="flex items-center gap-3 group shrink-0"
             href="/"
@@ -158,7 +159,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 start-0 z-[61] w-full max-w-sm bg-white dark:bg-zinc-950 border-e border-slate-200 dark:border-white/10 p-8 shadow-2xl lg:hidden flex flex-col pt-24"
+              className="fixed inset-y-0 start-0 z-[61] w-full max-w-[300px] bg-white dark:bg-zinc-950 opacity-100 border-e border-slate-200 dark:border-white/10 p-8 shadow-2xl lg:hidden flex flex-col pt-24"
             >
               <Button
                 variant="ghost"

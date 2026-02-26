@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ConditionalFooter } from "@/components/ConditionalFooter";
 import { SplashScreen } from "@/components/SplashScreen";
 import { Toaster } from "sonner";
 import { I18nProvider } from "@/lib/i18n/I18nContext";
@@ -89,9 +90,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning className="overflow-x-hidden">
       <body
-        className={`${tajawal.variable} font-sans antialiased bg-white dark:bg-zinc-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col`}
+        className={`${tajawal.variable} font-sans antialiased bg-white dark:bg-zinc-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden`}
         suppressHydrationWarning
       >
         <ErrorBoundary>
@@ -100,7 +101,9 @@ export default function RootLayout({
               <SplashScreen />
               <Header />
               <main className="flex-1">{children}</main>
-              <Footer />
+              <ConditionalFooter>
+                <Footer />
+              </ConditionalFooter>
               <Toaster richColors position="top-center" />
             </I18nProvider>
           </ThemeProvider>

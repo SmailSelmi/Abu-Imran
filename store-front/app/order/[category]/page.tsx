@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { OrderForm } from "@/components/OrderForm";
 import { CATEGORY_DATA } from "@/lib/constants";
 import { notFound } from "next/navigation";
@@ -50,37 +48,20 @@ export default async function OrderPage({
   }
 
   return (
-    <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col">
-      <Header />
+    <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col overflow-hidden">
       
-      <div className="flex-grow pt-32 pb-20 px-4 md:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white dark:bg-zinc-900 rounded-[2.5rem] shadow-2xl shadow-emerald-500/5 overflow-hidden border border-emerald-500/10">
+      <div className="flex-grow pt-24 md:pt-32 pb-4 md:pb-10 px-4 md:px-6 lg:px-8 w-full flex flex-col justify-start md:justify-center overflow-y-auto">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="bg-white dark:bg-zinc-900 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-emerald-500/5 overflow-hidden border border-emerald-500/10">
             <OrderForm 
               category={categoryId} 
               isFullPage={true}
               defaultVariant={defaultVariant}
             />
           </div>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-emerald-500/5 shadow-sm">
-              <h4 className="font-bold text-lg mb-2 text-emerald-600">توصيل سريع</h4>
-              <p className="text-sm text-muted-foreground">نوصل طلباتنا لجميع ولايات الجزائر الـ 58 مع ضمان سلامة المنتجات.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-emerald-500/5 shadow-sm">
-              <h4 className="font-bold text-lg mb-2 text-emerald-600">سلالات نقية</h4>
-              <p className="text-sm text-muted-foreground">جميع منتجاتنا من سلالات نادرة وموثقة الجينات لضمان أفضل إنتاج.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-emerald-500/5 shadow-sm">
-              <h4 className="font-bold text-lg mb-2 text-emerald-600">دعم متواصل</h4>
-              <p className="text-sm text-muted-foreground">فريقنا متواجد للإجابة على تساؤلاتكم ومرافقتكم بعد عملية الشراء.</p>
-            </div>
-          </div>
         </div>
       </div>
 
-      <Footer />
     </main>
   );
 }

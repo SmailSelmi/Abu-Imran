@@ -61,7 +61,7 @@ export default function ShopClient({
   const [selectedFamily, setSelectedFamily] = useState<string | null>(null);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-10 md:space-y-16">
       <AnimatePresence mode="wait">
         {!selectedCategory && (
           <motion.div
@@ -127,7 +127,13 @@ export default function ShopClient({
       </AnimatePresence>
 
       {/* Service Highlights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 py-12 md:py-16">
+      <div className="space-y-8 md:space-y-12 py-8 md:py-20">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-black tracking-tighter">لماذا تختار <span className="text-emerald-600">أبو عمران؟</span></h2>
+          <p className="text-muted-foreground font-medium text-sm max-w-sm mx-auto opacity-70">نلتزم بأعلى معايير الجودة لضمان نجاحكم في تربية سلالات الدجاج النادرة</p>
+        </div>
+        
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
         <div className="flex flex-col items-center text-center gap-4 group">
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-emerald-600/5 flex items-center justify-center text-emerald-600 shrink-0 transition-all duration-500 group-hover:bg-emerald-600 group-hover:text-white">
             <Truck className="w-7 h-7" />
@@ -144,9 +150,7 @@ export default function ShopClient({
             <ShieldCheck className="w-7 h-7" />
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-lg tracking-tight">
-              سلالات موثقة الجينات
-            </h4>
+            <h4 className="font-bold text-lg tracking-tight">سلالات موثقة الجينات</h4>
             <p className="text-muted-foreground font-medium text-sm opacity-80">
               تربية مضبوطة لأقصى أداء إنتاجي.
             </p>
@@ -157,12 +161,22 @@ export default function ShopClient({
             <ShoppingBag className="w-7 h-7" />
           </div>
           <div className="space-y-1">
-            <h4 className="font-bold text-lg tracking-tight">
-              طلب آمن ومضمون
-            </h4>
+            <h4 className="font-bold text-lg tracking-tight">طلب آمن ومضمون</h4>
             <p className="text-muted-foreground font-medium text-sm opacity-80">
               تأكيد مباشر عبر الهاتف بعد كل طلب.
             </p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center text-center gap-4 group">
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-emerald-600/5 flex items-center justify-center text-emerald-600 shrink-0 transition-all duration-500 group-hover:bg-emerald-600 group-hover:text-white">
+            <Sparkles className="w-7 h-7" />
+          </div>
+          <div className="space-y-1">
+            <h4 className="font-bold text-lg tracking-tight">دعم فني متخصص</h4>
+            <p className="text-muted-foreground font-medium text-sm opacity-80">
+              مرافقة تقنية لضمان نجاح مشروعكم.
+            </p>
+          </div>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ export function DeliveryZones() {
 
   return (
     <section
-      className="py-24 bg-white dark:bg-zinc-950"
+      className="py-12 md:py-24 bg-white dark:bg-zinc-950 overflow-hidden relative"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container px-4 mx-auto flex flex-col lg:flex-row items-center gap-16">
@@ -125,7 +125,7 @@ export function Testimonials() {
 
   return (
     <section
-      className="py-16 md:py-24 bg-white dark:bg-zinc-950 border-t border-emerald-500/10 relative overflow-hidden"
+      className="py-12 md:py-24 bg-white dark:bg-zinc-950 border-t border-emerald-500/10 relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div className="container px-4 mx-auto text-center relative z-10">

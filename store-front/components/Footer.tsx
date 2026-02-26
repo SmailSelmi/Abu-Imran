@@ -25,29 +25,29 @@ export function Footer() {
 
   return (
     <footer
-      className="w-full bg-white dark:bg-black text-slate-900 dark:text-white pt-16 pb-12 relative z-10"
+      className="w-full bg-white dark:bg-black text-slate-900 dark:text-white pt-16 pb-12 relative z-10 overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Premium Animated Divider with Gap */}
-      <div className="absolute top-0 inset-x-0 h-px w-full flex items-center justify-center">
+      <div className="absolute top-0 inset-x-0 h-px w-full flex items-center justify-center overflow-hidden">
         {/* Left Segment */}
-        <div className="relative flex-1 h-px">
+        <div className="relative flex-1 h-px overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/40 to-emerald-500/40 mr-[18px] md:mr-[22px]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-blue-500/20 translate-x-1/4 mr-[18px] md:mr-[22px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-blue-500/20 mr-[18px] md:mr-[22px]" />
         </div>
         
         {/* 2px Gap on each side of the egg (radius + 2px) */}
         <div className="w-[36px] md:w-[44px] shrink-0 h-px bg-transparent" />
         
         {/* Right Segment */}
-        <div className="relative flex-1 h-px">
+        <div className="relative flex-1 h-px overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-emerald-500/40 to-emerald-500/40 ml-[18px] md:ml-[22px]" />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-500/20 to-blue-500/20 -translate-x-1/4 ml-[18px] md:ml-[22px]" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-500/20 to-blue-500/20 ml-[18px] md:ml-[22px]" />
         </div>
       </div>
       
       {/* Subtle Glow Effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-12 bg-emerald-500/5 blur-[40px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-12 bg-emerald-500/5 blur-[40px] pointer-events-none" />
 
       {/* Decorative Center Element (Animated Egg - Pure SVG) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none">
@@ -106,10 +106,10 @@ export function Footer() {
       </div>
 
       {/* Background Glow */}
-      <div className="absolute bottom-0 start-0 w-[500px] h-[500px] bg-emerald-900/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 start-0 w-full max-w-sm aspect-square bg-emerald-900/5 rounded-full blur-[100px] pointer-events-none overflow-hidden" />
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-20">
           {/* Brand Column */}
           <div className="space-y-6">
             <Link className="flex items-center gap-3 group" href="/">
@@ -147,61 +147,56 @@ export function Footer() {
             </div>
           </div>
  
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
-              {t.footer.shop}
-            </h3>
-            <ul className="space-y-4">
-              {[
-                { label: t.footer.links.eggs, href: "/?category=eggs#shop" },
-                { label: t.footer.links.chicks, href: "/?category=chicks#shop" },
-                {
-                  label: t.footer.links.adult,
-                  href: "/?category=chickens#shop",
-                },
-                {
-                  label: t.footer.links.machine,
-                  href: "/?category=machine#shop",
-                },
-              ].map((link, i) => (
-                <li key={i}>
-                  <Link
-                    className="text-muted-foreground hover:text-emerald-600 transition-all flex items-center gap-3 font-semibold text-sm"
-                    href={link.href}
-                  >
-                    <span className="h-1 w-1 rounded-full bg-emerald-600/20 group-hover:bg-emerald-500 transition-all shrink-0"></span>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
- 
-          {/* Support */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
-              {t.footer.support}
-            </h3>
-            <ul className="space-y-5">
-              {[
-                { label: t.footer.links.shipping, href: "/shipping" },
-                { label: t.footer.links.return, href: "/returns" },
-                { label: t.footer.links.faq, href: "/faq" },
-              ].map((link, i) => (
-                <li key={i}>
-                  <Link
-                    className={cn(
-                      "text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-white transition-all inline-block font-black text-sm tracking-tight",
-                      isRTL ? "hover:-translate-x-1" : "hover:translate-x-1",
-                    )}
-                    href={link.href}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Store & Support (Merged 1x1 on mobile, 2 columns) */}
+          <div className="grid grid-cols-2 gap-8 md:block md:space-y-12">
+            <div className="space-y-6">
+              <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
+                {t.footer.shop}
+              </h3>
+              <ul className="space-y-4">
+                {[
+                  { label: t.footer.links.eggs, href: "/order/eggs" },
+                  { label: t.footer.links.chicks, href: "/order/chicks" },
+                  { label: t.footer.links.adult, href: "/order/chickens" },
+                  { label: t.footer.links.machine, href: "/order/machine" },
+                ].map((link, i) => (
+                  <li key={i}>
+                    <Link
+                      className="text-muted-foreground hover:text-emerald-600 transition-all flex items-center gap-3 font-semibold text-sm"
+                      href={link.href}
+                    >
+                      <span className="h-1 w-1 rounded-full bg-emerald-600/20 group-hover:bg-emerald-500 transition-all shrink-0"></span>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
+                {t.footer.support}
+              </h3>
+              <ul className="space-y-5">
+                {[
+                  { label: t.footer.links.shipping, href: "/shipping" },
+                  { label: t.footer.links.return, href: "/returns" },
+                  { label: t.footer.links.faq, href: "/faq" },
+                ].map((link, i) => (
+                  <li key={i}>
+                    <Link
+                      className={cn(
+                        "text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-white transition-all inline-block font-black text-sm tracking-tight",
+                        isRTL ? "hover:-translate-x-1" : "hover:translate-x-1"
+                      )}
+                      href={link.href}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact Info */}

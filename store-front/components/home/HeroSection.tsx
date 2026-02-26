@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpLeft } from "lucide-react";
 import { useI18n } from "@/lib/i18n/I18nContext";
 import Image from "next/image";
 
@@ -15,7 +15,7 @@ export default function HeroSection() {
       dir="rtl"
     >
       {/* Background Video with Gradient Overlay */}
-      <div className="absolute inset-0 z-0 scale-110">
+      <div className="absolute inset-0 z-0 scale-110 overflow-hidden">
         <video
           autoPlay
           loop
@@ -103,25 +103,24 @@ export default function HeroSection() {
             {t.hero.description}
           </motion.p>
  
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="hidden xl:flex flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center"
           >
-            <Link href="/hatching">
-              <Button className="h-14 px-10 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl transition-all shadow-lg hover:-translate-y-0.5 active:scale-95 group">
-                {t.hero.bookIncubator}
-                <ArrowUpRight className="ml-2 w-6 h-6 transition-transform group-hover:rotate-45" />
+            <Link href="/#shop">
+              <Button className="h-14 px-10 text-lg font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl transition-all shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5 active:scale-95 group">
+                {t.common.orderNow}
+                <ArrowUpLeft className="ms-2 w-5 h-5 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1" />
               </Button>
             </Link>
-            <Link href="https://wa.me/213665243819" target="_blank">
+            <Link href="/hatching">
               <Button
                 variant="outline"
                 className="h-14 px-10 text-lg font-bold border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-black rounded-xl transition-all hover:-translate-y-0.5 active:scale-95 shadow-sm"
               >
-                {t.common.contactUs}
+                {t.common.hatchingService}
               </Button>
             </Link>
           </motion.div>

@@ -103,6 +103,7 @@
   --ring: 158 90% 45%;
 }
 
+html,
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
@@ -112,7 +113,10 @@ body {
   font-feature-settings:
     "rlig" 1,
     "calt" 1;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+  position: relative !important;
 }
 
 /* Force Tajawal on every element — prevents system font fallbacks */
@@ -207,5 +211,18 @@ svg {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
   }
 }
