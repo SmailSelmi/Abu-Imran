@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/select";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
+import ChickCelebration from "@/components/ui/chick-celebration";
 import { useI18n } from "@/lib/i18n/I18nContext";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
@@ -219,6 +220,7 @@ function HatchingPageContent() {
     <AnimatePresence>
       {showStatusSheet && (
         <>
+          <ChickCelebration isVisible={sheetStatus === "success"} />
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

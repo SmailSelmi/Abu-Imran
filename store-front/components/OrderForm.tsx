@@ -47,6 +47,7 @@ import Image from "next/image";
 import LogoLoader from "./ui/logo-loader";
 import { cn } from "@/lib/utils";
 import { sendTelegramNotification } from "@/app/actions/telegram";
+import ChickCelebration from "./ui/chick-celebration";
 
 type Product = Database["public"]["Tables"]["products"]["Row"];
 
@@ -141,6 +142,12 @@ export function OrderForm({
     if (isValid) {
       setDirection(1);
       setCurrentStep(2);
+    } else {
+      // Specifically check for variant if that's the reason for failure
+      const variant = watch("variant");
+      if (!variant) {
+        toast.error("يرجى اختيار النوع للمتابعة");
+      }
     }
   };
 
@@ -216,6 +223,7 @@ export function OrderForm({
     <AnimatePresence>
       {showStatusSheet && (
         <>
+          <ChickCelebration isVisible={sheetStatus === "success"} />
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
