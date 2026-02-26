@@ -25,7 +25,7 @@ export function Footer() {
 
   return (
     <footer
-      className="w-full bg-white dark:bg-black text-slate-900 dark:text-white pt-16 pb-12 relative z-10 overflow-hidden"
+      className="w-full bg-white dark:bg-black text-slate-900 dark:text-white pt-16 pb-12 relative z-10 overflow-visible"
       dir={isRTL ? "rtl" : "ltr"}
     >
       {/* Premium Animated Divider with Gap */}
@@ -177,7 +177,7 @@ export function Footer() {
               <h3 className="font-bold text-xs uppercase tracking-widest text-emerald-600">
                 {t.footer.support}
               </h3>
-              <ul className="space-y-5">
+              <ul className="space-y-4">
                 {[
                   { label: t.footer.links.shipping, href: "/shipping" },
                   { label: t.footer.links.return, href: "/returns" },
@@ -185,12 +185,10 @@ export function Footer() {
                 ].map((link, i) => (
                   <li key={i}>
                     <Link
-                      className={cn(
-                        "text-slate-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-white transition-all inline-block font-black text-sm tracking-tight",
-                        isRTL ? "hover:-translate-x-1" : "hover:translate-x-1"
-                      )}
+                      className="text-muted-foreground hover:text-emerald-600 transition-all flex items-center gap-3 font-semibold text-sm"
                       href={link.href}
                     >
+                      <span className="h-1 w-1 rounded-full bg-emerald-600/20 group-hover:bg-emerald-500 transition-all shrink-0"></span>
                       {link.label}
                     </Link>
                   </li>

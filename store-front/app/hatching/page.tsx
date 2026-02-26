@@ -41,10 +41,11 @@ import { toast } from "sonner";
 import { useI18n } from "@/lib/i18n/I18nContext";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
-import ChickenLoader from "@/components/ui/chicken-loader";
+import LogoLoader from "@/components/ui/logo-loader";
 import { Database } from "@/types/supabase";
 import { WILAYAS } from "@/lib/constants";
 import { useSearchParams } from "next/navigation";
+import { sendTelegramNotification } from "@/app/actions/telegram";
 
 function HatchingPageContent() {
   const { t, isRTL } = useI18n();
@@ -169,11 +170,25 @@ function HatchingPageContent() {
 
       if (rpcErr) throw rpcErr;
 
-      if (rpcData && rpcData.success) {
+        if (rpcData && rpcData.success) {
         setSuccess(true);
         setSheetStatus("success");
         setShowStatusSheet(true);
         toast.success("تم تسجيل حجزك بنجاح!");
+
+        // Trigger Telegram Notification asynchronously
+        const telegramMessage = `
+🐣 *حجز تفقيس جديد!*
+👤 *الزبون:* ${customerName}
+📱 *الهاتف:* ${customerPhone}
+📍 *الولاية:* ${wilayaName}
+🏠 *العنوان:* ${formData.get("address") as string}
+🥚 *عدد البيض:* ${eggCount}
+✨ *السلالة:* ${breedName}
+💰 *التكلفة:* ${totalPrice.toLocaleString("ar-DZ")} د.ج
+        `.trim();
+
+        sendTelegramNotification(telegramMessage).catch(console.error);
       } else {
         throw new Error(rpcData?.error || "Booking failed");
       }
@@ -187,6 +202,10 @@ function HatchingPageContent() {
   }
 
   const handleNext = () => {
+    if (currentStep === 1 && !selectedBreed) {
+      toast.error("يرجى اختيار السلالة للمتابعة");
+      return;
+    }
     setDirection(1);
     setCurrentStep(2);
   };
@@ -246,6 +265,37 @@ function HatchingPageContent() {
                   <h2 className="text-3xl font-black tracking-tighter">
                     {sheetStatus === "success" ? "تم تأكيد طلب الحجز!" : "حدث خطأ ما"}
                   </h2>
+
+                  {sheetStatus === "success" && (
+                    <div className="bg-zinc-50 dark:bg-white/5 border border-emerald-500/10 rounded-2xl p-5 w-full max-w-sm mx-auto shadow-inner text-start space-y-3">
+                      <div className="flex items-center gap-4 pb-3 border-b border-emerald-500/10">
+                        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                          <Egg className="w-6 h-6 text-emerald-600" />
+                        </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600/60 leading-none mb-1">الخدمة المختارة:</p>
+                            <p className="font-black text-lg truncate leading-none">
+                              تفقيس: {selectedBreed === "mixed" ? "سلالات مختلطة" : (breeds.find(b => b.id === selectedBreed)?.name_ar || "غير محدد")}
+                            </p>
+                          </div>
+                      </div>
+                      <div className="flex justify-between items-center text-sm font-bold">
+                        <span className="text-muted-foreground">عدد البيض:</span>
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-black text-lg text-emerald-600">{eggCount}</span>
+                          <span className="text-[10px] font-black uppercase">بيضة</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center pt-2 border-t border-emerald-500/10">
+                        <span className="font-black text-emerald-600">التكلفة المقدرة:</span>
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-black text-xl italic text-amber-500">{((selectedBreed === "mixed" ? 100 : 150) * Math.floor(eggCount)).toLocaleString("ar-DZ")}</span>
+                          <span className="text-[10px] font-black">د.ج</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <p className="text-muted-foreground font-medium">
                     {sheetStatus === "success" 
                       ? `سيتواصل معكم فريقنا قريباً لتأكيد موعد إحضار الـ ${eggCount} بيضة للمزرعة.`
@@ -571,12 +621,11 @@ function HatchingPageContent() {
                         >
                           {bookingLoading ? (
                             <span className="flex items-center gap-3">
-                              <ChickenLoader size="sm" showText={false} /> جاري الحجز...
+                              <LogoLoader size="sm" /> جاري الحجز...
                             </span>
                           ) : (
                             <span className="flex items-center gap-3">
                               تأكيد الحجز النهائي
-                              <ArrowLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" />
                             </span>
                           )}
                         </Button>
@@ -599,7 +648,7 @@ export default function HatchingPage() {
     <Suspense
       fallback={
         <div className="min-h-screen bg-background pt-32 flex items-center justify-center">
-          <ChickenLoader size="xl" />
+          <LogoLoader size="xl" />
         </div>
       }
     >

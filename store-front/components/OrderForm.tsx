@@ -44,9 +44,9 @@ import {
   Bird,
 } from "lucide-react";
 import Image from "next/image";
-import ChickenLoader from "./ui/chicken-loader";
+import LogoLoader from "./ui/logo-loader";
 import { cn } from "@/lib/utils";
-import { sendTelegramNotification } from "@/lib/telegram";
+import { sendTelegramNotification } from "@/app/actions/telegram";
 
 type Product = Database["public"]["Tables"]["products"]["Row"];
 
@@ -183,8 +183,9 @@ export function OrderForm({
         setSuccess(true);
         setSheetStatus("success");
         setShowStatusSheet(true);
-        
-        // Send Telegram Notification
+        if (onSuccess) onSuccess();
+
+        // Send Telegram Notification asynchronously
         const telegramMessage = `
 📦 *طلب جديد من المتجر!*
 👤 *الزبون:* ${values.name}
@@ -197,9 +198,7 @@ export function OrderForm({
 💰 *المجموع:* ${(initialProduct?.price || config.basePrice) * values.quantity} د.ج
         `.trim();
         
-        await sendTelegramNotification(telegramMessage);
-
-        if (onSuccess) onSuccess();
+        sendTelegramNotification(telegramMessage).catch(console.error);
       } else {
         throw new Error(rpcData?.error || "فشل إرسال الطلب");
       }
@@ -263,6 +262,32 @@ export function OrderForm({
                   <h2 className="text-3xl font-black tracking-tighter">
                     {sheetStatus === "success" ? "تم تأكيد طلبك!" : "حدث خطأ ما"}
                   </h2>
+                  
+                  {sheetStatus === "success" && (
+                    <div className="bg-zinc-50 dark:bg-white/5 border border-emerald-500/10 rounded-2xl p-5 w-full max-w-sm mx-auto shadow-inner text-start space-y-3">
+                      <div className="flex items-center gap-4 pb-3 border-b border-emerald-500/10">
+                        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                          <config.icon className="w-6 h-6 text-emerald-600" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600/60 leading-none mb-1">المنتج المُختار:</p>
+                          <p className="font-black text-lg truncate leading-none">{config.name_ar}</p>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center text-sm font-bold">
+                        <span className="text-muted-foreground">الكمية:</span>
+                        <span className="font-black text-lg">{quantity}</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-2 border-t border-emerald-500/10">
+                        <span className="font-black text-emerald-600">المجموع النهائي:</span>
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-black text-xl italic text-amber-500">{(config.basePrice * quantity).toLocaleString("ar-DZ")}</span>
+                          <span className="text-[10px] font-black">د.ج</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <p className="text-muted-foreground font-medium">
                     {sheetStatus === "success" 
                       ? "شكراً لثقتكم. سيتواصل معكم فريقنا قريباً لتأكيد تفاصيل الشحن والولاية."
@@ -535,7 +560,7 @@ export function OrderForm({
                     className="h-20 w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 font-black text-xl text-white shadow-xl shadow-emerald-500/20 group transition-all font-tajawal"
                   >
                     <span>المتابعة للمعلومات</span>
-                    <ChevronLeft className="w-7 h-7 ms-2 group-hover:-translate-x-1 transition-transform" />
+                    <ArrowLeft className="w-7 h-7 ms-2 group-hover:-translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </motion.div>
@@ -644,12 +669,11 @@ export function OrderForm({
                   >
                     {loading ? (
                       <span className="flex items-center gap-3">
-                        <ChickenLoader size="sm" showText={false} /> جاري الإرسال...
+                        <LogoLoader size="sm" /> جاري الإرسال...
                       </span>
                     ) : (
                       <span className="flex items-center gap-3">
                         تأكيد الطلب النهائي
-                        <ArrowLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" />
                       </span>
                     )}
                   </Button>

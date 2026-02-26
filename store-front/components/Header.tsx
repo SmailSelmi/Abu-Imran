@@ -58,7 +58,13 @@ export function Header() {
           <Link
             className="flex items-center gap-3 group shrink-0"
             href="/"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault();
+                window.location.reload();
+              }
+              setIsMobileMenuOpen(false);
+            }}
           >
             <div
               className={cn(
@@ -71,7 +77,7 @@ export function Header() {
                 fill
                 priority
                 sizes="44px"
-                className="object-contain transition-all duration-500"
+                className="object-contain transition-all duration-500 dark:invert dark:brightness-200"
               />
             </div>
             <span

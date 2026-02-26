@@ -129,8 +129,8 @@ export default function ShopClient({
       {/* Service Highlights */}
       <div className="space-y-8 md:space-y-12 py-8 md:py-20">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl font-black tracking-tighter">لماذا تختار <span className="text-emerald-600">أبو عمران؟</span></h2>
-          <p className="text-muted-foreground font-medium text-sm max-w-sm mx-auto opacity-70">نلتزم بأعلى معايير الجودة لضمان نجاحكم في تربية سلالات الدجاج النادرة</p>
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter leading-none">لماذا تختار <span className="text-emerald-600">أبو عمران؟</span></h2>
+          <p className="text-muted-foreground font-medium text-sm md:text-base max-w-lg mx-auto opacity-70">نلتزم بأعلى معايير الجودة لضمان نجاحكم في تربية سلالات الدجاج النادرة</p>
         </div>
         
         <div className="grid grid-cols-2 lg:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
