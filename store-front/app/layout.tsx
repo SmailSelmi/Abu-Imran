@@ -102,7 +102,7 @@ export default function RootLayout({
               <SplashScreen />
               <DeliveryBanner />
               <Header />
-              <main className="flex-1 pt-24 md:pt-28">{children}</main>
+              <main className="flex-1 pt-12 md:pt-14">{children}</main>
               <ConditionalFooter>
                 <Footer />
               </ConditionalFooter>
