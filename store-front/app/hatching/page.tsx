@@ -341,7 +341,7 @@ function HatchingPageContent() {
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col overflow-hidden">
-      <div className="flex-grow pt-20 md:pt-32 pb-4 md:pb-10 px-4 md:px-6 lg:px-8 w-full flex flex-col justify-start md:justify-center overflow-y-auto">
+      <div className="flex-grow pt-40 md:pt-48 pb-4 md:pb-10 px-4 md:px-6 lg:px-8 w-full flex flex-col justify-start md:justify-center overflow-y-auto">
         <div className="max-w-6xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
