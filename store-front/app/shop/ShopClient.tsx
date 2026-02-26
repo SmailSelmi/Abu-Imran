@@ -61,7 +61,7 @@ export default function ShopClient({
   const [selectedFamily, setSelectedFamily] = useState<string | null>(null);
 
   return (
-    <div className="space-y-10 md:space-y-16 pt-16 md:pt-20">
+    <div className="space-y-10 md:space-y-16">
       <AnimatePresence mode="wait">
         {!selectedCategory && (
           <motion.div

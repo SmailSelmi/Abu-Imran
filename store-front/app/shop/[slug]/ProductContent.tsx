@@ -55,7 +55,7 @@ export default function ProductContent({
   const isMachine = variants[0]?.category === "machine";
 
   return (
-    <div className="min-h-screen bg-background font-sans pb-32 pt-20 md:pt-24">
+    <div className="min-h-screen bg-background font-sans pb-32 pt-32 md:pt-40">
       <div className="container px-4 mx-auto max-w-7xl">
         <Link
           href="/#shop"
