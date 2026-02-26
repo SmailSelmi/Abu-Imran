@@ -18,9 +18,8 @@ export function Footer() {
   );
 
   const socialLinks = [
-    { icon: Facebook, name: "Facebook", href: "#" },
-    { icon: Instagram, name: "Instagram", href: "#" },
-    { icon: TikTokIcon, name: "TikTok", href: "#" },
+    { icon: Facebook, name: "Facebook", href: "https://www.facebook.com/profile.php?id=61556685279269" },
+    { icon: TikTokIcon, name: "TikTok", href: "https://www.tiktok.com/@poultry.sami?_r=1&_t=ZS-94FDFXEtdg5" },
   ];
 
   return (
